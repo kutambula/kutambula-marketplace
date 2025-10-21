@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+
+@theme inline {
+  --font-sans: var(--font-graphik-lcg);
+}
+
+body {
+  font-family: var(--font-graphik-lcg), system-ui, -apple-system, sans-serif;
+}
