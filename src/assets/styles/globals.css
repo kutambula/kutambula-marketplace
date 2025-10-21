@@ -1,8 +1,22 @@
 @import "tailwindcss";
 
+/* 
+  1. #F28F38
+  2. #1C1819
+  3. #BF8049
+  4. #732F29
+  5. #F9F9F9
+*/
 
 @theme inline {
   --font-sans: var(--font-graphik-lcg);
+
+  /* Colors */
+  --color-primary: #F28F38;
+  --color-secondary: #1C1819;
+  --color-tertiary: #BF8049;
+  --color-quaternary: #732F29;
+  --color-background: #F9F9F9;
 }
 
 body {
