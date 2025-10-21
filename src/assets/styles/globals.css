@@ -9,6 +9,9 @@
 */
 
 @theme inline {
+  
+  /* Fonts */
+  --font-graphik-lcg: "GraphikLCG", sans-serif;
   --font-sans: var(--font-graphik-lcg);
 
   /* Colors */
