@@ -1,0 +1,177 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import "tailwindcss";
+
+/* GraphikLCG Font Family */
+
+@font-face {
+  font-family: 'GraphikLCG';
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url("/src/assets/fonts/GraphikLCG-Thin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'GraphikLCG';
+  font-style: italic;
+  font-weight: 100;
+  font-display: swap;
+  src: url("/src/assets/fonts/GraphikLCG-ThinItalic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'GraphikLCG';
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url("/src/assets/fonts/GraphikLCG-Extralight.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'GraphikLCG';
+  font-style: italic;
+  font-weight: 200;
+  font-display: swap;
+  src: url("/src/assets/fonts/GraphikLCG-ExtralightItalic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'GraphikLCG';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/src/assets/fonts/GraphikLCG-Light.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'GraphikLCG';
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/src/assets/fonts/GraphikLCG-LightItalic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'GraphikLCG';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/src/assets/fonts/GraphikLCG-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'GraphikLCG';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/src/assets/fonts/GraphikLCG-RegularItalic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'GraphikLCG';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/src/assets/fonts/GraphikLCG-Medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'GraphikLCG';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/src/assets/fonts/GraphikLCG-MediumItalic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'GraphikLCG';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/src/assets/fonts/GraphikLCG-Semibold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'GraphikLCG';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/src/assets/fonts/GraphikLCG-SemiboldItalic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'GraphikLCG';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/src/assets/fonts/GraphikLCG-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'GraphikLCG';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/src/assets/fonts/GraphikLCG-BoldItalic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'GraphikLCG';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("/src/assets/fonts/GraphikLCG-Super.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'GraphikLCG';
+  font-style: italic;
+  font-weight: 800;
+  font-display: swap;
+  src: url("/src/assets/fonts/GraphikLCG-SuperItalic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'GraphikLCG';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url("/src/assets/fonts/GraphikLCG-Black.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'GraphikLCG';
+  font-style: italic;
+  font-weight: 900;
+  font-display: swap;
+  src: url("/src/assets/fonts/GraphikLCG-BlackItalic.woff2") format("woff2");
+}
+
+
+/* 
+  1. #F28F38
+  2. #1C1819
+  3. #BF8049
+  4. #732F29
+  5. #F9F9F9
+*/
+
+@theme {
+  
+  /* Fonts */
+  --font-graphik: 'GraphikLCG', sans-serif;
+  --font-roboto: 'Roboto', sans-serif;
+
+  /* Colors */
+  --color-primary: #F28F38;
+  --color-secondary: #1C1819;
+  --color-tertiary: #BF8049;
+  --color-quaternary: #732F29;
+  --color-background: #F9F9F9;
+  
+}
+
+
+body {
+  font-family: var(--font-graphik);
+}
