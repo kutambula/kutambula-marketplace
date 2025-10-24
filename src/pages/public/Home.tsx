@@ -1,6 +1,8 @@
 import Header from '../../components/layout/Header';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
+import SidebarFilters from '../../components/layout/SidebarFilters';
+import MainContent from '../../components/layout/MainContent';
 
 export default function HomePage() {
     // Dados de exemplo - substituir com dados reais
@@ -52,6 +54,75 @@ export default function HomePage() {
             title: 'Casa & Decoração',
             description: 'Transforme seu lar com estilo',
             discount: '40% OFF'
+        }
+    ];
+
+    const featuredStores = [
+        {
+            id: 1,
+            name: 'TechWorld Store',
+            logo: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=200&h=200&fit=crop',
+            banner: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=800&h=400&fit=crop',
+            category: 'Eletrônicos',
+            rating: 4.8,
+            totalProducts: 1250,
+            verified: true,
+            description: 'Os melhores produtos tecnológicos com garantia'
+        },
+        {
+            id: 2,
+            name: 'Fashion Hub',
+            logo: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=200&h=200&fit=crop',
+            banner: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=400&fit=crop',
+            category: 'Moda & Estilo',
+            rating: 4.9,
+            totalProducts: 3400,
+            verified: true,
+            description: 'Tendências da moda com os melhores preços'
+        },
+        {
+            id: 3,
+            name: 'Home Decor Plus',
+            logo: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=200&h=200&fit=crop',
+            banner: 'https://images.unsplash.com/photo-1560343090-f0409e92791a?w=800&h=400&fit=crop',
+            category: 'Casa & Decoração',
+            rating: 4.7,
+            totalProducts: 890,
+            verified: true,
+            description: 'Transforme seu espaço com estilo único'
+        },
+        {
+            id: 4,
+            name: 'Sports & Fitness',
+            logo: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=200&h=200&fit=crop',
+            banner: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=400&fit=crop',
+            category: 'Esportes',
+            rating: 4.6,
+            totalProducts: 670,
+            verified: true,
+            description: 'Equipamentos para sua vida ativa'
+        },
+        {
+            id: 5,
+            name: 'Beauty & Care',
+            logo: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=200&h=200&fit=crop',
+            banner: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=800&h=400&fit=crop',
+            category: 'Beleza & Saúde',
+            rating: 4.9,
+            totalProducts: 1520,
+            verified: true,
+            description: 'Cuidados essenciais para você'
+        },
+        {
+            id: 6,
+            name: 'Kids Paradise',
+            logo: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=200&h=200&fit=crop',
+            banner: 'https://images.unsplash.com/photo-1558877385-8c7f7bfc0bcd?w=800&h=400&fit=crop',
+            category: 'Infantil',
+            rating: 4.8,
+            totalProducts: 980,
+            verified: true,
+            description: 'Tudo para a alegria dos pequenos'
         }
     ];
 
@@ -187,12 +258,98 @@ export default function HomePage() {
                 </section>
             </section>
 
+            {/* Featured Stores Section */}
+            <section className="container mx-auto px-4 py-12">
+                <div className="flex items-center justify-between mb-8">
+                    <div>
+                        <h2 className="text-3xl font-black text-gray-900 mb-2 flex items-center gap-3">
+                            <span className="text-4xl">🏪</span>
+                            Lojas em Destaque
+                        </h2>
+                        <p className="text-gray-600">Conheça as melhores lojas verificadas da plataforma</p>
+                    </div>
+                    <button className="text-primary font-semibold hover:underline flex items-center gap-2 group">
+                        Ver Todas
+                        <span className="group-hover:translate-x-1 transition-transform">→</span>
+                    </button>
+                </div>
 
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {featuredStores.map((store) => (
+                        <div 
+                            key={store.id}
+                            className="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-2xl hover:border-primary/20 transition-all duration-300 cursor-pointer group"
+                        >
+                            {/* Banner */}
+                            <div className="relative h-32 overflow-hidden">
+                                <img
+                                    src={store.banner}
+                                    alt={store.name}
+                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                />
+                                <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
+                                
+                                {/* Badge de verificação */}
+                                {store.verified && (
+                                    <div className="absolute top-3 right-3 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 shadow-lg">
+                                        <span>✓</span>
+                                        Verificada
+                                    </div>
+                                )}
+                            </div>
 
-            {/* <div className="container mx-auto px-4 py-6 flex gap-6">
+                            {/* Logo sobreposto */}
+                            <div className="relative px-6 -mt-12 mb-4">
+                                <div className="w-24 h-24 rounded-xl overflow-hidden border-4 border-white shadow-xl bg-white">
+                                    <img
+                                        src={store.logo}
+                                        alt={`${store.name} logo`}
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Conteúdo */}
+                            <div className="px-6 pb-6 space-y-3">
+                                <div>
+                                    <h3 className="text-xl font-bold text-gray-900 mb-1 group-hover:text-primary transition-colors">
+                                        {store.name}
+                                    </h3>
+                                    <p className="text-sm text-gray-500 font-medium">
+                                        {store.category}
+                                    </p>
+                                </div>
+
+                                <p className="text-sm text-gray-600 line-clamp-2">
+                                    {store.description}
+                                </p>
+
+                                {/* Estatísticas */}
+                                <div className="flex items-center justify-between pt-3 border-t border-gray-100">
+                                    <div className="flex items-center gap-1 text-sm">
+                                        <span className="text-yellow-500 font-bold">★</span>
+                                        <span className="font-semibold text-gray-900">{store.rating}</span>
+                                        <span className="text-gray-400">/5</span>
+                                    </div>
+                                    <div className="text-sm text-gray-600">
+                                        <span className="font-semibold text-gray-900">{store.totalProducts.toLocaleString()}</span> produtos
+                                    </div>
+                                </div>
+
+                                {/* Botão de ação */}
+                                <button className="w-full bg-gray-50 hover:bg-primary hover:text-white text-gray-900 font-semibold py-3 rounded-xl transition-all duration-300 transform group-hover:scale-[1.02]">
+                                    Visitar Loja
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            <div className="container mx-auto px-4 py-6 flex gap-6">
                 <SidebarFilters />
                 <MainContent />
-            </div> */}
+            </div>
         </div>
     );
 }
