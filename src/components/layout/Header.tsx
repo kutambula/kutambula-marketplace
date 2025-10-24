@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import 'boxicons/css/boxicons.min.css';
-import { Search, ShoppingCart, Bell, ChevronDown, Menu, X, User } from 'lucide-react';
+import { Search, ShoppingCart, Bell, ChevronDown, Menu, X, User, Store, Tag, Headset, Heart } from 'lucide-react';
 import icon from '../../assets/images/icon.png';
 
 export default function Header() {
@@ -12,8 +12,92 @@ export default function Header() {
 
     return (
         <header className="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-50">
+
+            {/* Navigation Links Bar */}
+            <div className='relative border-t border-primary/20 african-pattern bg-linear-to-r from-background via-white to-background'>
+                <div className='container mx-auto px-4 relative z-10'>
+                    {/* Desktop Navigation */}
+                    <nav className='hidden lg:flex items-center justify-between py-2'>
+                        <ul className='flex items-center gap-6'>
+                            <li>
+                                <a href="#" className='flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-primary transition-colors py-2'>
+                                    <Store className="w-4 h-4" />
+                                    Loja
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" className='flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-primary transition-colors py-2'>
+                                    <Tag className="w-4 h-4" />
+                                    Ofertas
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" className='flex items-center gap-2 text-sm font-semibold text-gray-700 hover:text-primary transition-colors py-2'>
+                                    <Store className="w-4 h-4" />
+                                    Torne-se um Vendedor
+                                </a>
+                            </li>
+                        </ul>
+
+                        <ul className='flex items-center gap-6'>
+                            <li>
+                                <a href="#" className='flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-primary transition-colors py-2'>
+                                    <Headset className="w-4 h-4" />
+                                    Centro de Ajuda
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" className='flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-primary transition-colors py-2'>
+                                    <Heart className="w-4 h-4" />
+                                    Lista de Desejos
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    {/* Mobile Navigation - Scrollable */}
+                    <nav className='lg:hidden overflow-x-auto scrollbar-hide py-2'>
+                        <ul className='flex items-center gap-4 min-w-max'>
+                            <li>
+                                <a href="#" className='flex items-center gap-1.5 text-xs font-medium text-gray-700 hover:text-primary transition-colors whitespace-nowrap'>
+                                    <Store className="w-3.5 h-3.5" />
+                                    Loja
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" className='flex items-center gap-1.5 text-xs font-medium text-gray-700 hover:text-primary transition-colors whitespace-nowrap'>
+                                    <Tag className="w-3.5 h-3.5" />
+                                    Ofertas
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" className='flex items-center gap-1.5 text-xs font-semibold text-gray-900 hover:text-primary transition-colors px-3 py-1.5 bg-white rounded-lg whitespace-nowrap'>
+                                    <Store className="w-3.5 h-3.5" />
+                                    Torne-se Vendedor
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" className='flex items-center gap-1.5 text-xs font-medium text-gray-700 hover:text-primary transition-colors whitespace-nowrap'>
+                                    <Headset className="w-3.5 h-3.5" />
+                                    Centro de Ajuda
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" className='flex items-center gap-1.5 text-xs font-medium text-gray-700 hover:text-primary transition-colors whitespace-nowrap'>
+                                    <Heart className="w-3.5 h-3.5" />
+                                    Lista de Desejos
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                {/* Decorative Pattern */}
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#E76835] to-transparent opacity-50" />
+            </div>
+
             {/* Main Navigation */}
             <nav className='container mx-auto px-4 py-3 md:py-4' >
+
                 <div className="flex items-center justify-between gap-2 md:gap-6">
                     {/* Mobile Menu Button */}
                     <button
@@ -83,6 +167,14 @@ export default function Header() {
                             <Search className="w-5 h-5 md:w-6 md:h-6 text-gray-600" />
                         </button>
 
+                        {/* Notifications - Hidden on mobile */}
+                        <button
+                            className='hidden md:block relative p-2.5 rounded-full hover:bg-gray-100 transition-colors duration-200'
+                            aria-label="Notifications"
+                        >
+                            <Bell className="w-6 h-6 text-gray-600" />
+                        </button>
+
                         {/* Cart */}
                         <button
                             className='relative p-2 md:p-2.5 rounded-full hover:bg-gray-100 transition-colors duration-200'
@@ -94,13 +186,7 @@ export default function Header() {
                             </span>
                         </button>
 
-                        {/* Notifications - Hidden on mobile */}
-                        <button
-                            className='hidden md:block relative p-2.5 rounded-full hover:bg-gray-100 transition-colors duration-200'
-                            aria-label="Notifications"
-                        >
-                            <Bell className="w-6 h-6 text-gray-600" />
-                        </button>
+
 
                         {/* User Account */}
                         <button
@@ -173,6 +259,8 @@ export default function Header() {
                     </div>
                 </div>
             )}
+
+
         </header>
     );
 }

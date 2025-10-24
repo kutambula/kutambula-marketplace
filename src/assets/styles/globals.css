@@ -171,7 +171,59 @@
   
 }
 
-
 body {
   font-family: var(--font-graphik);
+}
+
+/* Custom African geometric pattern background */
+.african-pattern {
+  background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 35px,
+      oklch(0.35 0.08 30 / 0.05) 35px,
+      oklch(0.35 0.08 30 / 0.05) 70px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 35px,
+      oklch(0.35 0.08 30 / 0.05) 35px,
+      oklch(0.35 0.08 30 / 0.05) 70px
+    );
+}
+
+/* Swiper Custom Styles */
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+@import 'swiper/css/effect-fade';
+
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  width: 24px;
+  border-radius: 5px;
+  background: var(--color-primary);
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Custom hover effects for sliders */
+.recommendations-swiper .swiper-slide {
+  transition: transform 0.3s ease;
+}
+
+.offers-swiper .swiper-slide {
+  transition: opacity 0.5s ease;
 }
