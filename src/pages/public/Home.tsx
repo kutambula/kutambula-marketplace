@@ -10,26 +10,62 @@ export default function HomePage() {
         {
             id: 1,
             image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop',
-            title: 'Headphones Premium',
-            badge: 'Recomendado'
+            title: 'Headphones Premium Wireless',
+            badge: 'Recomendado',
+            price: 299.99,
+            originalPrice: 499.99,
+            rating: 4.8,
+            totalReviews: 234,
+            storeName: 'TechWorld Store',
+            storeVerified: true,
+            inStock: true,
+            freeShipping: true,
+            discount: 40
         },
         {
             id: 2,
             image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=300&fit=crop',
-            title: 'Smartwatch Pro',
-            badge: 'Top da Semana'
+            title: 'Smartwatch Pro Series 5',
+            badge: 'Top da Semana',
+            price: 599.90,
+            originalPrice: 899.90,
+            rating: 4.9,
+            totalReviews: 567,
+            storeName: 'TechWorld Store',
+            storeVerified: true,
+            inStock: true,
+            freeShipping: true,
+            discount: 33
         },
         {
             id: 3,
             image: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=300&fit=crop',
-            title: 'Tênis Esportivo',
-            badge: 'Mais Vendido'
+            title: 'Tênis Esportivo Ultra Comfort',
+            badge: 'Mais Vendido',
+            price: 249.90,
+            originalPrice: 349.90,
+            rating: 4.7,
+            totalReviews: 892,
+            storeName: 'Sports & Fitness',
+            storeVerified: true,
+            inStock: true,
+            freeShipping: true,
+            discount: 29
         },
         {
             id: 4,
             image: 'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=400&h=300&fit=crop',
-            title: 'Câmera Digital',
-            badge: 'Novidade'
+            title: 'Câmera Digital 4K Pro',
+            badge: 'Novidade',
+            price: 1299.00,
+            originalPrice: 1799.00,
+            rating: 4.9,
+            totalReviews: 156,
+            storeName: 'TechWorld Store',
+            storeVerified: true,
+            inStock: true,
+            freeShipping: true,
+            discount: 28
         }
     ];
 
@@ -159,21 +195,94 @@ export default function HomePage() {
                     >
                         {weeklyRecommendations.map((item) => (
                             <SwiperSlide key={item.id}>
-                                <div className="relative overflow-hidden rounded-xl cursor-pointer group">
-                                    <img
-                                        src={item.image}
-                                        alt={item.title}
-                                        className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700"
-                                    />
-                                    <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                                    <div className="absolute top-3 right-3">
-                                        <span className="bg-yellow-400 text-gray-900 text-xs font-bold px-3 py-1 rounded-full shadow-lg">
-                                            {item.badge}
-                                        </span>
+                                <div className="relative overflow-hidden rounded-xl cursor-pointer group bg-white border border-gray-100">
+                                    {/* Imagem do Produto */}
+                                    <div className="relative overflow-hidden h-48">
+                                        <img
+                                            src={item.image}
+                                            alt={item.title}
+                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                        />
+                                        
+                                        {/* Badges */}
+                                        <div className="absolute top-3 left-3 right-3 flex justify-between items-start">
+                                            <span className="bg-yellow-400 text-gray-900 text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                                                {item.badge}
+                                            </span>
+                                            {item.discount > 0 && (
+                                                <span className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-lg">
+                                                    -{item.discount}%
+                                                </span>
+                                            )}
+                                        </div>
+
+                                        {/* Frete Grátis Badge */}
+                                        {item.freeShipping && (
+                                            <div className="absolute bottom-3 left-3">
+                                                <span className="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded shadow-lg">
+                                                    Frete Grátis
+                                                </span>
+                                            </div>
+                                        )}
                                     </div>
-                                    <div className="absolute bottom-0 inset-x-0 bg-linear-to-t from-black/90 to-transparent p-4 text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                                        <h3 className="font-semibold text-sm mb-1">{item.title}</h3>
-                                        <p className="text-xs opacity-90">Clique para ver detalhes</p>
+
+                                    {/* Informações do Produto */}
+                                    <div className="p-3 space-y-2">
+                                        {/* Nome da Loja */}
+                                        <div className="flex items-center gap-1 text-xs text-gray-600">
+                                            <span>🏪</span>
+                                            <span className="font-medium">{item.storeName}</span>
+                                            {item.storeVerified && (
+                                                <span className="text-blue-500">✓</span>
+                                            )}
+                                        </div>
+
+                                        {/* Título */}
+                                        <h3 className="font-semibold text-sm text-gray-900 line-clamp-2 group-hover:text-primary transition-colors">
+                                            {item.title}
+                                        </h3>
+
+                                        {/* Avaliação */}
+                                        <div className="flex items-center gap-1 text-xs">
+                                            <div className="flex items-center gap-1">
+                                                <span className="text-yellow-500">★</span>
+                                                <span className="font-semibold text-gray-900">{item.rating}</span>
+                                            </div>
+                                            <span className="text-gray-400">({item.totalReviews})</span>
+                                        </div>
+
+                                        {/* Preços */}
+                                        <div className="space-y-1">
+                                            {item.originalPrice > item.price && (
+                                                <p className="text-xs text-gray-400 line-through">
+                                                    {item.originalPrice.toLocaleString('pt-AO', { 
+                                                        style: 'currency', 
+                                                        currency: 'AOA' 
+                                                    })}
+                                                </p>
+                                            )}
+                                            <p className="text-lg font-black text-primary">
+                                                {item.price.toLocaleString('pt-AO', { 
+                                                    style: 'currency', 
+                                                    currency: 'AOA' 
+                                                })}
+                                            </p>
+                                        </div>
+
+                                        {/* Status de Estoque */}
+                                        <div className="pt-2 border-t border-gray-100">
+                                            {item.inStock ? (
+                                                <span className="text-xs text-green-600 font-medium flex items-center gap-1">
+                                                    <span className="w-2 h-2 bg-green-600 rounded-full"></span>
+                                                    Em estoque
+                                                </span>
+                                            ) : (
+                                                <span className="text-xs text-red-600 font-medium flex items-center gap-1">
+                                                    <span className="w-2 h-2 bg-red-600 rounded-full"></span>
+                                                    Esgotado
+                                                </span>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
                             </SwiperSlide>
