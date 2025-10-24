@@ -1,8 +1,8 @@
 import Header from '../../components/layout/Header';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
-import SidebarFilters from '../../components/layout/SidebarFilters';
 import MainContent from '../../components/layout/MainContent';
+import Footer from '../../components/layout/Footer';
+import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
 
 export default function HomePage() {
     // Dados de exemplo - substituir com dados reais
@@ -458,6 +458,8 @@ export default function HomePage() {
             <div className="container mx-auto px-4 py-6">
                 <MainContent />
             </div>
+
+            <Footer />
         </div>
     );
 }
