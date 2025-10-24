@@ -455,8 +455,7 @@ export default function HomePage() {
                 </div>
             </section>
 
-            <div className="container mx-auto px-4 py-6 flex gap-6">
-                <SidebarFilters />
+            <div className="container mx-auto px-4 py-6">
                 <MainContent />
             </div>
         </div>

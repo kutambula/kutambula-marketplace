@@ -303,30 +303,6 @@ export default function MainContent() {
                     </div>
                 ))}
             </div>
-
-            {/* Paginação */}
-            <div className="mt-8 flex justify-center">
-                <div className="flex items-center gap-2">
-                    <button className="px-4 py-2 bg-white border-2 border-gray-200 hover:border-primary rounded-lg font-medium text-gray-700 hover:text-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
-                        Anterior
-                    </button>
-                    {[1, 2, 3, 4, 5].map((page) => (
-                        <button
-                            key={page}
-                            className={`hidden md:block w-10 h-10 rounded-lg font-medium transition-colors ${
-                                page === 1
-                                    ? 'bg-primary text-white'
-                                    : 'bg-white border-2 border-gray-200 hover:border-primary text-gray-700 hover:text-primary'
-                            }`}
-                        >
-                            {page}
-                        </button>
-                    ))}
-                    <button className="px-4 py-2 bg-primary hover:bg-tertiary text-white rounded-lg font-medium transition-colors">
-                        Próximo
-                    </button>
-                </div>
-            </div>
         </main>
     );
 }
