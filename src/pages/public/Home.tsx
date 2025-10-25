@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import MainContent from '../../components/layout/MainContent';
 import Footer from '../../components/layout/Footer';
 import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
+import { Link } from 'react-router-dom';
 
 export default function HomePage() {
     // Dados de exemplo - substituir com dados reais
@@ -170,7 +171,7 @@ export default function HomePage() {
             <section className="container mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-4 gap-6">
 
                 {/* Coluna Esquerda — Recomendações da Semana */}
-                <aside className="lg:col-span-1 bg-linear-to-br from-white to-gray-50 rounded-xl border border-gray-100 p-5 space-y-4">
+                <aside className="lg:col-span-1 bg-linear-to-br from-white to-gray-50 rounded-xl border shadow-lg border-gray-100 p-5 space-y-4">
                     <div className="flex items-center justify-between border-b pb-3">
                         <h2 className="text-lg font-bold text-gray-800 flex items-center gap-2">
                             <span className="text-2xl">⭐</span>
@@ -297,7 +298,7 @@ export default function HomePage() {
                 </aside>
 
                 {/* Coluna Direita — Slider de Ofertas */}
-                <section className="lg:col-span-3 bg-white rounded-2xl  border border-gray-100 overflow-hidden">
+                <section className="lg:col-span-3 bg-white rounded-2xl  border border-gray-100 overflow-hidden shadow-lg">
 
                     <div className="p-5 pt-4">
                         <Swiper
@@ -385,9 +386,10 @@ export default function HomePage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {featuredStores.map((store) => (
-                        <div 
+                        <Link
+                            to={`/loja/${store.id}`}
                             key={store.id}
-                            className="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-2xl hover:border-primary/20 transition-all duration-300 cursor-pointer group"
+                            className="bg-white rounded-2xl overflow-hidden border shadow-lg border-gray-100 hover:shadow-2xl hover:border-primary/20 transition-all duration-300 cursor-pointer group block"
                         >
                             {/* Banner */}
                             <div className="relative h-32 overflow-hidden">
@@ -450,7 +452,7 @@ export default function HomePage() {
                                     Visitar Loja
                                 </button>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </section>
