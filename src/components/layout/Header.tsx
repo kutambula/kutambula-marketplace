@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import 'boxicons/css/boxicons.min.css';
 import { Search, ShoppingCart, Bell, ChevronDown, Menu, X, User, Store, Tag, Headset, Heart } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import icon from '../../assets/images/icon.png';
 
 export default function Header() {
@@ -113,13 +114,16 @@ export default function Header() {
                     </button>
 
                     {/* Logo */}
-                    <div className="shrink-0">
+                    <Link
+                        to={`/`}
+                        className="shrink-0"
+                    >
                         <img
                             src={icon}
                             alt="Kutambula Marketplace Logo"
                             className="w-12 md:w-16 object-contain transition-transform duration-200 cursor-pointer hover:scale-105"
                         />
-                    </div>
+                    </Link>
 
                     {/* Search Bar - Desktop */}
                     <div className='hidden lg:flex flex-1 max-w-2xl'>
