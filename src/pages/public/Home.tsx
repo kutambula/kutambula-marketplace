@@ -4,7 +4,7 @@ import MainContent from '../../components/layout/MainContent';
 import Footer from '../../components/layout/Footer';
 import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
 import { Link } from 'react-router-dom';
-import { Star, Store, CheckCircle, Package, Truck, ShoppingBag } from 'lucide-react';
+import { Star, Store, CheckCircle, ShoppingBag } from 'lucide-react';
 
 export default function HomePage() {
     // Dados de exemplo - substituir com dados reais
@@ -257,16 +257,16 @@ export default function HomePage() {
                                         <div className="space-y-1">
                                             {item.originalPrice > item.price && (
                                                 <p className="text-xs text-gray-400 line-through">
-                                                    {item.originalPrice.toLocaleString('pt-AO', { 
+                                                    {item.originalPrice.toLocaleString('pt-PT', { 
                                                         style: 'currency', 
-                                                        currency: 'AOA' 
+                                                        currency: 'EUR' 
                                                     })}
                                                 </p>
                                             )}
                                             <p className="text-lg font-black text-primary">
-                                                {item.price.toLocaleString('pt-AO', { 
+                                                {item.price.toLocaleString('pt-PT', { 
                                                     style: 'currency', 
-                                                    currency: 'AOA' 
+                                                    currency: 'EUR' 
                                                 })}
                                             </p>
                                         </div>
