@@ -1,15 +1,22 @@
 import { useState } from 'react';
 import 'boxicons/css/boxicons.min.css';
-import { Search, ShoppingCart, Bell, ChevronDown, Menu, X, User, Store, Tag, Headset, Heart } from 'lucide-react';
+import { Search, ShoppingCart, Bell, ChevronDown, Menu, X, User, Store, Tag, Headset, Heart, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import icon from '../../assets/images/icon.png';
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const [currentLanguage, setCurrentLanguage] = useState('pt');
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
     const toggleSearch = () => setIsSearchOpen(!isSearchOpen);
+
+    const languages = [
+        { code: 'pt', name: 'Português', flag: '🇦🇴' },
+        { code: 'en', name: 'English', flag: '🇬🇧' },
+        { code: 'fr', name: 'Français', flag: '🇫🇷' },
+    ];
 
     return (
         <header className="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-50">
@@ -52,6 +59,27 @@ export default function Header() {
                                     <Heart className="w-4 h-4" />
                                     Lista de Desejos
                                 </a>
+                            </li>
+                            <li className="relative group">
+                                <button className='flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-primary transition-colors py-2'>
+                                    <Globe className="w-4 h-4" />
+                                    {languages.find(lang => lang.code === currentLanguage)?.name}
+                                    <ChevronDown className="w-3 h-3" />
+                                </button>
+                                <div className="absolute right-0 top-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[150px] z-50">
+                                    {languages.map((lang) => (
+                                        <button
+                                            key={lang.code}
+                                            onClick={() => setCurrentLanguage(lang.code)}
+                                            className={`w-full flex items-center gap-2 px-4 py-2 text-sm hover:bg-gray-50 transition-colors ${
+                                                currentLanguage === lang.code ? 'text-primary font-semibold' : 'text-gray-700'
+                                            }`}
+                                        >
+                                            <span>{lang.flag}</span>
+                                            <span>{lang.name}</span>
+                                        </button>
+                                    ))}
+                                </div>
                             </li>
                         </ul>
                     </nav>

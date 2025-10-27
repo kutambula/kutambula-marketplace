@@ -4,6 +4,7 @@ import MainContent from '../../components/layout/MainContent';
 import Footer from '../../components/layout/Footer';
 import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
 import { Link } from 'react-router-dom';
+import { Star, Store, CheckCircle, Package, Truck, ShoppingBag } from 'lucide-react';
 
 export default function HomePage() {
     // Dados de exemplo - substituir com dados reais
@@ -174,7 +175,7 @@ export default function HomePage() {
                 <aside className="lg:col-span-1 bg-linear-to-br from-white to-gray-50 rounded-xl border shadow-lg border-gray-100 p-5 space-y-4">
                     <div className="flex items-center justify-between border-b pb-3">
                         <h2 className="text-lg font-bold text-gray-800 flex items-center gap-2">
-                            <span className="text-2xl">⭐</span>
+                            <Star className="w-6 h-6 text-yellow-500 fill-yellow-500" />
                             <span>Recomendações</span>
                         </h2>
                     </div>
@@ -231,10 +232,10 @@ export default function HomePage() {
                                     <div className="p-3 space-y-2">
                                         {/* Nome da Loja */}
                                         <div className="flex items-center gap-1 text-xs text-gray-600">
-                                            <span>🏪</span>
+                                            <Store className="w-4 h-4" />
                                             <span className="font-medium">{item.storeName}</span>
                                             {item.storeVerified && (
-                                                <span className="text-blue-500">✓</span>
+                                                <CheckCircle className="w-4 h-4 text-blue-500 fill-blue-500" />
                                             )}
                                         </div>
 
@@ -246,7 +247,7 @@ export default function HomePage() {
                                         {/* Avaliação */}
                                         <div className="flex items-center gap-1 text-xs">
                                             <div className="flex items-center gap-1">
-                                                <span className="text-yellow-500">★</span>
+                                                <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
                                                 <span className="font-semibold text-gray-900">{item.rating}</span>
                                             </div>
                                             <span className="text-gray-400">({item.totalReviews})</span>
@@ -373,7 +374,7 @@ export default function HomePage() {
                 <div className="flex items-center justify-between mb-8">
                     <div>
                         <h2 className="text-3xl font-black text-gray-900 mb-2 flex items-center gap-3">
-                            <span className="text-4xl">🏪</span>
+                            <ShoppingBag className="w-10 h-10 text-primary" />
                             Lojas em Destaque
                         </h2>
                         <p className="text-gray-600">Conheça as melhores lojas verificadas da plataforma</p>
@@ -438,7 +439,7 @@ export default function HomePage() {
                                 {/* Estatísticas */}
                                 <div className="flex items-center justify-between pt-3 border-t border-gray-100">
                                     <div className="flex items-center gap-1 text-sm">
-                                        <span className="text-yellow-500 font-bold">★</span>
+                                        <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
                                         <span className="font-semibold text-gray-900">{store.rating}</span>
                                         <span className="text-gray-400">/5</span>
                                     </div>
