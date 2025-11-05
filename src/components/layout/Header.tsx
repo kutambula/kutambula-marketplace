@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import 'boxicons/css/boxicons.min.css';
-import { Search, ChevronDown, Menu, X, Store, Tag, Headset, Heart, Globe } from 'lucide-react';
+import { Search, ChevronDown, Menu, X, Store, Tag, Headset, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import icon from '../../assets/images/icon.png';
 
@@ -59,12 +59,6 @@ export default function Header() {
                                     Centro de Ajuda
                                 </a>
                             </li>
-                            <li>
-                                <a href="#" className='flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-primary transition-colors py-2'>
-                                    <Heart className="w-4 h-4" />
-                                    Lista de Desejos
-                                </a>
-                            </li>
                             <li className="relative group">
                                 <button className='flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-primary transition-colors py-2'>
                                     <Globe className="w-4 h-4" />
@@ -114,12 +108,6 @@ export default function Header() {
                                 <a href="#" className='flex items-center gap-1.5 text-xs font-medium text-gray-700 hover:text-primary transition-colors whitespace-nowrap'>
                                     <Headset className="w-3.5 h-3.5" />
                                     Centro de Ajuda
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className='flex items-center gap-1.5 text-xs font-medium text-gray-700 hover:text-primary transition-colors whitespace-nowrap'>
-                                    <Heart className="w-3.5 h-3.5" />
-                                    Lista de Desejos
                                 </a>
                             </li>
                         </ul>
@@ -179,7 +167,7 @@ export default function Header() {
 
                             <input
                                 type="search"
-                                placeholder="Pesquisa por produtos..."
+                                placeholder="Pesquisa por produtos e lojas..."
                                 className='flex-1 bg-transparent text-sm placeholder:text-gray-400 focus:outline-none px-2'
                             />
 

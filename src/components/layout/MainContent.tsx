@@ -1,37 +1,10 @@
 
-import { Grid, List, SlidersHorizontal } from 'lucide-react';
 import { useState } from 'react';
-import ProductDetailModal from '../common/ProductDetailModal';
+import { Grid, List, SlidersHorizontal } from 'lucide-react';
 
 export default function MainContent() {
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedProduct, setSelectedProduct] = useState<any>(null);
 
-    // Produto mais vendido
-    const topProduct = {
-        id: 99,
-        title: 'iPhone 15 Pro Max 256GB',
-        images: [
-            'https://images.unsplash.com/photo-1592286927505-ed6d6d3b5d75?w=400&h=400&fit=crop',
-            'https://images.unsplash.com/photo-1611472173362-3f53dbd65d80?w=400&h=400&fit=crop',
-            'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=400&h=400&fit=crop',
-            'https://images.unsplash.com/photo-1510878302144-0b6653b15b4f?w=400&h=400&fit=crop'
-        ],
-        price: 12999.00,
-        originalPrice: 15999.00,
-        rating: 5.0,
-        totalReviews: 1543,
-        storeName: 'Apple Store Official',
-        storeVerified: true,
-        inStock: true,
-        freeShipping: true,
-        discount: 19,
-        badge: '🔥 Mais Vendido',
-        soldCount: 2567
-    };
-
-    const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
     // Dados de exemplo dos produtos
     const products = [
@@ -342,15 +315,7 @@ export default function MainContent() {
         }
     ];
 
-    const handleProductClick = (product: any) => {
-        setSelectedProduct(product);
-        setIsModalOpen(true);
-    };
 
-    const handleCloseModal = () => {
-        setIsModalOpen(false);
-        setSelectedProduct(null);
-    };
 
     return (
         <div className="flex gap-6">
@@ -422,7 +387,7 @@ export default function MainContent() {
                             // Vista em Grade (Compacta)
                             <div
                                 key={product.id}
-                                onClick={() => handleProductClick(product)}
+                                onClick={() => {}}
                                 className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-xl hover:border-primary/30 transition-all duration-300 cursor-pointer group"
                             >
                                 {/* Imagem do Produto */}
@@ -450,10 +415,6 @@ export default function MainContent() {
                                     {/* Botão de Ação Rápida */}
                                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                         <button 
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                                handleProductClick(product);
-                                            }}
                                             className="bg-white text-gray-900 font-semibold px-4 py-2 rounded-lg hover:bg-primary hover:text-white transform scale-90 group-hover:scale-100 transition-all duration-300 shadow-xl text-sm"
                                         >
                                             Ver Detalhes
@@ -611,168 +572,7 @@ export default function MainContent() {
                     ))}
                 </div>
             </main>
- 
-            {/* Modal de Detalhes do Produto */}
-            {selectedProduct && (
-                <ProductDetailModal
-                    isOpen={isModalOpen}
-                    onClose={handleCloseModal}
-                    product={selectedProduct}
-                />
-            )}
 
-            {/* Sidebar Direita - Produto Mais Vendido*/}
-            <aside className="hidden xl:block w-96 shrink-0">
-                <div className="sticky top-6">
-                    <div className="bg-white rounded-2xl border-2 border-gray-200 overflow-hidden shadow-xl">
-                        {/* Header */}
-                        <div className="bg-white border-b-2 border-gray-200 p-5">
-                            <h3 className="text-xl font-black flex items-center gap-2 text-gray-900">
-                                <span className="text-3xl">🔥</span>
-                                Mais Vendido
-                            </h3>
-                            <p className="text-sm text-gray-600 mt-1 font-semibold">
-                                {topProduct.soldCount.toLocaleString()} unidades vendidas
-                            </p>
-                        </div>
-
-                        {/* Galeria de Imagens */}
-                        <div className="relative bg-gray-50">
-                            {/* Imagem Principal */}
-                            <div className="relative h-80 bg-white">
-                                <img
-                                    src={topProduct.images[selectedImageIndex]}
-                                    alt={topProduct.title}
-                                    className="w-full h-full object-cover"
-                                />
-                                {topProduct.discount > 0 && (
-                                    <div className="absolute top-4 right-4">
-                                        <span className="bg-red-500 text-white text-base font-bold px-4 py-2 rounded-full shadow-xl animate-pulse">
-                                            -{topProduct.discount}%
-                                        </span>
-                                    </div>
-                                )}
-                            </div>
-
-                            {/* Miniaturas */}
-                            <div className="flex gap-2 p-3 bg-gray-50 overflow-x-auto">
-                                {topProduct.images.map((image, index) => (
-                                    <button
-                                        key={index}
-                                        onClick={() => setSelectedImageIndex(index)}
-                                        className={`relative shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
-                                            selectedImageIndex === index
-                                                ? 'border-primary shadow-md scale-105'
-                                                : 'border-gray-300 hover:border-gray-400 opacity-70 hover:opacity-100'
-                                        }`}
-                                    >
-                                        <img
-                                            src={image}
-                                            alt={`${topProduct.title} - imagem ${index + 1}`}
-                                            className="w-full h-full object-cover"
-                                        />
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Conteúdo */}
-                        <div className="p-5 bg-white space-y-4">
-                            {/* Loja */}
-                            <div className="flex items-center gap-1.5 text-sm text-gray-600">
-                                <span className="text-base">🏪</span>
-                                <span className="font-semibold">{topProduct.storeName}</span>
-                                {topProduct.storeVerified && (
-                                    <span className="text-blue-500 text-base">✓</span>
-                                )}
-                            </div>
-
-                            {/* Título */}
-                            <h4 className="font-black text-gray-900 text-xl leading-tight">
-                                {topProduct.title}
-                            </h4>
-
-                            {/* Avaliação */}
-                            <div className="flex items-center gap-3 pb-3 border-b border-gray-200">
-                                <div className="flex items-center gap-1">
-                                    <span className="text-yellow-500 font-bold text-xl">★</span>
-                                    <span className="font-black text-gray-900 text-lg">{topProduct.rating}</span>
-                                </div>
-                                <span className="text-gray-500 text-sm font-medium">({topProduct.totalReviews} avaliações)</span>
-                            </div>
-
-                            {/* Badges */}
-                            <div className="flex flex-wrap gap-2">
-                                <span className="bg-green-100 text-green-700 text-xs font-bold px-3 py-1.5 rounded-full border border-green-200">
-                                    ✓ Frete Grátis
-                                </span>
-                                <span className="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1.5 rounded-full border border-blue-200">
-                                    ✓ Em Estoque
-                                </span>
-                            </div>
-
-                            {/* Preço */}
-                            <div className="pt-4 border-t border-gray-200 bg-linear-to-br from-primary/5 to-tertiary/5 -mx-5 px-5 py-4">
-                                {topProduct.originalPrice > topProduct.price && (
-                                    <p className="text-base text-gray-500 line-through mb-2 font-medium">
-                                        {topProduct.originalPrice.toLocaleString('pt-AO', { 
-                                            style: 'currency', 
-                                            currency: 'AOA' 
-                                        })}
-                                    </p>
-                                )}
-                                <p className="text-4xl font-black text-primary mb-2">
-                                    {topProduct.price.toLocaleString('pt-AO', { 
-                                        style: 'currency', 
-                                        currency: 'AOA' 
-                                    })}
-                                </p>
-                                <div className="flex items-center gap-2">
-                                    <span className="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">
-                                        Economize
-                                    </span>
-                                    <span className="text-green-700 font-bold text-sm">
-                                        {(topProduct.originalPrice - topProduct.price).toLocaleString('pt-AO', { 
-                                            style: 'currency', 
-                                            currency: 'AOA' 
-                                        })}
-                                    </span>
-                                </div>
-                            </div>
-
-                            {/* Botões */}
-                            <div className="space-y-3 pt-2">
-                                <button className="w-full bg-primary hover:bg-tertiary text-white font-bold py-4 rounded-xl transition-all duration-300 hover:shadow-xl transform hover:scale-[1.02] text-base">
-                                    🛒 Adicionar ao Carrinho
-                                </button>
-                                <button className="w-full bg-gray-100 hover:bg-gray-200 text-gray-900 font-bold py-3 rounded-xl transition-all duration-300 border-2 border-gray-300 hover:border-gray-400">
-                                    👁️ Ver Detalhes Completos
-                                </button>
-                            </div>
-
-                            {/* Info Extra */}
-                            <div className="pt-4 border-t border-gray-200 text-sm text-gray-700 space-y-2.5">
-                                <p className="flex items-center gap-3">
-                                    <span className="text-green-600 font-bold">✓</span>
-                                    <span className="font-medium">Garantia oficial de 1 ano</span>
-                                </p>
-                                <p className="flex items-center gap-3">
-                                    <span className="text-green-600 font-bold">✓</span>
-                                    <span className="font-medium">Devolução grátis em 7 dias</span>
-                                </p>
-                                <p className="flex items-center gap-3">
-                                    <span className="text-green-600 font-bold">✓</span>
-                                    <span className="font-medium">Pagamento 100% seguro</span>
-                                </p>
-                                <p className="flex items-center gap-3">
-                                    <span className="text-green-600 font-bold">✓</span>
-                                    <span className="font-medium">Produto lacrado e original</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </aside>
         </div>
     );
 }
