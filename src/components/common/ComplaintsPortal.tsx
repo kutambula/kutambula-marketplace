@@ -66,22 +66,22 @@ export default function ComplaintsPortal() {
 
     if (submitStatus === 'success') {
         return (
-            <div className="bg-white rounded-2xl border border-gray-100 shadow-lg p-8 text-center">
-                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <CheckCircle className="w-12 h-12 text-green-600" />
+            <div className="bg-white rounded-xl sm:rounded-2xl border border-gray-100 shadow-lg p-6 sm:p-8 text-center">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                    <CheckCircle className="w-10 h-10 sm:w-12 sm:h-12 text-green-600" />
                 </div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-3">Reclamação Registada com Sucesso!</h2>
-                <p className="text-gray-600 mb-6">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 sm:mb-3">Reclamação Registada com Sucesso!</h2>
+                <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">
                     Sua reclamação foi registada e está a ser processada.
                 </p>
-                <div className="bg-gray-50 rounded-xl p-6 mb-6">
-                    <p className="text-sm text-gray-600 mb-2">Número do Protocolo:</p>
-                    <p className="text-3xl font-bold text-primary">{complaintNumber}</p>
-                    <p className="text-xs text-gray-500 mt-3">
+                <div className="bg-gray-50 rounded-xl p-4 sm:p-6 mb-4 sm:mb-6">
+                    <p className="text-xs sm:text-sm text-gray-600 mb-2">Número do Protocolo:</p>
+                    <p className="text-2xl sm:text-3xl font-bold text-primary">{complaintNumber}</p>
+                    <p className="text-xs text-gray-500 mt-2 sm:mt-3">
                         Guarde este número para acompanhar o andamento da sua reclamação
                     </p>
                 </div>
-                <div className="space-y-3 text-sm text-gray-600 text-left max-w-md mx-auto mb-6">
+                <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-gray-600 text-left max-w-md mx-auto mb-4 sm:mb-6">
                     <p className="flex items-start gap-2">
                         <span className="text-primary mt-1">•</span>
                         <span>Receberá uma confirmação por email em breve</span>
@@ -97,7 +97,7 @@ export default function ComplaintsPortal() {
                 </div>
                 <button
                     onClick={() => setSubmitStatus('idle')}
-                    className="px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-tertiary transition-colors"
+                    className="w-full sm:w-auto px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-tertiary transition-colors text-sm sm:text-base"
                 >
                     Fazer Nova Reclamação
                 </button>
@@ -106,23 +106,24 @@ export default function ComplaintsPortal() {
     }
 
     return (
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-lg overflow-hidden">
+        <div className="bg-white rounded-xl sm:rounded-2xl border border-gray-100 shadow-lg overflow-hidden">
             {/* Cabeçalho */}
-            <div className="bg-gradient-to-r from-red-600 to-red-700 p-6 text-white">
-                <div className="flex items-center gap-3 mb-2">
-                    <AlertCircle className="w-8 h-8" />
-                    <h2 className="text-2xl font-bold">Portal de Reclamações</h2>
+                        {/* Cabeçalho */}
+            <div className="bg-linear-to-r from-red-600 to-red-700 p-4 sm:p-6 text-white">
+                <div className="flex items-center gap-2 sm:gap-3 mb-2">
+                    <AlertCircle className="w-6 h-6 sm:w-8 sm:h-8" />
+                    <h2 className="text-xl sm:text-2xl font-bold">Portal de Reclamações</h2>
                 </div>
-                <p className="text-white/90">
+                <p className="text-white/90 text-sm sm:text-base">
                     Registe a sua reclamação de forma oficial, similar ao Livro de Reclamações.
                 </p>
             </div>
 
             {/* Informação Importante */}
-            <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 m-6">
-                <div className="flex items-start gap-3">
-                    <AlertCircle className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
-                    <div className="text-sm text-yellow-800">
+            <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3 sm:p-4 m-4 sm:m-6">
+                <div className="flex items-start gap-2 sm:gap-3">
+                    <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-600 shrink-0 mt-0.5" />
+                    <div className="text-xs sm:text-sm text-yellow-800">
                         <p className="font-semibold mb-1">Informação Importante</p>
                         <p>As reclamações registadas neste portal têm valor legal e serão encaminhadas às entidades competentes. Preencha todos os campos com atenção.</p>
                     </div>
@@ -130,15 +131,15 @@ export default function ComplaintsPortal() {
             </div>
 
             {/* Formulário */}
-            <form onSubmit={handleSubmit} className="p-6 space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
+            <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-4 sm:space-y-6">
+                <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                     {/* Nome Completo */}
                     <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                        <label htmlFor="name" className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                             Nome Completo *
                         </label>
                         <div className="relative">
-                            <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                            <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
                             <input
                                 type="text"
                                 id="name"
@@ -146,7 +147,7 @@ export default function ComplaintsPortal() {
                                 value={formData.name}
                                 onChange={handleChange}
                                 required
-                                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
+                                className="w-full pl-9 sm:pl-10 pr-4 py-2.5 sm:py-3 text-sm border border-gray-300 rounded-lg focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
                                 placeholder="Seu nome completo"
                             />
                         </div>
@@ -154,11 +155,11 @@ export default function ComplaintsPortal() {
 
                     {/* Email */}
                     <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                        <label htmlFor="email" className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                             Email *
                         </label>
                         <div className="relative">
-                            <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                            <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
                             <input
                                 type="email"
                                 id="email"
@@ -166,7 +167,7 @@ export default function ComplaintsPortal() {
                                 value={formData.email}
                                 onChange={handleChange}
                                 required
-                                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
+                                className="w-full pl-9 sm:pl-10 pr-4 py-2.5 sm:py-3 text-sm border border-gray-300 rounded-lg focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
                                 placeholder="seu.email@exemplo.com"
                             />
                         </div>
@@ -174,7 +175,7 @@ export default function ComplaintsPortal() {
 
                     {/* Telefone */}
                     <div>
-                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                        <label htmlFor="phone" className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                             Telefone *
                         </label>
                         <input
@@ -184,25 +185,25 @@ export default function ComplaintsPortal() {
                             value={formData.phone}
                             onChange={handleChange}
                             required
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
+                            className="w-full px-4 py-2.5 sm:py-3 text-sm border border-gray-300 rounded-lg focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
                             placeholder="+244 900 000 000"
                         />
                     </div>
 
                     {/* Número do Pedido */}
                     <div>
-                        <label htmlFor="orderId" className="block text-sm font-medium text-gray-700 mb-2">
+                        <label htmlFor="orderId" className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                             Número do Pedido (se aplicável)
                         </label>
                         <div className="relative">
-                            <Package className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                            <Package className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
                             <input
                                 type="text"
                                 id="orderId"
                                 name="orderId"
                                 value={formData.orderId}
                                 onChange={handleChange}
-                                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
+                                className="w-full pl-9 sm:pl-10 pr-4 py-2.5 sm:py-3 text-sm border border-gray-300 rounded-lg focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
                                 placeholder="Ex: #12345"
                             />
                         </div>
@@ -211,18 +212,18 @@ export default function ComplaintsPortal() {
 
                 {/* Tipo de Reclamação */}
                 <div>
-                    <label htmlFor="complaintType" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="complaintType" className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                         Tipo de Reclamação *
                     </label>
                     <div className="relative">
-                        <FileText className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                        <FileText className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
                         <select
                             id="complaintType"
                             name="complaintType"
                             value={formData.complaintType}
                             onChange={handleChange}
                             required
-                            className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
+                            className="w-full pl-9 sm:pl-10 pr-4 py-2.5 sm:py-3 text-sm border border-gray-300 rounded-lg focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
                         >
                             <option value="">Selecione o tipo de reclamação</option>
                             <option value="produto-defeituoso">Produto Defeituoso</option>
@@ -240,7 +241,7 @@ export default function ComplaintsPortal() {
 
                 {/* Descrição Detalhada */}
                 <div>
-                    <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="description" className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                         Descrição Detalhada da Reclamação *
                     </label>
                     <textarea
@@ -249,8 +250,8 @@ export default function ComplaintsPortal() {
                         value={formData.description}
                         onChange={handleChange}
                         required
-                        rows={6}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/20 resize-none"
+                        rows={5}
+                        className="w-full px-4 py-2.5 sm:py-3 text-sm border border-gray-300 rounded-lg focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/20 resize-none"
                         placeholder="Descreva detalhadamente sua reclamação, incluindo datas, valores e todos os factos relevantes..."
                     />
                     <p className="text-xs text-gray-500 mt-1">
@@ -260,15 +261,15 @@ export default function ComplaintsPortal() {
 
                 {/* Upload de Documentos */}
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                         Documentos Comprovativos (opcional)
                     </label>
-                    <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-red-500 transition-colors">
-                        <Upload className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-                        <p className="text-sm text-gray-600 mb-2">
+                    <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 sm:p-6 text-center hover:border-red-500 transition-colors">
+                        <Upload className="w-8 h-8 sm:w-12 sm:h-12 text-gray-400 mx-auto mb-2 sm:mb-3" />
+                        <p className="text-xs sm:text-sm text-gray-600 mb-1 sm:mb-2">
                             Arraste ficheiros para aqui ou clique para selecionar
                         </p>
-                        <p className="text-xs text-gray-500 mb-4">
+                        <p className="text-xs text-gray-500 mb-3 sm:mb-4">
                             PDF, imagens, faturas, comprovantes (máx. 5MB por ficheiro)
                         </p>
                         <input
@@ -281,7 +282,7 @@ export default function ComplaintsPortal() {
                         />
                         <label
                             htmlFor="file-upload"
-                            className="inline-block px-4 py-2 bg-gray-100 text-gray-700 rounded-lg cursor-pointer hover:bg-gray-200 transition-colors"
+                            className="inline-block px-3 sm:px-4 py-2 bg-gray-100 text-gray-700 rounded-lg cursor-pointer hover:bg-gray-200 transition-colors text-xs sm:text-sm"
                         >
                             Selecionar Ficheiros
                         </label>
@@ -289,14 +290,14 @@ export default function ComplaintsPortal() {
 
                     {/* Lista de ficheiros */}
                     {formData.files.length > 0 && (
-                        <div className="mt-4 space-y-2">
+                        <div className="mt-3 sm:mt-4 space-y-2">
                             {formData.files.map((file, index) => (
-                                <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                                    <span className="text-sm text-gray-700">{file.name}</span>
+                                <div key={index} className="flex items-center justify-between p-2 sm:p-3 bg-gray-50 rounded-lg">
+                                    <span className="text-xs sm:text-sm text-gray-700 truncate mr-2">{file.name}</span>
                                     <button
                                         type="button"
                                         onClick={() => removeFile(index)}
-                                        className="text-red-600 hover:text-red-800 text-sm font-medium"
+                                        className="text-red-600 hover:text-red-800 text-xs sm:text-sm font-medium shrink-0"
                                     >
                                         Remover
                                     </button>
@@ -307,14 +308,14 @@ export default function ComplaintsPortal() {
                 </div>
 
                 {/* Termos e Condições */}
-                <div className="bg-gray-50 rounded-lg p-4">
-                    <label className="flex items-start gap-3 cursor-pointer">
+                <div className="bg-gray-50 rounded-lg p-3 sm:p-4">
+                    <label className="flex items-start gap-2 sm:gap-3 cursor-pointer">
                         <input
                             type="checkbox"
                             required
-                            className="mt-1 w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500"
+                            className="mt-0.5 sm:mt-1 w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500"
                         />
-                        <span className="text-sm text-gray-700">
+                        <span className="text-xs sm:text-sm text-gray-700">
                             Confirmo que todas as informações fornecidas são verdadeiras e estou ciente de que esta reclamação tem caráter oficial e será encaminhada às autoridades competentes quando necessário. *
                         </span>
                     </label>
@@ -325,17 +326,19 @@ export default function ComplaintsPortal() {
                     <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+                        className="flex-1 flex items-center justify-center gap-2 px-4 sm:px-6 py-3 sm:py-4 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed text-sm sm:text-base"
                     >
                         {isSubmitting ? (
                             <>
-                                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                                A Processar...
+                                <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                                <span className="hidden sm:inline">A Processar...</span>
+                                <span className="sm:hidden">Processando...</span>
                             </>
                         ) : (
                             <>
-                                <Send className="w-5 h-5" />
-                                Registar Reclamação Oficial
+                                <Send className="w-4 h-4 sm:w-5 sm:h-5" />
+                                <span className="hidden sm:inline">Registar Reclamação Oficial</span>
+                                <span className="sm:hidden">Registar Reclamação</span>
                             </>
                         )}
                     </button>

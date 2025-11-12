@@ -318,69 +318,69 @@ export default function MainContent() {
 
 
     return (
-        <div className="flex gap-6">
+        <div className="flex gap-4 lg:gap-6">
             {/* Conteúdo Principal */}
             <main className="flex-1 min-w-0">
                 {/* Header do Conteúdo */}
-                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 md:p-6 mb-6">
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    {/* Título e Quantidade */}
-                    <div>
-                        <h1 className="text-xl md:text-2xl font-bold text-gray-800 mb-1">Produtos em Destaque</h1>
-                        <p className="text-sm text-gray-600">Mostrando 1-20 de 500 produtos</p>
-                    </div>
+                <div className="bg-white rounded-lg sm:rounded-xl shadow-sm border border-gray-200 p-3 sm:p-4 md:p-6 mb-4 sm:mb-6">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
+                        {/* Título e Quantidade */}
+                        <div>
+                            <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 mb-1">Produtos em Destaque</h1>
+                            <p className="text-xs sm:text-sm text-gray-600">Mostrando 1-20 de 500 produtos</p>
+                        </div>
 
-                    {/* Controles */}
-                    <div className="flex items-center gap-3">
-                        {/* Ordenação */}
-                        <select className="bg-gray-50 border-2 border-gray-200 hover:border-primary focus:border-primary rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none cursor-pointer transition-colors">
-                            <option value="relevance">Mais Relevantes</option>
-                            <option value="price-low">Menor Preço</option>
-                            <option value="price-high">Maior Preço</option>
-                            <option value="newest">Mais Recentes</option>
-                            <option value="rating">Melhor Avaliação</option>
-                        </select>
+                        {/* Controles */}
+                        <div className="flex items-center gap-2 sm:gap-3">
+                            {/* Ordenação */}
+                            <select className="bg-gray-50 border-2 border-gray-200 hover:border-primary focus:border-primary rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm text-gray-700 focus:outline-none cursor-pointer transition-colors flex-1 sm:flex-none min-w-0">
+                                <option value="relevance">Relevantes</option>
+                                <option value="price-low">Menor Preço</option>
+                                <option value="price-high">Maior Preço</option>
+                                <option value="newest">Recentes</option>
+                                <option value="rating">Avaliação</option>
+                            </select>
 
-                        {/* Botão de Filtros Mobile */}
-                        <button className="lg:hidden flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors">
-                            <SlidersHorizontal className="w-4 h-4" />
-                            <span className="text-sm font-medium">Filtros</span>
-                        </button>
-
-                        {/* Visualização */}
-                        <div className="hidden md:flex items-center gap-1 bg-gray-100 rounded-lg p-1">
-                            <button
-                                onClick={() => setViewMode('grid')}
-                                className={`p-2 rounded-md transition-colors ${
-                                    viewMode === 'grid'
-                                        ? 'bg-white text-primary shadow-sm'
-                                        : 'text-gray-600 hover:text-gray-800'
-                                }`}
-                                aria-label="Grid View"
-                            >
-                                <Grid className="w-4 h-4" />
+                            {/* Botão de Filtros Mobile */}
+                            <button className="lg:hidden flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors text-xs sm:text-sm shrink-0">
+                                <SlidersHorizontal className="w-3 h-3 sm:w-4 sm:h-4" />
+                                <span className="font-medium hidden xs:inline">Filtros</span>
                             </button>
-                            <button
-                                onClick={() => setViewMode('list')}
-                                className={`p-2 rounded-md transition-colors ${
-                                    viewMode === 'list'
-                                        ? 'bg-white text-primary shadow-sm'
-                                        : 'text-gray-600 hover:text-gray-800'
-                                }`}
-                                aria-label="List View"
-                            >
-                                <List className="w-4 h-4" />
-                            </button>
+
+                            {/* Visualização - Hidden on small mobile */}
+                            <div className="hidden sm:flex items-center gap-1 bg-gray-100 rounded-lg p-1">
+                                <button
+                                    onClick={() => setViewMode('grid')}
+                                    className={`p-1.5 sm:p-2 rounded-md transition-colors ${
+                                        viewMode === 'grid'
+                                            ? 'bg-white text-primary shadow-sm'
+                                            : 'text-gray-600 hover:text-gray-800'
+                                    }`}
+                                    aria-label="Grid View"
+                                >
+                                    <Grid className="w-3 h-3 sm:w-4 sm:h-4" />
+                                </button>
+                                <button
+                                    onClick={() => setViewMode('list')}
+                                    className={`p-1.5 sm:p-2 rounded-md transition-colors ${
+                                        viewMode === 'list'
+                                            ? 'bg-white text-primary shadow-sm'
+                                            : 'text-gray-600 hover:text-gray-800'
+                                    }`}
+                                    aria-label="List View"
+                                >
+                                    <List className="w-3 h-3 sm:w-4 sm:h-4" />
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
                 </div>
                     
                 {/* Grid de Produtos */}
                 <div className={
                     viewMode === 'grid'
-                        ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 md:gap-6'
-                        : 'flex flex-col gap-4'
+                        ? 'grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-2 sm:gap-3 md:gap-4 lg:gap-6'
+                        : 'flex flex-col gap-3 sm:gap-4'
                 }>
                     {products.map((product) => (
                         viewMode === 'grid' ? (
@@ -388,7 +388,7 @@ export default function MainContent() {
                             <div
                                 key={product.id}
                                 onClick={() => {}}
-                                className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-xl hover:border-primary/30 transition-all duration-300 cursor-pointer group"
+                                className="bg-white rounded-lg sm:rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-xl hover:border-primary/30 transition-all duration-300 cursor-pointer group"
                             >
                                 {/* Imagem do Produto */}
                                 <div className="aspect-square bg-gray-100 relative overflow-hidden">
@@ -399,14 +399,15 @@ export default function MainContent() {
                                     />
                                     
                                     {/* Badges */}
-                                    <div className="absolute top-2 left-2 right-2 flex justify-between items-start">
+                                    <div className="absolute top-1 sm:top-2 left-1 sm:left-2 right-1 sm:right-2 flex justify-between items-start">
                                         {product.freeShipping && (
-                                            <span className="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded shadow-lg">
-                                                Frete Grátis
+                                            <span className="bg-green-500 text-white text-xs font-bold px-1.5 sm:px-2 py-0.5 sm:py-1 rounded shadow-lg">
+                                                <span className="hidden sm:inline">Frete Grátis</span>
+                                                <span className="sm:hidden">Grátis</span>
                                             </span>
                                         )}
                                         {product.discount > 0 && (
-                                            <span className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-lg">
+                                            <span className="bg-red-500 text-white text-xs font-bold px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full shadow-lg">
                                                 -{product.discount}%
                                             </span>
                                         )}
@@ -415,47 +416,48 @@ export default function MainContent() {
                                     {/* Botão de Ação Rápida */}
                                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                         <button 
-                                            className="bg-white text-gray-900 font-semibold px-4 py-2 rounded-lg hover:bg-primary hover:text-white transform scale-90 group-hover:scale-100 transition-all duration-300 shadow-xl text-sm"
+                                            className="bg-white text-gray-900 font-semibold px-2 sm:px-4 py-1.5 sm:py-2 rounded-lg hover:bg-primary hover:text-white transform scale-90 group-hover:scale-100 transition-all duration-300 shadow-xl text-xs sm:text-sm"
                                         >
-                                            Ver Detalhes
+                                            <span className="hidden sm:inline">Ver Detalhes</span>
+                                            <span className="sm:hidden">Ver</span>
                                         </button>
                                     </div>
                                 </div>
 
                                 {/* Informações Compactas */}
-                                <div className="p-3 space-y-2">
+                                <div className="p-2 sm:p-3 space-y-1.5 sm:space-y-2">
                                     {/* Título */}
-                                    <h3 className="font-semibold text-sm text-gray-900 line-clamp-2 group-hover:text-primary transition-colors h-10">
+                                    <h3 className="font-semibold text-xs sm:text-sm text-gray-900 line-clamp-2 group-hover:text-primary transition-colors h-8 sm:h-10">
                                         {product.title}
                                     </h3>
 
                                     {/* Avaliação e Preço */}
                                     <div className="flex items-center justify-between">
-                                        <div className="flex items-center gap-1 text-xs">
+                                        <div className="flex items-center gap-0.5 sm:gap-1 text-xs">
                                             <span className="text-yellow-500">★</span>
                                             <span className="font-semibold text-gray-900">{product.rating}</span>
-                                            <span className="text-gray-400">({product.totalReviews})</span>
+                                            <span className="text-gray-400 hidden sm:inline">({product.totalReviews})</span>
                                         </div>
                                         {product.inStock ? (
-                                            <span className="text-xs text-green-600 font-medium">Em estoque</span>
+                                            <span className="text-xs text-green-600 font-medium hidden sm:inline">Em estoque</span>
                                         ) : (
                                             <span className="text-xs text-red-600 font-medium">Esgotado</span>
                                         )}
                                     </div>
 
                                     {/* Preço */}
-                                    <div className="pt-2 border-t border-gray-100">
-                                        <p className="text-xl font-black text-primary">
-                                            {product.price.toLocaleString('pt-PT', { 
-                                                style: 'currency', 
-                                                currency: 'EUR' 
+                                    <div className="pt-1.5 sm:pt-2 border-t border-gray-100">
+                                        <p className="text-sm sm:text-lg md:text-xl font-black text-primary leading-tight">
+                                            €{product.price.toLocaleString('pt-PT', { 
+                                                minimumFractionDigits: 0,
+                                                maximumFractionDigits: 0
                                             })}
                                         </p>
                                         {product.originalPrice > product.price && (
                                             <p className="text-xs text-gray-400 line-through">
-                                                {product.originalPrice.toLocaleString('pt-PT', { 
-                                                    style: 'currency', 
-                                                    currency: 'EUR' 
+                                                €{product.originalPrice.toLocaleString('pt-PT', { 
+                                                    minimumFractionDigits: 0,
+                                                    maximumFractionDigits: 0
                                                 })}
                                             </p>
                                         )}
@@ -466,11 +468,11 @@ export default function MainContent() {
                             // Vista em Lista (Detalhada)
                             <div
                                 key={product.id}
-                                onClick={() => handleProductClick(product)}
-                                className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-xl hover:border-primary/30 transition-all duration-300 cursor-pointer group flex"
+                                onClick={() => {}}
+                                className="bg-white rounded-lg sm:rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-xl hover:border-primary/30 transition-all duration-300 cursor-pointer group flex flex-col sm:flex-row"
                             >
                                 {/* Imagem */}
-                                <div className="w-48 h-48 bg-gray-100 relative overflow-hidden shrink-0">
+                                <div className="w-full h-48 sm:w-40 sm:h-40 md:w-48 md:h-48 bg-gray-100 relative overflow-hidden shrink-0">
                                     <img
                                         src={product.image}
                                         alt={product.title}
@@ -484,19 +486,19 @@ export default function MainContent() {
                                 </div>
 
                                 {/* Conteúdo */}
-                                <div className="flex-1 p-4 flex flex-col justify-between">
+                                <div className="flex-1 p-3 sm:p-4 flex flex-col justify-between">
                                     <div>
                                         {/* Loja */}
                                         <div className="flex items-center gap-1 text-xs text-gray-600 mb-2">
                                             <span>🏪</span>
-                                            <span className="font-medium">{product.storeName}</span>
+                                            <span className="font-medium truncate">{product.storeName}</span>
                                             {product.storeVerified && (
                                                 <span className="text-blue-500">✓</span>
                                             )}
                                         </div>
 
                                         {/* Título */}
-                                        <h3 className="font-bold text-lg text-gray-900 mb-2 group-hover:text-primary transition-colors">
+                                        <h3 className="font-bold text-base sm:text-lg text-gray-900 mb-2 group-hover:text-primary transition-colors line-clamp-2">
                                             {product.title}
                                         </h3>
 
@@ -506,27 +508,30 @@ export default function MainContent() {
                                                 <span className="text-yellow-500 font-bold">★</span>
                                                 <span className="font-semibold text-gray-900">{product.rating}</span>
                                             </div>
-                                            <span className="text-gray-400 text-sm">({product.totalReviews} avaliações)</span>
+                                            <span className="text-gray-400 text-sm hidden sm:inline">({product.totalReviews} avaliações)</span>
+                                            <span className="text-gray-400 text-sm sm:hidden">({product.totalReviews})</span>
                                         </div>
 
-                                        {/* Badges */}
-                                        <div className="flex flex-wrap gap-2 mb-3">
+                                        {/* Badges - Simplified for mobile */}
+                                        <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3">
                                             {product.badge && (
-                                                <span className="bg-yellow-100 text-yellow-800 text-xs font-semibold px-3 py-1 rounded-full">
+                                                <span className="bg-yellow-100 text-yellow-800 text-xs font-semibold px-2 sm:px-3 py-1 rounded-full">
                                                     {product.badge}
                                                 </span>
                                             )}
                                             {product.freeShipping && (
-                                                <span className="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">
-                                                    Frete Grátis
+                                                <span className="bg-green-100 text-green-800 text-xs font-semibold px-2 sm:px-3 py-1 rounded-full">
+                                                    <span className="hidden sm:inline">Frete Grátis</span>
+                                                    <span className="sm:hidden">Grátis</span>
                                                 </span>
                                             )}
                                             {product.inStock ? (
-                                                <span className="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">
-                                                    Em estoque
+                                                <span className="bg-green-100 text-green-800 text-xs font-semibold px-2 sm:px-3 py-1 rounded-full">
+                                                    <span className="hidden sm:inline">Em estoque</span>
+                                                    <span className="sm:hidden">Disponível</span>
                                                 </span>
                                             ) : (
-                                                <span className="bg-red-100 text-red-800 text-xs font-semibold px-3 py-1 rounded-full">
+                                                <span className="bg-red-100 text-red-800 text-xs font-semibold px-2 sm:px-3 py-1 rounded-full">
                                                     Esgotado
                                                 </span>
                                             )}
@@ -534,20 +539,20 @@ export default function MainContent() {
                                     </div>
 
                                     {/* Preço e Ação */}
-                                    <div className="flex items-end justify-between">
+                                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
                                         <div>
                                             {product.originalPrice > product.price && (
                                                 <p className="text-sm text-gray-400 line-through mb-1">
-                                                    {product.originalPrice.toLocaleString('pt-PT', { 
-                                                        style: 'currency', 
-                                                        currency: 'EUR' 
+                                                    €{product.originalPrice.toLocaleString('pt-PT', { 
+                                                        minimumFractionDigits: 0,
+                                                        maximumFractionDigits: 0
                                                     })}
                                                 </p>
                                             )}
-                                            <p className="text-3xl font-black text-primary">
-                                                {product.price.toLocaleString('pt-PT', { 
-                                                    style: 'currency', 
-                                                    currency: 'EUR' 
+                                            <p className="text-2xl sm:text-3xl font-black text-primary">
+                                                €{product.price.toLocaleString('pt-PT', { 
+                                                    minimumFractionDigits: 0,
+                                                    maximumFractionDigits: 0
                                                 })}
                                             </p>
                                         </div>
@@ -557,13 +562,14 @@ export default function MainContent() {
                                                 e.stopPropagation();
                                                 // Adicionar ao carrinho
                                             }}
-                                            className={`px-6 py-3 text-sm font-bold rounded-xl transition-all duration-300 ${
+                                            className={`px-4 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-bold rounded-lg sm:rounded-xl transition-all duration-300 w-full sm:w-auto ${
                                                 product.inStock
                                                     ? 'bg-primary hover:bg-tertiary text-white hover:shadow-lg'
                                                     : 'bg-gray-200 text-gray-500 cursor-not-allowed'
                                             }`}
                                         >
-                                            {product.inStock ? 'Adicionar ao Carrinho' : 'Indisponível'}
+                                            <span className="hidden sm:inline">{product.inStock ? 'Adicionar ao Carrinho' : 'Indisponível'}</span>
+                                            <span className="sm:hidden">{product.inStock ? 'Adicionar' : 'Indisponível'}</span>
                                         </button>
                                     </div>
                                 </div>

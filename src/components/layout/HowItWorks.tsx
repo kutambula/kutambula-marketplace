@@ -69,18 +69,18 @@ export default function HowItWorks() {
     }, []);
 
     return (
-        <section ref={sectionRef} id="como-funciona" className="relative bg-white py-16">
+        <section ref={sectionRef} id="como-funciona" className="relative bg-white py-8 sm:py-12 md:py-16">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-12">
-                    <h2 className="text-3xl sm:text-4xl font-extrabold bg-clip-text text-primary mb-2">Como Funciona</h2>
-                    <p className="text-gray-600 max-w-2xl mx-auto">
+                <div className="text-center mb-8 sm:mb-10 md:mb-12">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold bg-clip-text mb-2">Como Funciona</h2>
+                    <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto px-4">
                         Três passos simples para começar a comprar ou vender no marketplace empresarial mais inovador.
                     </p>
                 </div>
 
                 <div className="relative max-w-4xl mx-auto">
-                    {/* center track */}
-                    <div className="absolute left-1/2 transform -translate-x-1/2 top-6 bottom-6 w-1 flex items-start justify-center">
+                    {/* center track - Hidden on mobile, visible on md+ */}
+                    <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 top-6 bottom-6 w-1">
                         <div className="w-1 h-full bg-gray-200 rounded-full relative">
                             <div
                                 ref={trackRef}
@@ -98,51 +98,75 @@ export default function HowItWorks() {
                                 <div
                                     key={step.id}
                                     ref={(el) => { stepRefs.current[idx] = el }}
-                                    className="grid grid-cols-12 gap-4 items-center mb-12"
+                                    className="mb-8 sm:mb-10 md:mb-12"
                                 >
-                                    {/* left column: show icon on left when isIconLeft, otherwise show content */}
-                                    <div className={`col-span-12 md:col-span-5 ${isIconLeft ? 'flex justify-end pr-6' : 'flex justify-start pl-6'}`}>
-                                        {isIconLeft ? (
-                                            <div className="flex items-center justify-end w-full">
-                                                <img src={step.icon} alt={step.title} className="w-32 h-32 object-contain" />
+                                    {/* Mobile Layout (< md) */}
+                                    <div className="md:hidden bg-gray-50 rounded-2xl p-4 sm:p-6">
+                                        <div className="flex flex-col items-center text-center space-y-4">
+                                            {/* Step Number */}
+                                            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary text-white flex items-center justify-center text-lg sm:text-xl font-bold">
+                                                {step.id}
                                             </div>
-                                        ) : (
-                                            <div className="w-full flex flex-col items-end text-right">
-                                                <span className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center mb-4">
-                                                    {step.id}
-                                                </span>
-                                                <div>
-                                                    <h3 className="text-lg font-bold text-gray-900 mb-2">{`${step.title}`}</h3>
-                                                    <p className="text-gray-600">{step.desc}</p>
-                                                </div>
+                                            
+                                            {/* Icon */}
+                                            <div className="w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center">
+                                                <img src={step.icon} alt={step.title} className="w-full h-full object-contain" />
                                             </div>
-                                        )}
-                                    </div>
-
-                                    {/* center column - keeps space for the track */}
-                                    <div className="col-span-12 md:col-span-2 flex justify-center">
-                                        <div className="w-6 h-6 rounded-full bg-white border border-gray-200 flex items-center justify-center">
-                                            <div className={`w-3 h-3 rounded-full ${activeIdx === idx ? 'bg-primary' : 'bg-gray-300'}`} />
+                                            
+                                            {/* Content */}
+                                            <div className="space-y-2">
+                                                <h3 className="text-lg sm:text-xl font-bold text-gray-900">{step.title}</h3>
+                                                <p className="text-sm sm:text-base text-gray-600 leading-relaxed">{step.desc}</p>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    {/* right column: show content on right when isIconLeft, otherwise show icon */}
-                                    <div className={`col-span-12 md:col-span-5 ${isIconLeft ? 'flex flex-col gap-4' : 'flex justify-start pl-6'}`}>
-                                        {isIconLeft ? (
-                                            <>
-                                                <span className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center">
-                                                    {step.id}
-                                                </span>
-                                                <div className="w-full">
-                                                    <h3 className="text-lg font-bold text-gray-900 mb-2">{`${step.title}`}</h3>
-                                                    <p className="text-gray-600">{step.desc}</p>
+                                    {/* Desktop Layout (md+) */}
+                                    <div className="hidden md:grid grid-cols-12 gap-4 items-center">
+                                        {/* Left column: show icon on left when isIconLeft, otherwise show content */}
+                                        <div className={`col-span-5 ${isIconLeft ? 'flex justify-end pr-6' : 'flex justify-start pl-6'}`}>
+                                            {isIconLeft ? (
+                                                <div className="flex items-center justify-end w-full">
+                                                    <img src={step.icon} alt={step.title} className="w-28 lg:w-32 h-28 lg:h-32 object-contain" />
                                                 </div>
-                                            </>
-                                        ) : (
-                                            <div className="flex items-center justify-start w-full">
-                                                <img src={step.icon} alt={step.title} className="w-32 h-32 object-contain" />
+                                            ) : (
+                                                <div className="w-full flex flex-col items-end text-right">
+                                                    <span className="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-primary text-white flex items-center justify-center mb-4 text-lg lg:text-xl font-bold">
+                                                        {step.id}
+                                                    </span>
+                                                    <div>
+                                                        <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2">{step.title}</h3>
+                                                        <p className="text-sm lg:text-base text-gray-600">{step.desc}</p>
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+
+                                        {/* Center column - keeps space for the track */}
+                                        <div className="col-span-2 flex justify-center">
+                                            <div className="w-6 h-6 rounded-full bg-white border-2 border-gray-200 flex items-center justify-center shadow-sm">
+                                                <div className={`w-3 h-3 rounded-full transition-colors duration-300 ${activeIdx === idx ? 'bg-primary' : 'bg-gray-300'}`} />
                                             </div>
-                                        )}
+                                        </div>
+
+                                        {/* Right column: show content on right when isIconLeft, otherwise show icon */}
+                                        <div className={`col-span-5 ${isIconLeft ? 'flex flex-col gap-4' : 'flex justify-start pl-6'}`}>
+                                            {isIconLeft ? (
+                                                <>
+                                                    <span className="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-primary text-white flex items-center justify-center text-lg lg:text-xl font-bold">
+                                                        {step.id}
+                                                    </span>
+                                                    <div className="w-full">
+                                                        <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2">{step.title}</h3>
+                                                        <p className="text-sm lg:text-base text-gray-600">{step.desc}</p>
+                                                    </div>
+                                                </>
+                                            ) : (
+                                                <div className="flex items-center justify-start w-full">
+                                                    <img src={step.icon} alt={step.title} className="w-28 lg:w-32 h-28 lg:h-32 object-contain" />
+                                                </div>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
                             );

@@ -226,9 +226,48 @@ body {
 
 /* Custom hover effects for sliders */
 .recommendations-swiper .swiper-slide {
-  transition: transform 0.3s ease;
+    transition: transform 200ms ease;
 }
 
 .offers-swiper .swiper-slide {
-  transition: opacity 0.5s ease;
+    transition: transform 200ms ease;
+}
+
+/* Stores Swiper Custom Styles */
+.stores-swiper .swiper-slide {
+    height: auto;
+    transition: transform 200ms ease;
+}
+
+.stores-swiper .swiper-slide:hover {
+    transform: translateY(-2px);
+}
+
+.stores-swiper .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    background-color: #CBD5E1;
+    opacity: 1;
+    transition: all 200ms ease;
+}
+
+.stores-swiper .swiper-pagination-bullet-active {
+    background-color: var(--color-primary);
+    transform: scale(1.2);
+}
+
+.stores-swiper-button-prev,
+.stores-swiper-button-next {
+    color: #6B7280;
+}
+
+.stores-swiper-button-prev:hover,
+.stores-swiper-button-next:hover {
+    color: white;
+}
+
+.stores-swiper-button-prev.swiper-button-disabled,
+.stores-swiper-button-next.swiper-button-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
