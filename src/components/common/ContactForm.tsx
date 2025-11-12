@@ -46,7 +46,7 @@ export default function ContactForm() {
     return (
         <div className="bg-white rounded-2xl border border-gray-100 shadow-lg overflow-hidden">
             {/* Cabeçalho */}
-            <div className="bg-gradient-to-r from-primary to-tertiary p-6 text-white">
+            <div className="bg-linear-to-r from-primary to-tertiary p-6 text-white">
                 <h2 className="text-2xl font-bold mb-2">Pedido de Informação</h2>
                 <p className="text-white/90">Tem alguma dúvida? Envie-nos uma mensagem e responderemos o mais breve possível.</p>
             </div>
@@ -205,7 +205,7 @@ export default function ContactForm() {
                             href="mailto:suporte@kutambula.com"
                             className="flex items-start gap-4 p-4 bg-white rounded-lg border border-gray-200 hover:border-primary transition-colors"
                         >
-                            <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
                                 <Mail className="w-6 h-6 text-primary" />
                             </div>
                             <div>
@@ -220,7 +220,7 @@ export default function ContactForm() {
                             href="tel:+244900000000"
                             className="flex items-start gap-4 p-4 bg-white rounded-lg border border-gray-200 hover:border-primary transition-colors"
                         >
-                            <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
                                 <Phone className="w-6 h-6 text-primary" />
                             </div>
                             <div>
@@ -235,7 +235,7 @@ export default function ContactForm() {
                             href="#chat"
                             className="flex items-start gap-4 p-4 bg-white rounded-lg border border-gray-200 hover:border-primary transition-colors"
                         >
-                            <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
                                 <MessageCircle className="w-6 h-6 text-primary" />
                             </div>
                             <div>
