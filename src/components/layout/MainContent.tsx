@@ -1,9 +1,22 @@
 
 import { useState } from 'react';
 import { Grid, List, SlidersHorizontal } from 'lucide-react';
+import ProductDetailModal from '../common/ProductDetailModal';
 
 export default function MainContent() {
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+    const [selectedProduct, setSelectedProduct] = useState<typeof products[0] | null>(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleProductClick = (product: typeof products[0]) => {
+        setSelectedProduct(product);
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+        setSelectedProduct(null);
+    };
 
 
     // Dados de exemplo dos produtos
@@ -387,7 +400,7 @@ export default function MainContent() {
                             // Vista em Grade (Compacta)
                             <div
                                 key={product.id}
-                                onClick={() => {}}
+                                onClick={() => handleProductClick(product)}
                                 className="bg-white rounded-lg sm:rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-xl hover:border-primary/30 transition-all duration-300 cursor-pointer group"
                             >
                                 {/* Imagem do Produto */}
@@ -416,6 +429,10 @@ export default function MainContent() {
                                     {/* Botão de Ação Rápida */}
                                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                         <button 
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                handleProductClick(product);
+                                            }}
                                             className="bg-white text-gray-900 font-semibold px-2 sm:px-4 py-1.5 sm:py-2 rounded-lg hover:bg-primary hover:text-white transform scale-90 group-hover:scale-100 transition-all duration-300 shadow-xl text-xs sm:text-sm"
                                         >
                                             <span className="hidden sm:inline">Ver Detalhes</span>
@@ -468,7 +485,7 @@ export default function MainContent() {
                             // Vista em Lista (Detalhada)
                             <div
                                 key={product.id}
-                                onClick={() => {}}
+                                onClick={() => handleProductClick(product)}
                                 className="bg-white rounded-lg sm:rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-xl hover:border-primary/30 transition-all duration-300 cursor-pointer group flex flex-col sm:flex-row"
                             >
                                 {/* Imagem */}
@@ -579,6 +596,14 @@ export default function MainContent() {
                 </div>
             </main>
 
+            {/* Product Detail Modal */}
+            {selectedProduct && (
+                <ProductDetailModal 
+                    isOpen={isModalOpen}
+                    onClose={closeModal}
+                    product={selectedProduct}
+                />
+            )}
         </div>
     );
 }
