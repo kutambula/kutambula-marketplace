@@ -446,16 +446,16 @@ export default function MainContent() {
                                     {/* Preço */}
                                     <div className="pt-2 border-t border-gray-100">
                                         <p className="text-xl font-black text-primary">
-                                            {product.price.toLocaleString('pt-AO', { 
+                                            {product.price.toLocaleString('pt-PT', { 
                                                 style: 'currency', 
-                                                currency: 'AOA' 
+                                                currency: 'EUR' 
                                             })}
                                         </p>
                                         {product.originalPrice > product.price && (
                                             <p className="text-xs text-gray-400 line-through">
-                                                {product.originalPrice.toLocaleString('pt-AO', { 
+                                                {product.originalPrice.toLocaleString('pt-PT', { 
                                                     style: 'currency', 
-                                                    currency: 'AOA' 
+                                                    currency: 'EUR' 
                                                 })}
                                             </p>
                                         )}
@@ -538,16 +538,16 @@ export default function MainContent() {
                                         <div>
                                             {product.originalPrice > product.price && (
                                                 <p className="text-sm text-gray-400 line-through mb-1">
-                                                    {product.originalPrice.toLocaleString('pt-AO', { 
+                                                    {product.originalPrice.toLocaleString('pt-PT', { 
                                                         style: 'currency', 
-                                                        currency: 'AOA' 
+                                                        currency: 'EUR' 
                                                     })}
                                                 </p>
                                             )}
                                             <p className="text-3xl font-black text-primary">
-                                                {product.price.toLocaleString('pt-AO', { 
+                                                {product.price.toLocaleString('pt-PT', { 
                                                     style: 'currency', 
-                                                    currency: 'AOA' 
+                                                    currency: 'EUR' 
                                                 })}
                                             </p>
                                         </div>

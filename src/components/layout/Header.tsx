@@ -13,7 +13,7 @@ export default function Header() {
     const toggleSearch = () => setIsSearchOpen(!isSearchOpen);
 
     const languages = [
-        { code: 'pt', name: 'Português', flag: '🇦🇴' },
+        { code: 'pt', name: 'Português', flag: '🇵🇹' },
         { code: 'en', name: 'English', flag: '🇬🇧' },
         { code: 'fr', name: 'Français', flag: '🇫🇷' },
         { code: 'it', name: 'Italiano', flag: '🇮🇹' },
@@ -24,10 +24,10 @@ export default function Header() {
     ];
 
     return (
-        <header className="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-50">
+        <header className="bg-white sticky top-0 z-50">
 
             {/* Navigation Links Bar */}
-            <div className='relative border-t border-primary/20 african-pattern bg-linear-to-r from-background via-white to-background'>
+            <div className='relative african-pattern'>
                 <div className='container mx-auto px-4 relative z-10'>
                     {/* Desktop Navigation */}
                     <nav className='hidden lg:flex items-center justify-between py-2'>
@@ -42,12 +42,6 @@ export default function Header() {
                                 <a href="#" className='flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-primary transition-colors py-2'>
                                     <Tag className="w-4 h-4" />
                                     Ofertas
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className='flex items-center gap-2 text-sm font-semibold text-gray-700 hover:text-primary transition-colors py-2'>
-                                    <Store className="w-4 h-4" />
-                                    Torne-se um Vendedor
                                 </a>
                             </li>
                         </ul>
@@ -114,7 +108,7 @@ export default function Header() {
                     </nav>
                 </div>
                 {/* Decorative Pattern */}
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#E76835] to-transparent opacity-50" />
+                {/* <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-transparent via-[#E76835] to-transparent opacity-50" /> */}
             </div>
 
             {/* Main Navigation */}
@@ -148,7 +142,7 @@ export default function Header() {
 
                     {/* Search Bar - Desktop */}
                     <div className='hidden lg:flex flex-1 max-w-2xl'>
-                        <div className='w-full flex items-center gap-2 border-2 border-gray-300 hover:border-primary focus-within:border-primary px-4 py-2.5 rounded-full transition-colors duration-200'>
+                        <div className='w-full flex items-center gap-2 border-1 border-gray-300 hover:border-primary focus-within:border-primary px-4 py-2.5 rounded-full transition-colors duration-200'>
                             <div className='relative'>
                                 <select
                                     name="category"
@@ -217,7 +211,6 @@ export default function Header() {
                             aria-label="User Account"
                         >
                             <i className='bx bx-user text-xl md:text-2xl text-gray-600'></i>
-                            <span className="hidden xl:inline text-sm font-medium text-gray-700">Iniciar sessão</span>
                         </button>
                     </div>
                 </div>

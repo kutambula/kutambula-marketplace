@@ -3,6 +3,7 @@ import MainContent from '../../components/layout/MainContent';
 import Footer from '../../components/layout/Footer';
 import { Link } from 'react-router-dom';
 import { Star } from 'lucide-react';
+import HowItWorks from '../../components/layout/HowItWorks';
 
 export default function HomePage() {
     const featuredStores = [
@@ -87,14 +88,14 @@ export default function HomePage() {
                         <div className="space-y-6">
                             <h1 className="text-4xl lg:text-6xl font-black text-gray-900 leading-tight">
                                 Conectando
-                                <span className="text-primary block">África</span>
-                                através do comércio
+                                <span className="text-primary block">Empresas</span>
+                                através da inovação
                             </h1>
                             
                             <p className="text-xl text-gray-600 leading-relaxed">
-                                O marketplace que une vendedores e compradores de toda a África lusófona. 
-                                Descubra produtos únicos, apoie negócios locais e faça parte da maior 
-                                comunidade comercial africana.
+                                O marketplace que conecta empresas e startups com seus clientes ideais. 
+                                Descubra produtos e serviços inovadores, apoie negócios emergentes e faça parte 
+                                da maior comunidade empresarial digital.
                             </p>
                         </div>
 
@@ -138,8 +139,8 @@ export default function HomePage() {
                                 <div className="text-sm text-gray-600">Produtos</div>
                             </div>
                             <div className="text-center">
-                                <div className="text-2xl font-black text-primary">8</div>
-                                <div className="text-sm text-gray-600">Países</div>
+                                <div className="text-2xl font-black text-primary">15+</div>
+                                <div className="text-sm text-gray-600">Setores</div>
                             </div>
                         </div>
                     </div>
@@ -147,14 +148,14 @@ export default function HomePage() {
                     {/* Visual/Imagem Hero */}
                     <div className="relative">
                         <div className="bg-linear-to-br from-primary/10 to-tertiary/10 rounded-3xl p-8 relative overflow-hidden">
-                            {/* Padrão Africano Decorativo */}
+                            {/* Padrão Decorativo */}
                             <div className="absolute inset-0 opacity-5">
-                                <div className="w-full h-full african-pattern"></div>
+                                <div className="w-full h-full business-pattern"></div>
                             </div>
                             
                             <img
                                 src="https://images.unsplash.com/photo-1573164713988-8665fc963095?w=600&h=400&fit=crop"
-                                alt="Marketplace Africano"
+                                alt="Marketplace Empresarial"
                                 className="w-full h-80 object-cover rounded-2xl shadow-xl"
                             />
                             
@@ -173,8 +174,8 @@ export default function HomePage() {
                                 <div className="flex items-center gap-2">
                                     <i className='bx bx-world text-2xl text-primary'></i>
                                     <div>
-                                        <div className="font-bold text-sm">Multi-idioma</div>
-                                        <div className="text-xs text-gray-600">8 idiomas locais</div>
+                                        <div className="font-bold text-sm">Multi-categoria</div>
+                                        <div className="text-xs text-gray-600">15+ setores ativos</div>
                                     </div>
                                 </div>
                             </div>
@@ -183,61 +184,8 @@ export default function HomePage() {
                 </div>
             </section>
 
-            {/* Como Funciona Section */}
-            <section className="bg-gray-50 py-16">
-                <div className="container mx-auto px-4">
-                    <div className="text-center mb-12">
-                        <h2 className="text-3xl font-black text-gray-900 mb-4">Como Funciona</h2>
-                        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                            Três passos simples para começar a comprar ou vender no maior marketplace da África lusófona
-                        </p>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {/* Passo 1 - Comprador */}
-                        <div className="bg-white rounded-2xl p-8 text-center shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
-                            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                                <i className='bx bx-search text-3xl text-primary'></i>
-                            </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-4">1. Explore & Descubra</h3>
-                            <p className="text-gray-600 mb-6">
-                                Navegue por milhares de produtos de vendedores verificados de toda a África
-                            </p>
-                            <button className="text-primary font-semibold hover:underline">
-                                Começar a explorar →
-                            </button>
-                        </div>
-
-                        {/* Passo 2 */}
-                        <div className="bg-white rounded-2xl p-8 text-center shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
-                            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                                <i className='bx bx-cart text-3xl text-green-600'></i>
-                            </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-4">2. Compre com Segurança</h3>
-                            <p className="text-gray-600 mb-6">
-                                Pagamentos protegidos, frete calculado automaticamente e suporte multilíngue
-                            </p>
-                            <button className="text-primary font-semibold hover:underline">
-                                Ver formas de pagamento →
-                            </button>
-                        </div>
-
-                        {/* Passo 3 - Vendedor */}
-                        <div className="bg-white rounded-2xl p-8 text-center shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
-                            <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                                <i className='bx bx-store text-3xl text-yellow-600'></i>
-                            </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-4">3. Venda & Cresça</h3>
-                            <p className="text-gray-600 mb-6">
-                                Configure sua loja em minutos e alcance clientes em 8 países africanos
-                            </p>
-                            <button className="text-primary font-semibold hover:underline">
-                                Criar minha loja →
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
+       
+            <HowItWorks     />
 
             {/* Lojas em Destaque Section */}
             <section className="py-16">
@@ -248,7 +196,7 @@ export default function HomePage() {
                             <h2 className="text-3xl font-black text-gray-900">Lojas em Destaque</h2>
                         </div>
                         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                            Descubra as melhores lojas verificadas da nossa comunidade africana
+                            Descubra as melhores lojas verificadas da nossa comunidade empresarial
                         </p>
                     </div>
 
@@ -339,51 +287,6 @@ export default function HomePage() {
                                 <i className='bx bx-right-arrow-alt text-xl'></i>
                             </span>
                         </button>
-                    </div>
-                </div>
-            </section>
-
-   
-
-            {/* Seção de Suporte & Idiomas */}
-            <section className="py-16">
-                <div className="container mx-auto px-4">
-                    <div className="bg-linear-to-r from-primary to-tertiary rounded-3xl p-12 text-white text-center">
-                        <h2 className="text-3xl font-black mb-6">Suporte em Sua Língua</h2>
-                        <p className="text-xl opacity-90 mb-8 max-w-3xl mx-auto">
-                            Nossa equipe fala português, francês, inglês e idiomas locais africanos. 
-                            Chat ao vivo 24/7 com respostas treinadas para expressões e contextos locais.
-                        </p>
-                        
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-                            <div className="text-center">
-                                <div className="text-2xl mb-2">🇦🇴</div>
-                                <div className="font-semibold">Português & Kimbundo</div>
-                            </div>
-                            <div className="text-center">
-                                <div className="text-2xl mb-2">🇬🇼</div>
-                                <div className="font-semibold">Crioulo Guineense</div>
-                            </div>
-                            <div className="text-center">
-                                <div className="text-2xl mb-2">🇨🇻</div>
-                                <div className="font-semibold">Cabo-verdiano</div>
-                            </div>
-                            <div className="text-center">
-                                <div className="text-2xl mb-2">🇸🇹</div>
-                                <div className="font-semibold">Santomense</div>
-                            </div>
-                        </div>
-
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <button className="bg-white text-primary font-bold px-8 py-3 rounded-xl hover:bg-gray-100 transition-colors">
-                                <i className='bx bx-chat mr-2'></i>
-                                Iniciar Chat
-                            </button>
-                            <button className="border-2 border-white text-white font-bold px-8 py-3 rounded-xl hover:bg-white hover:text-primary transition-colors">
-                                <i className='bx bx-help-circle mr-2'></i>
-                                FAQ Completo
-                            </button>
-                        </div>
                     </div>
                 </div>
             </section>
