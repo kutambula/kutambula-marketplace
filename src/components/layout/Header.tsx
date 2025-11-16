@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Search, ChevronDown, Menu, X, Store, Tag, Headset, Globe, ShoppingBag, User } from 'lucide-react';
+import { Search, ChevronDown, Menu, X, Store, Tag, Headset, Globe, ShoppingBag, User, MessageCircle, FileText, HelpCircle, Mail, Phone, MessageSquare } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import icon from '../../assets/images/icon.png';
+import icon4 from '../../assets/images/icon4.png';
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,18 +11,19 @@ export default function Header() {
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
     const languages = [
-        { code: 'pt', name: 'Português', flag: '🇵🇹' },
-        { code: 'en', name: 'English', flag: '🇬🇧' },
-        { code: 'fr', name: 'Français', flag: '🇫🇷' },
-        { code: 'it', name: 'Italiano', flag: '🇮🇹' },
-        { code: 'km', name: 'Kimbundo', flag: '🇦🇴' },
-        { code: 'gw', name: 'Crioulo Guineense', flag: '🇬🇼' },
-        { code: 'cv', name: 'Cabo-verdiano', flag: '🇨🇻' },
-        { code: 'st', name: 'Santomense', flag: '🇸🇹' },
-    ];
+		{ code: 'pt', name: 'Português', flag: '🇵🇹' },           // Portugal
+		{ code: 'en', name: 'English', flag: '🇬🇧' },            // Reino Unido
+		{ code: 'fr', name: 'Français', flag: '🇫🇷' },           // França
+		{ code: 'it', name: 'Italiano', flag: '🇮🇹' },           // Itália
+		{ code: 'km', name: 'Kimbundo', flag: '🇦🇴' },           // Angola (língua nacional)
+		{ code: 'gw', name: 'Crioulo Guineense', flag: '🇬🇼' },   // Guiné-Bissau
+		{ code: 'cv', name: 'Cabo-verdiano', flag: '🇨🇻' },       // Cabo Verde
+		{ code: 'st', name: 'Santomense', flag: '🇸🇹' },          // São Tomé e Príncipe
+	];
+
 
     return (
-        <header className="bg-white sticky top-0 z-50">
+        <header className="bg-primary md:bg-white sticky top-0 z-50">
 
             {/* Navigation Links Bar */}
             <div className='relative african-pattern'>
@@ -50,10 +52,10 @@ export default function Header() {
 
                         <ul className='flex items-center gap-6'>
                             <li>
-                                <Link to="/contato" className='flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-primary transition-colors py-2'>
-                                    <Headset className="w-4 h-4" />
-                                    Centro de Ajuda
-                                </Link>
+                                <a href="tel:+244999000000" className='flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-primary transition-colors py-2'>
+                                    <Phone className="w-4 h-4" />
+                                    Contacto
+                                </a>
                             </li>
                             <li className="relative group">
                                 <button className='flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-primary transition-colors py-2'>
@@ -82,18 +84,48 @@ export default function Header() {
 
             {/* Main Navigation */}
             <nav className='container mx-auto px-4 py-3 md:py-4' >
+                {/* Mobile Menu Overlay */}
+                <div 
+                    className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-50 lg:hidden transition-opacity duration-300 ${
+                        isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+                    }`}
+                    onClick={toggleMenu}
+                />
 
                 <div className="flex items-center justify-between gap-2 md:gap-6">
+                    {/* Mobile Layout */}
+                    <div className="flex items-center gap-3 lg:hidden">
+                        {/* Mobile Menu Button */}
+                        <button
+                            onClick={toggleMenu}
+                            className="cursor-pointer transition-colors"
+                            aria-label="Toggle Menu"
+                        >
+                            {isMenuOpen ? (
+                                <X className="w-6 h-6 text-white" />
+                            ) : (
+                                <Menu className="w-6 h-6 text-white" />
+                            )}
+                        </button>
+                        {/* Mobile Logo */}
+                        <Link to={`/`} className="shrink-0">
+                            <img
+                                src={icon4}
+                                alt="Kutambula Marketplace Logo"
+                                className="w-28 object-contain transition-transform duration-200 cursor-pointer"
+                            />
+                        </Link>
+                    </div>
 
-                    {/* Logo */}
+                    {/* Desktop Logo */}
                     <Link
                         to={`/`}
-                        className="shrink-0"
+                        className="shrink-0 hidden lg:block"
                     >
                         <img
                             src={icon}
                             alt="Kutambula Marketplace Logo"
-                            className="w-8 md:w-12 object-contain transition-transform duration-200 cursor-pointer"
+                            className="w-12 object-contain transition-transform duration-200 cursor-pointer"
                         />
                     </Link>
 
@@ -103,6 +135,7 @@ export default function Header() {
                             <div className='relative'>
                                 <select
                                     name="category"
+                                    aria-label="Selecionar categoria"
                                     className="appearance-none bg-transparent pr-8 pl-2 py-1 text-sm font-medium text-gray-700 focus:outline-none cursor-pointer hover:text-primary transition-colors"
                                 >
                                     <option value="all-categories">Todas as Categorias</option>
@@ -134,7 +167,6 @@ export default function Header() {
 
                     {/* Right Menu */}
                     <div className="flex items-center gap-1 md:gap-2">
-
                         {/* Cart */}
                         <button
                             className='relative p-2 md:p-2.5 cursor-pointer transition-colors duration-200'
@@ -150,33 +182,58 @@ export default function Header() {
                         >
                             <User className="w-5 h-5 md:w-6 md:h-6 text-gray-700" />
                         </button>
-                        {/* Mobile Menu Button */}
-                        <button
-                            onClick={toggleMenu}
-                            className="lg:hidden cursor-pointer transition-colors"
-                            aria-label="Toggle Menu"
-                        >
-                            {isMenuOpen ? (
-                                <X className="w-6 h-6 text-gray-700" />
-                            ) : (
-                                <Menu className="w-6 h-6 text-gray-700" />
-                            )}
-                        </button>
                     </div>
                 </div>
             </nav>
 
-            {/* Mobile Menu Overlay */}
-            <div 
-                className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-50 lg:hidden transition-opacity duration-300 ${
-                    isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
-                }`}
-                onClick={toggleMenu}
-            />
+            {/* Mobile Search Bar */}
+            <div className="lg:hidden bg-white border-t border-gray-200 px-4 py-3">
+                <div className="relative">
+                    <input
+                        type="search"
+                        placeholder="Pesquisar produtos e lojas..."
+                        className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary text-sm"
+                    />
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                    <button
+                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-primary hover:bg-tertiary text-white px-3 py-1.5 rounded-md text-sm font-medium transition-colors"
+                    >
+                        Buscar
+                    </button>
+                </div>
+            </div>
+
+            {/* Mobile Navigation Links */}
+            <div className="lg:hidden bg-gray-50 border-t border-gray-200 overflow-x-auto">
+                <div className="px-4 py-3">
+                    <nav className="flex gap-4 min-w-max">
+                        <a href="#comentarios" className="flex items-center gap-2 text-xs font-medium text-gray-700 hover:text-primary transition-colors whitespace-nowrap px-3 py-2 rounded-lg hover:bg-white">
+                            <MessageCircle className="w-3.5 h-3.5" />
+                            Comentários
+                        </a>
+                        <Link to="/reclamacoes" className="flex items-center gap-2 text-xs font-medium text-gray-700 hover:text-primary transition-colors whitespace-nowrap px-3 py-2 rounded-lg hover:bg-white">
+                            <FileText className="w-3.5 h-3.5" />
+                            Reclamações
+                        </Link>
+                        <Link to="/suporte" className="flex items-center gap-2 text-xs font-medium text-gray-700 hover:text-primary transition-colors whitespace-nowrap px-3 py-2 rounded-lg hover:bg-white">
+                            <HelpCircle className="w-3.5 h-3.5" />
+                            Suporte
+                        </Link>
+                        <a href="mailto:suporte@kutambula.com" className="flex items-center gap-2 text-xs font-medium text-gray-700 hover:text-primary transition-colors whitespace-nowrap px-3 py-2 rounded-lg hover:bg-white">
+                            <Mail className="w-3.5 h-3.5" />
+                            E-mail
+                        </a>
+                        <a href="#chat" className="flex items-center gap-2 text-xs font-medium text-gray-700 hover:text-primary transition-colors whitespace-nowrap px-3 py-2 rounded-lg hover:bg-white">
+                            <MessageSquare className="w-3.5 h-3.5" />
+                            Chat
+                        </a>
+                    </nav>
+                </div>
+            </div>
 
             {/* Mobile Menu */}
-            <div className={`fixed top-0 right-0 h-full w-80 max-w-[80vw] bg-white shadow-2xl z-50 lg:hidden transform transition-transform duration-300 ease-in-out ${
-                isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+            <div className={`fixed top-0 left-0 h-full w-80 max-w-[80vw] bg-white shadow-2xl z-50 lg:hidden transform transition-transform duration-300 ease-in-out ${
+                isMenuOpen ? 'translate-x-0' : '-translate-x-full'
             }`}>
                 {/* Mobile Menu Header */}
                 <div className="flex items-center justify-between p-4 border-b border-gray-200">
