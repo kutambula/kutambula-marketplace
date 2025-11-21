@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Grid, List, SlidersHorizontal } from 'lucide-react';
+import { Grid, List, SlidersHorizontal, Star, ShoppingCart, Truck, Store, Eye, Tag, Package } from 'lucide-react';
 import ProductDetailModal from '../common/ProductDetailModal';
 
 export default function MainContent() {
@@ -23,307 +23,312 @@ export default function MainContent() {
     const products = [
         {
             id: 1,
-            title: 'Smartphone Galaxy Pro Max',
-            image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=400&fit=crop',
+            title: 'Café Etíope Yirgacheffe Premium 250g',
+            image: 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=400&h=400&fit=crop',
             images: [
-                'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1603791239531-2cb8a097df6a?w=400&h=400&fit=crop'
+                'https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=400&h=400&fit=crop',
+                'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&h=400&fit=crop',
+                'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&h=400&fit=crop',
+                'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&h=400&fit=crop'
             ],
-            price: 4999.00,
-            originalPrice: 6999.00,
+            price: 24.90,
+            originalPrice: 34.90,
             rating: 4.9,
             totalReviews: 342,
-            description: 'O Smartphone Galaxy Pro Max é o topo de linha que você estava esperando. Com tela AMOLED de 6.8", processador octa-core de última geração e câmera tripla de 108MP, este smartphone oferece performance excepcional para todas as suas necessidades.',
-            storeName: 'TechWorld Store',
+            description: 'Café premium da região de Yirgacheffe, Etiópia. Grãos selecionados com notas florais e cítricas, torrado artesanalmente. Intensidade média-alta com sabor frutado e aroma inconfundível.',
+            storeName: 'Café Africano Premium',
             storeVerified: true,
-            storeId: 1,
+            storeId: 5,
             inStock: true,
             freeShipping: true,
             discount: 29,
             badge: 'Novidade',
-            category: 'Smartphones',
-            brand: 'Galaxy',
+            category: 'Cafés & Infusões',
+            brand: 'Yirgacheffe',
             specifications: [
-                { label: 'Processador', value: 'Snapdragon 8 Gen 2' },
-                { label: 'Memória RAM', value: '12GB' },
-                { label: 'Armazenamento', value: '256GB' },
-                { label: 'Tela', value: '6.8" AMOLED 120Hz' },
-                { label: 'Câmera Principal', value: '108MP + 12MP + 10MP' },
-                { label: 'Bateria', value: '5000mAh' },
-                { label: 'Sistema', value: 'Android 14' }
+                { label: 'Origem', value: 'Etiópia, Yirgacheffe' },
+                { label: 'Altitude', value: '1700-2200m' },
+                { label: 'Torra', value: 'Média' },
+                { label: 'Peso Líquido', value: '250g' },
+                { label: 'Tipo de Grão', value: '100% Arábica' },
+                { label: 'Validade', value: '12 meses' },
+                { label: 'Intensidade', value: '7/10' }
             ],
             features: [
-                'Tela AMOLED de 6.8" com taxa de atualização de 120Hz',
-                'Processador Snapdragon 8 Gen 2 de última geração',
-                'Câmera tripla com sensor principal de 108MP',
-                'Bateria de 5000mAh com carregamento rápido de 65W',
-                '12GB de RAM e 256GB de armazenamento interno',
-                'Resistente à água e poeira (IP68)',
-                '5G e Wi-Fi 6E'
+                'Grãos 100% arábica de altitude elevada',
+                'Notas de limão, bergamota e flores',
+                'Torrado artesanalmente em pequenos lotes',
+                'Acidez vibrante e corpo médio',
+                'Certificação de comércio justo',
+                'Embalagem com válvula de frescor',
+                'Ideal para métodos filtrados e espresso'
             ]
         },
         {
             id: 2,
-            title: 'Notebook Ultra Slim i7 16GB',
-            image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&h=400&fit=crop',
+            title: 'Molho Piri-Piri Tradicional Africano 150ml',
+            image: 'https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=400&h=400&fit=crop',
             images: [
-                'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1602080858428-57174f9431cf?w=400&h=400&fit=crop'
+                'https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=400&h=400&fit=crop',
+                'https://images.unsplash.com/photo-1596040033229-a0b4d1ab7faa?w=400&h=400&fit=crop',
+                'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=400&h=400&fit=crop'
             ],
-            price: 8499.90,
-            originalPrice: 11999.90,
+            price: 12.90,
+            originalPrice: 18.90,
             rating: 4.8,
             totalReviews: 567,
-            description: 'Notebook ultrafino e poderoso com processador Intel Core i7 de 11ª geração, 16GB de RAM e SSD de 512GB. Perfeito para trabalho, estudos e entretenimento.',
-            storeName: 'TechWorld Store',
-            storeVerified: true,
-            storeId: 1,
-            inStock: true,
-            freeShipping: true,
-            discount: 29,
-            badge: 'Mais Vendido',
-            category: 'Notebooks',
-            brand: 'UltraBook',
-            specifications: [
-                { label: 'Processador', value: 'Intel Core i7-11800H' },
-                { label: 'Memória RAM', value: '16GB DDR4' },
-                { label: 'Armazenamento', value: '512GB SSD NVMe' },
-                { label: 'Tela', value: '15.6" Full HD IPS' },
-                { label: 'Placa de Vídeo', value: 'NVIDIA GeForce MX450' },
-                { label: 'Peso', value: '1.8kg' }
-            ],
-            features: [
-                'Design ultrafino com apenas 1.8cm de espessura',
-                'Tela Full HD de 15.6" com bordas finas',
-                'Bateria de longa duração (até 10 horas)',
-                'Teclado retroiluminado',
-                'Leitor de impressão digital',
-                'Conexões: USB-C, HDMI, USB 3.0'
-            ]
-        },
-        {
-            id: 3,
-            title: 'Fone Bluetooth Premium Cancelamento de Ruído',
-            image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop',
-            images: [
-                'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=400&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=400&h=400&fit=crop'
-            ],
-            price: 299.99,
-            originalPrice: 499.99,
-            rating: 4.7,
-            totalReviews: 892,
-            description: 'Fone de ouvido Bluetooth premium com cancelamento ativo de ruído, qualidade de som excepcional e bateria de longa duração.',
-            storeName: 'TechWorld Store',
-            storeVerified: true,
-            storeId: 1,
-            inStock: true,
-            freeShipping: true,
-            discount: 40,
-            category: 'Áudio',
-            brand: 'SoundPro',
-            specifications: [
-                { label: 'Conectividade', value: 'Bluetooth 5.2' },
-                { label: 'Cancelamento de Ruído', value: 'ANC Ativo' },
-                { label: 'Bateria', value: 'Até 30 horas' },
-                { label: 'Drivers', value: '40mm' },
-                { label: 'Peso', value: '250g' }
-            ],
-            features: [
-                'Cancelamento ativo de ruído (ANC)',
-                'Bluetooth 5.2 com conexão estável',
-                'Bateria de até 30 horas',
-                'Almofadas confortáveis em couro sintético',
-                'Microfone integrado para chamadas',
-                'Dobrável e com estojo rígido'
-            ]
-        },
-        {
-            id: 4,
-            title: 'Tênis Running Performance Pro',
-            image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop',
-            images: [
-                'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=400&h=400&fit=crop'
-            ],
-            price: 349.90,
-            originalPrice: 499.90,
-            rating: 4.6,
-            totalReviews: 234,
-            description: 'Tênis de corrida com tecnologia de amortecimento avançada, ideal para treinos e competições.',
-            storeName: 'Sports & Fitness',
+            description: 'Molho Piri-Piri autêntico, feito com malaguetas africanas frescas. Picância equilibrada com notas cítricas e alho. Perfeito para carnes grelhadas, frango e mariscos.',
+            storeName: 'Aromas da Savana',
             storeVerified: true,
             storeId: 4,
             inStock: true,
             freeShipping: true,
-            discount: 30,
-            category: 'Calçados Esportivos',
-            brand: 'RunPro',
+            discount: 32,
+            badge: 'Mais Vendido',
+            category: 'Temperos & Molhos',
+            brand: 'Aromas da Savana',
             specifications: [
-                { label: 'Material', value: 'Mesh respirável' },
-                { label: 'Solado', value: 'Borracha de alta tração' },
-                { label: 'Amortecimento', value: 'Tecnologia Air Pro' },
-                { label: 'Peso', value: '280g (tamanho 40)' }
+                { label: 'Volume', value: '150ml' },
+                { label: 'Origem', value: 'Moçambique' },
+                { label: 'Picância', value: '7/10' },
+                { label: 'Ingredientes', value: 'Natural' },
+                { label: 'Conservação', value: 'Após abrir: refrigerar' },
+                { label: 'Validade', value: '18 meses' }
             ],
             features: [
-                'Tecnologia de amortecimento Air Pro',
-                'Material mesh ultra respirável',
-                'Solado com alta tração',
-                'Design ergonômico',
-                'Ideal para corridas de longa distância'
+                'Receita tradicional moçambicana',
+                'Malaguetas africanas frescas',
+                'Sem conservantes artificiais',
+                'Picância média-alta equilibrada',
+                'Notas cítricas de limão',
+                'Versatile para diversas receitas',
+                'Garrafa de vidro com dosador'
+            ]
+        },
+        {
+            id: 3,
+            title: 'Chá Rooibos Vermelho Sul-Africano 50g',
+            image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&h=400&fit=crop',
+            images: [
+                'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&h=400&fit=crop',
+                'https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=400&h=400&fit=crop',
+                'https://images.unsplash.com/photo-1597318112811-f5eaa4500112?w=400&h=400&fit=crop'
+            ],
+            price: 15.99,
+            originalPrice: 25.99,
+            rating: 4.7,
+            totalReviews: 892,
+            description: 'Chá Rooibos vermelho premium da África do Sul. Naturalmente sem cafeína, rico em antioxidantes e com sabor naturalmente doce. Perfeito para qualquer hora do dia.',
+            storeName: 'Bebidas Ancestrais',
+            storeVerified: true,
+            storeId: 2,
+            inStock: true,
+            freeShipping: true,
+            discount: 38,
+            category: 'Bebidas Artesanais',
+            brand: 'Rooibos Premium',
+            specifications: [
+                { label: 'Peso', value: '50g (25 saquetas)' },
+                { label: 'Origem', value: 'África do Sul' },
+                { label: 'Cafeína', value: 'Sem cafeína' },
+                { label: 'Tipo', value: 'Rooibos vermelho' },
+                { label: 'Certificação', value: 'Orgânico' }
+            ],
+            features: [
+                'Naturalmente sem cafeína',
+                'Rico em antioxidantes',
+                'Sabor naturalmente doce',
+                'Sem adição de açúcar',
+                'Propriedades relaxantes',
+                'Pode ser consumido quente ou frio',
+                'Embalagem com 25 saquetas'
+            ]
+        },
+        {
+            id: 4,
+            title: 'Mistura de Especiarias Berbere Etíope 100g',
+            image: 'https://images.unsplash.com/photo-1596040033229-a0b4d1ab7faa?w=400&h=400&fit=crop',
+            images: [
+                'https://images.unsplash.com/photo-1596040033229-a0b4d1ab7faa?w=400&h=400&fit=crop',
+                'https://images.unsplash.com/photo-1599909533730-f9d49ad7ca3c?w=400&h=400&fit=crop',
+                'https://images.unsplash.com/photo-1506368249639-73a05d6f6488?w=400&h=400&fit=crop'
+            ],
+            price: 18.90,
+            originalPrice: 26.90,
+            rating: 4.6,
+            totalReviews: 234,
+            description: 'Mistura autêntica de especiarias etíopes Berbere. Combinação complexa de pimentas, coentro, gengibre e especiarias aromáticas. Essencial para pratos tradicionais africanos.',
+            storeName: 'Aromas da Savana',
+            storeVerified: true,
+            storeId: 4,
+            inStock: true,
+            freeShipping: false,
+            discount: 30,
+            category: 'Temperos & Molhos',
+            brand: 'Berbere Original',
+            specifications: [
+                { label: 'Peso', value: '100g' },
+                { label: 'Origem', value: 'Etiópia' },
+                { label: 'Ingredientes', value: '12 especiarias' },
+                { label: 'Picância', value: '6/10' }
+            ],
+            features: [
+                'Mistura de 12 especiarias autênticas',
+                'Receita tradicional etíope',
+                'Pimentas, coentro, gengibre e mais',
+                'Ideal para ensopados e carnes',
+                'Sabor complexo e aromático',
+                'Embalagem hermética'
             ]
         },
         {
             id: 5,
-            title: 'Smartwatch Fitness Tracker GPS',
-            image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop',
+            title: 'Óleo de Palma Vermelho Natural 500ml',
+            image: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&h=400&fit=crop',
             images: [
-                'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=400&h=400&fit=crop'
+                'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&h=400&fit=crop',
+                'https://images.unsplash.com/photo-1609501676725-7186f017a4b0?w=400&h=400&fit=crop',
+                'https://images.unsplash.com/photo-1608889825103-eb5ed706a1dc?w=400&h=400&fit=crop'
             ],
-            price: 599.00,
-            originalPrice: 899.00,
+            price: 22.00,
+            originalPrice: 32.00,
             rating: 4.8,
             totalReviews: 445,
-            description: 'Smartwatch completo com GPS, monitor cardíaco, múltiplos modos esportivos e bateria de longa duração.',
-            storeName: 'TechWorld Store',
+            description: 'Óleo de palma vermelho 100% natural, extraído de forma sustentável. Rico em vitamina A e carotenoides. Essencial para a culinária africana autêntica.',
+            storeName: 'Óleos & Manteigas',
             storeVerified: true,
-            storeId: 1,
+            storeId: 8,
             inStock: true,
             freeShipping: true,
-            discount: 33,
-            category: 'Wearables',
-            brand: 'FitWatch',
+            discount: 31,
+            category: 'Óleos Naturais',
+            brand: 'PalmaViva',
             specifications: [
-                { label: 'Tela', value: '1.4" AMOLED' },
-                { label: 'GPS', value: 'GPS + GLONASS' },
-                { label: 'Bateria', value: 'Até 14 dias' },
-                { label: 'Resistência', value: '5ATM' },
-                { label: 'Conectividade', value: 'Bluetooth 5.0' }
+                { label: 'Volume', value: '500ml' },
+                { label: 'Origem', value: 'Gana' },
+                { label: 'Extração', value: 'Prensado a frio' },
+                { label: 'Certificação', value: 'Sustentável' },
+                { label: 'Validade', value: '12 meses' }
             ],
             features: [
-                'Tela AMOLED de 1.4" sempre ativa',
-                'GPS integrado para rastreamento preciso',
-                'Monitor cardíaco 24/7',
-                'Mais de 100 modos esportivos',
-                'Resistente à água (5ATM)',
-                'Bateria de até 14 dias'
+                'Óleo 100% natural e puro',
+                'Rico em vitamina A',
+                'Extraído de forma sustentável',
+                'Sabor característico e autêntico',
+                'Ideal para frituras e refogados',
+                'Garrafa de vidro escuro',
+                'Certificação de origem'
             ]
         },
         {
             id: 6,
-            title: 'Mochila Executiva Laptop 15.6"',
-            image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=400&fit=crop',
+            title: 'Farinha de Mandioca Fina (Fubá) 1kg',
+            image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&h=400&fit=crop',
             images: [
-                'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?w=400&h=400&fit=crop'
+                'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&h=400&fit=crop',
+                'https://images.unsplash.com/photo-1595855759920-86582396756a?w=400&h=400&fit=crop'
             ],
-            price: 189.90,
-            originalPrice: 289.90,
+            price: 8.90,
+            originalPrice: 12.90,
             rating: 4.5,
             totalReviews: 156,
-            description: 'Mochila executiva premium com compartimento acolchoado para laptop até 15.6", múltiplos bolsos organizadores e design elegante.',
-            storeName: 'Fashion Hub',
+            description: 'Farinha de mandioca fina premium para preparar fufu, pirão e outros pratos tradicionais africanos. Produto natural, sem conservantes.',
+            storeName: 'Grãos da Terra',
             storeVerified: true,
-            storeId: 2,
+            storeId: 7,
             inStock: true,
             freeShipping: false,
-            discount: 34,
-            category: 'Acessórios',
-            brand: 'BagPro',
+            discount: 31,
+            category: 'Cereais & Legumes',
+            brand: 'Terra Africana',
             specifications: [
-                { label: 'Capacidade', value: '25 litros' },
-                { label: 'Material', value: 'Nylon balístico' },
-                { label: 'Compartimento Laptop', value: 'Até 15.6"' },
-                { label: 'Dimensões', value: '45x30x15cm' }
+                { label: 'Peso', value: '1kg' },
+                { label: 'Origem', value: 'Angola' },
+                { label: 'Tipo', value: 'Fina' },
+                { label: 'Validade', value: '6 meses' }
             ],
             features: [
-                'Compartimento acolchoado para laptop',
-                'Múltiplos bolsos organizadores',
-                'Alças e costas acolchoadas',
-                'Material resistente à água',
-                'Porta USB para powerbank',
-                'Design executivo moderno'
+                'Farinha 100% natural',
+                'Textura fina e uniforme',
+                'Ideal para fufu e pirão',
+                'Sem conservantes',
+                'Rica em carboidratos',
+                'Embalagem hermética'
             ]
         },
         {
             id: 7,
-            title: 'Cadeira Gamer Ergonômica RGB',
-            image: 'https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=400&h=400&fit=crop',
+            title: 'Concentrado de Bissap (Hibisco) 750ml',
+            image: 'https://images.unsplash.com/photo-1560512823-829485b8bf24?w=400&h=400&fit=crop',
             images: [
-                'https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=400&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1633419461186-7d40a38105ec?w=400&h=400&fit=crop'
+                'https://images.unsplash.com/photo-1560512823-829485b8bf24?w=400&h=400&fit=crop',
+                'https://images.unsplash.com/photo-1544145945-f90425340c7e?w=400&h=400&fit=crop'
             ],
-            price: 1299.00,
-            originalPrice: 1899.00,
+            price: 16.90,
+            originalPrice: 24.90,
             rating: 4.9,
             totalReviews: 678,
-            description: 'Cadeira gamer profissional com design ergonômico, iluminação RGB e ajustes múltiplos para máximo conforto.',
-            storeName: 'Home Decor Plus',
+            description: 'Concentrado natural de flor de hibisco (Bissap) para preparar a refrescante bebida africana. Rico em vitamina C e antioxidantes. Sabor autêntico e natural.',
+            storeName: 'Bebidas Ancestrais',
             storeVerified: true,
-            storeId: 3,
-            inStock: false,
+            storeId: 2,
+            inStock: true,
             freeShipping: true,
             discount: 32,
             badge: 'Popular',
-            category: 'Mobiliário',
-            brand: 'GameChair',
+            category: 'Bebidas Artesanais',
+            brand: 'Bissap Natural',
             specifications: [
-                { label: 'Material', value: 'Couro sintético PU' },
-                { label: 'Peso suportado', value: 'Até 150kg' },
-                { label: 'Ajuste de altura', value: 'Sim' },
-                { label: 'Reclinável', value: 'Até 180°' },
-                { label: 'Iluminação', value: 'RGB' }
+                { label: 'Volume', value: '750ml (rende 7L)' },
+                { label: 'Origem', value: 'Senegal' },
+                { label: 'Ingredientes', value: '100% natural' },
+                { label: 'Açúcar', value: 'Sem açúcar adicionado' },
+                { label: 'Validade', value: '12 meses' }
             ],
             features: [
-                'Design ergonômico para longas sessões',
-                'Iluminação RGB personalizável',
-                'Reclinável até 180°',
-                'Almofadas para lombar e pescoço',
-                'Base giratória 360°',
-                'Rodas silenciosas'
+                'Flor de hibisco 100% natural',
+                'Rico em vitamina C',
+                'Propriedades antioxidantes',
+                'Rende até 7 litros de bebida',
+                'Sem conservantes artificiais',
+                'Sabor refrescante e único',
+                'Pode ser servido quente ou frio'
             ]
         },
         {
             id: 8,
-            title: 'Kit Teclado e Mouse Mecânico',
-            image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&h=400&fit=crop',
+            title: 'Chin Chin Crocante Tradicional 200g',
+            image: 'https://images.unsplash.com/photo-1514517521153-1be72277b32f?w=400&h=400&fit=crop',
             images: [
-                'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1595225476474-87563907a212?w=400&h=400&fit=crop'
+                'https://images.unsplash.com/photo-1514517521153-1be72277b32f?w=400&h=400&fit=crop',
+                'https://images.unsplash.com/photo-1587241321921-91a834d6d191?w=400&h=400&fit=crop'
             ],
-            price: 449.90,
-            originalPrice: 699.90,
+            price: 9.90,
+            originalPrice: 14.90,
             rating: 4.7,
             totalReviews: 321,
-            description: 'Kit completo com teclado mecânico RGB e mouse gamer de alta precisão, perfeito para jogos e trabalho.',
-            storeName: 'TechWorld Store',
+            description: 'Snack africano crocante e delicioso, feito com farinha de trigo, leite e especiarias. Perfeito para lanches e festas. Receita tradicional nigeriana.',
+            storeName: 'Doçura Africana',
             storeVerified: true,
-            storeId: 1,
+            storeId: 6,
             inStock: true,
-            freeShipping: true,
-            discount: 36,
-            category: 'Periféricos',
-            brand: 'GameGear',
+            freeShipping: false,
+            discount: 34,
+            category: 'Doces & Snacks',
+            brand: 'ChinChin Original',
             specifications: [
-                { label: 'Teclado', value: 'Mecânico RGB' },
-                { label: 'Switches', value: 'Blue switches' },
-                { label: 'Mouse DPI', value: 'Até 16000 DPI' },
-                { label: 'Conectividade', value: 'USB com fio' }
+                { label: 'Peso', value: '200g' },
+                { label: 'Origem', value: 'Nigéria' },
+                { label: 'Sabor', value: 'Tradicional' },
+                { label: 'Validade', value: '60 dias' }
             ],
             features: [
-                'Teclado mecânico com switches blue',
-                'Iluminação RGB sincronizada',
-                'Mouse gamer com 16000 DPI',
-                'Teclas anti-ghosting',
-                '8 botões programáveis no mouse',
-                'Software de customização'
+                'Receita tradicional nigeriana',
+                'Textura crocante irresistível',
+                'Feito com ingredientes naturais',
+                'Sabor levemente adocicado',
+                'Perfeito para lanches',
+                'Embalagem hermética'
             ]
         }
     ];
@@ -346,7 +351,10 @@ export default function MainContent() {
                         {/* Controles */}
                         <div className="flex items-center gap-2 sm:gap-3">
                             {/* Ordenação */}
-                            <select className="bg-gray-50 border-2 border-gray-200 hover:border-primary focus:border-primary rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm text-gray-700 focus:outline-none cursor-pointer transition-colors flex-1 sm:flex-none min-w-0">
+                            <select 
+                                className="bg-gray-50 border-2 border-gray-200 hover:border-primary focus:border-primary rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm text-gray-700 focus:outline-none cursor-pointer transition-colors flex-1 sm:flex-none min-w-0"
+                                aria-label="Ordenar produtos"
+                            >
                                 <option value="relevance">Relevantes</option>
                                 <option value="price-low">Menor Preço</option>
                                 <option value="price-high">Maior Preço</option>
@@ -392,184 +400,281 @@ export default function MainContent() {
                 {/* Grid de Produtos */}
                 <div className={
                     viewMode === 'grid'
-                        ? 'grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-2 sm:gap-3 md:gap-4 lg:gap-6'
+                        ? 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-2 sm:gap-3 md:gap-4 lg:gap-6'
                         : 'flex flex-col gap-3 sm:gap-4'
                 }>
                     {products.map((product) => (
                         viewMode === 'grid' ? (
-                            // Vista em Grade (Compacta)
+                            // Vista em Grade (Overlay Design)
                             <div
                                 key={product.id}
                                 onClick={() => handleProductClick(product)}
-                                className="bg-white rounded-lg sm:rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-xl hover:border-primary/30 transition-all duration-300 cursor-pointer group"
+                                className="bg-white rounded-xl sm:rounded-2xl shadow-md border-2 border-transparent overflow-hidden hover:shadow-2xl hover:border-primary/30 transition-all duration-500 cursor-pointer group relative"
                             >
-                                {/* Imagem do Produto */}
-                                <div className="aspect-square bg-gray-100 relative overflow-hidden">
+                                {/* Imagem com Overlay de Informações */}
+                                <div className="aspect-square bg-linear-to-br from-gray-50 to-gray-100 relative overflow-hidden">
                                     <img
                                         src={product.image}
                                         alt={product.title}
-                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                                     />
                                     
-                                    {/* Badges */}
-                                    <div className="absolute top-1 sm:top-2 left-1 sm:left-2 right-1 sm:right-2 flex justify-between items-start">
-                                        {product.freeShipping && (
-                                            <span className="bg-green-500 text-white text-xs font-bold px-1.5 sm:px-2 py-0.5 sm:py-1 rounded shadow-lg">
-                                                <span className="hidden sm:inline">Frete Grátis</span>
-                                                <span className="sm:hidden">Grátis</span>
-                                            </span>
-                                        )}
+                                    {/* Gradiente Base Sempre Visível */}
+                                    <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent" />
+                                    
+                                    {/* Badges Top */}
+                                    <div className="absolute top-2 sm:top-3 left-2 sm:left-3 right-2 sm:right-3 flex justify-between items-start gap-1 z-10">
+                                        <div className="flex flex-wrap gap-1.5">
+                                            {product.freeShipping && (
+                                                <span className="bg-linear-to-r from-green-500 to-emerald-600 text-white text-xs font-bold px-2 py-1 rounded-lg shadow-lg backdrop-blur-sm flex items-center gap-1">
+                                                    <Truck className="w-3 h-3" />
+                                                    <span className="hidden sm:inline">Grátis</span>
+                                                </span>
+                                            )}
+                                            {product.badge && (
+                                                <span className="bg-linear-to-r from-amber-500 to-orange-600 text-white text-xs font-bold px-2 py-1 rounded-lg shadow-lg backdrop-blur-sm flex items-center gap-1">
+                                                    <Tag className="w-3 h-3" />
+                                                    <span>{product.badge}</span>
+                                                </span>
+                                            )}
+                                        </div>
                                         {product.discount > 0 && (
-                                            <span className="bg-red-500 text-white text-xs font-bold px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full shadow-lg">
+                                            <span className="bg-linear-to-br from-red-500 to-red-600 text-white text-xs sm:text-sm font-black px-2 sm:px-2.5 py-1 sm:py-1.5 rounded-xl shadow-xl backdrop-blur-sm border-2 border-white/30">
                                                 -{product.discount}%
                                             </span>
                                         )}
                                     </div>
 
-                                    {/* Botão de Ação Rápida */}
-                                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                    {/* Botão Ver Detalhes - Centro */}
+                                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 z-10">
                                         <button 
                                             onClick={(e) => {
                                                 e.stopPropagation();
                                                 handleProductClick(product);
                                             }}
-                                            className="bg-white text-gray-900 font-semibold px-2 sm:px-4 py-1.5 sm:py-2 rounded-lg hover:bg-primary hover:text-white transform scale-90 group-hover:scale-100 transition-all duration-300 shadow-xl text-xs sm:text-sm"
+                                            className="bg-white text-gray-900 font-bold px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl hover:bg-primary hover:text-white transform scale-75 group-hover:scale-100 transition-all duration-300 shadow-2xl text-xs sm:text-sm border-2 border-primary/20 flex items-center gap-2"
                                         >
+                                            <Eye className="w-4 h-4" />
                                             <span className="hidden sm:inline">Ver Detalhes</span>
                                             <span className="sm:hidden">Ver</span>
                                         </button>
                                     </div>
-                                </div>
 
-                                {/* Informações Compactas */}
-                                <div className="p-2 sm:p-3 space-y-1.5 sm:space-y-2">
-                                    {/* Título */}
-                                    <h3 className="font-semibold text-xs sm:text-sm text-gray-900 line-clamp-2 group-hover:text-primary transition-colors h-8 sm:h-10">
-                                        {product.title}
-                                    </h3>
-
-                                    {/* Avaliação e Preço */}
-                                    <div className="flex items-center justify-between">
-                                        <div className="flex items-center gap-0.5 sm:gap-1 text-xs">
-                                            <span className="text-yellow-500">★</span>
-                                            <span className="font-semibold text-gray-900">{product.rating}</span>
-                                            <span className="text-gray-400 hidden sm:inline">({product.totalReviews})</span>
-                                        </div>
-                                        {product.inStock ? (
-                                            <span className="text-xs text-green-600 font-medium hidden sm:inline">Em estoque</span>
-                                        ) : (
-                                            <span className="text-xs text-red-600 font-medium">Esgotado</span>
-                                        )}
-                                    </div>
-
-                                    {/* Preço */}
-                                    <div className="pt-1.5 sm:pt-2 border-t border-gray-100">
-                                        <p className="text-sm sm:text-lg md:text-xl font-black text-primary leading-tight">
-                                            €{product.price.toLocaleString('pt-PT', { 
-                                                minimumFractionDigits: 0,
-                                                maximumFractionDigits: 0
-                                            })}
-                                        </p>
-                                        {product.originalPrice > product.price && (
-                                            <p className="text-xs text-gray-400 line-through">
-                                                €{product.originalPrice.toLocaleString('pt-PT', { 
-                                                    minimumFractionDigits: 0,
-                                                    maximumFractionDigits: 0
-                                                })}
-                                            </p>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-                        ) : (
-                            // Vista em Lista (Detalhada)
-                            <div
-                                key={product.id}
-                                onClick={() => handleProductClick(product)}
-                                className="bg-white rounded-lg sm:rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-xl hover:border-primary/30 transition-all duration-300 cursor-pointer group flex flex-col sm:flex-row"
-                            >
-                                {/* Imagem */}
-                                <div className="w-full h-48 sm:w-40 sm:h-40 md:w-48 md:h-48 bg-gray-100 relative overflow-hidden shrink-0">
-                                    <img
-                                        src={product.image}
-                                        alt={product.title}
-                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                    />
-                                    {product.discount > 0 && (
-                                        <span className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-lg">
-                                            -{product.discount}%
-                                        </span>
-                                    )}
-                                </div>
-
-                                {/* Conteúdo */}
-                                <div className="flex-1 p-3 sm:p-4 flex flex-col justify-between">
-                                    <div>
+                                    {/* Informações Overlay - Bottom */}
+                                    <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 text-white z-10">
                                         {/* Loja */}
-                                        <div className="flex items-center gap-1 text-xs text-gray-600 mb-2">
-                                            <span>🏪</span>
-                                            <span className="font-medium truncate">{product.storeName}</span>
+                                        <div className="flex items-center gap-1.5 text-xs mb-2">
+                                            <Store className="w-3 h-3" />
+                                            <span className="font-semibold truncate">{product.storeName}</span>
                                             {product.storeVerified && (
-                                                <span className="text-blue-500">✓</span>
+                                                <div className="w-3.5 h-3.5 rounded-full bg-blue-500 flex items-center justify-center">
+                                                    <span className="text-white text-[8px] font-bold">✓</span>
+                                                </div>
                                             )}
                                         </div>
 
                                         {/* Título */}
-                                        <h3 className="font-bold text-base sm:text-lg text-gray-900 mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                                        <h3 className="font-bold text-sm sm:text-base text-white line-clamp-2 mb-2 leading-snug drop-shadow-lg">
                                             {product.title}
                                         </h3>
 
-                                        {/* Avaliação */}
-                                        <div className="flex items-center gap-2 mb-3">
-                                            <div className="flex items-center gap-1">
-                                                <span className="text-yellow-500 font-bold">★</span>
-                                                <span className="font-semibold text-gray-900">{product.rating}</span>
+                                        {/* Categoria e Avaliação */}
+                                        <div className="flex items-center justify-between gap-2 mb-3">
+                                            <div className="flex items-center gap-1 bg-amber-500/20 backdrop-blur-sm px-2 py-0.5 rounded-lg border border-amber-400/30">
+                                                <Package className="w-3 h-3 text-amber-300" />
+                                                <span className="text-[10px] sm:text-xs font-semibold text-amber-100">
+                                                    {product.category}
+                                                </span>
                                             </div>
-                                            <span className="text-gray-400 text-sm hidden sm:inline">({product.totalReviews} avaliações)</span>
-                                            <span className="text-gray-400 text-sm sm:hidden">({product.totalReviews})</span>
+                                            <div className="flex items-center gap-1 bg-white/20 backdrop-blur-sm px-2 py-0.5 rounded-lg">
+                                                <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
+                                                <span className="font-bold text-xs">{product.rating}</span>
+                                                <span className="text-[10px] text-white/80 hidden sm:inline">({product.totalReviews})</span>
+                                            </div>
                                         </div>
 
-                                        {/* Badges - Simplified for mobile */}
-                                        <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3">
-                                            {product.badge && (
-                                                <span className="bg-yellow-100 text-yellow-800 text-xs font-semibold px-2 sm:px-3 py-1 rounded-full">
-                                                    {product.badge}
-                                                </span>
+                                        {/* Preço e Ação */}
+                                        <div className="flex items-end justify-between gap-2">
+                                            <div>
+                                                {product.originalPrice > product.price && (
+                                                    <p className="text-[10px] sm:text-xs text-white/70 line-through leading-tight">
+                                                        €{product.originalPrice.toLocaleString('pt-PT', { 
+                                                            minimumFractionDigits: 2,
+                                                            maximumFractionDigits: 2
+                                                        })}
+                                                    </p>
+                                                )}
+                                                <p className="text-xl sm:text-2xl font-black text-white leading-tight drop-shadow-lg">
+                                                    €{product.price.toLocaleString('pt-PT', { 
+                                                        minimumFractionDigits: 2,
+                                                        maximumFractionDigits: 2
+                                                    })}
+                                                </p>
+                                            </div>
+                                            <button
+                                                disabled={!product.inStock}
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    // Adicionar ao carrinho
+                                                }}
+                                                className={`p-2 sm:p-2.5 rounded-lg transition-all duration-300 transform hover:scale-110 shadow-lg ${
+                                                    product.inStock
+                                                        ? 'bg-primary hover:bg-tertiary text-white'
+                                                        : 'bg-gray-400 text-gray-200 cursor-not-allowed'
+                                                }`}
+                                                aria-label="Adicionar ao carrinho"
+                                            >
+                                                <ShoppingCart className="w-4 h-4 sm:w-5 sm:h-5" />
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    {/* Indicador de Stock Esgotado */}
+                                    {!product.inStock && (
+                                        <div className="absolute inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-20">
+                                            <span className="bg-red-500 text-white font-black px-4 py-2 rounded-xl text-sm shadow-xl">
+                                                Esgotado
+                                            </span>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        ) : (
+                            // Vista em Lista (Overlay Design)
+                            <div
+                                key={product.id}
+                                onClick={() => handleProductClick(product)}
+                                className="bg-white rounded-xl sm:rounded-2xl shadow-md border-2 border-transparent overflow-hidden hover:shadow-2xl hover:border-primary/30 transition-all duration-500 cursor-pointer group flex flex-col sm:flex-row"
+                            >
+                                {/* Imagem com Overlay */}
+                                <div className="w-full h-64 sm:w-56 sm:h-auto md:w-72 bg-linear-to-br from-gray-50 to-gray-100 relative overflow-hidden shrink-0">
+                                    <img
+                                        src={product.image}
+                                        alt={product.title}
+                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                    />
+                                    
+                                    {/* Gradiente Base */}
+                                    <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent" />
+                                    
+                                    {/* Badges Top */}
+                                    <div className="absolute top-3 right-3 flex flex-col gap-2 items-end z-10">
+                                        {product.discount > 0 && (
+                                            <span className="bg-linear-to-br from-red-500 to-red-600 text-white text-sm font-black px-3 py-1.5 rounded-xl shadow-xl backdrop-blur-sm border-2 border-white/30">
+                                                -{product.discount}%
+                                            </span>
+                                        )}
+                                        {product.badge && (
+                                            <span className="bg-linear-to-r from-amber-500 to-orange-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-lg backdrop-blur-sm flex items-center gap-1.5">
+                                                <Tag className="w-3.5 h-3.5" />
+                                                <span>{product.badge}</span>
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    {/* Info Overlay Bottom */}
+                                    <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 text-white z-10">
+                                        <div className="flex items-center gap-1.5 text-xs mb-2">
+                                            <Store className="w-3.5 h-3.5" />
+                                            <span className="font-semibold">{product.storeName}</span>
+                                            {product.storeVerified && (
+                                                <div className="w-4 h-4 rounded-full bg-blue-500 flex items-center justify-center">
+                                                    <span className="text-white text-[9px] font-bold">✓</span>
+                                                </div>
                                             )}
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <div className="flex items-center gap-1 bg-white/20 backdrop-blur-sm px-2 py-1 rounded-lg">
+                                                <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                                                <span className="font-bold text-sm">{product.rating}</span>
+                                            </div>
+                                            <div className="flex items-center gap-1 bg-amber-500/20 backdrop-blur-sm px-2 py-1 rounded-lg border border-amber-400/30">
+                                                <Package className="w-3.5 h-3.5 text-amber-300" />
+                                                <span className="text-xs font-semibold text-amber-100">{product.category}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {!product.inStock && (
+                                        <div className="absolute inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-20">
+                                            <span className="bg-red-500 text-white font-black px-5 py-2 rounded-xl text-base shadow-xl">
+                                                Esgotado
+                                            </span>
+                                        </div>
+                                    )}
+                                </div>
+
+                                {/* Conteúdo */}
+                                <div className="flex-1 p-4 sm:p-5 md:p-6 flex flex-col justify-between">
+                                    <div>
+                                        {/* Título */}
+                                        <h3 className="font-black text-lg sm:text-xl md:text-2xl text-gray-900 mb-4 group-hover:text-primary transition-colors line-clamp-2 leading-tight">
+                                            {product.title}
+                                        </h3>
+
+                                        {/* Descrição curta */}
+                                        <p className="text-sm text-gray-600 mb-4 line-clamp-2">
+                                            {product.description}
+                                        </p>
+
+                                        {/* Badges de características */}
+                                        <div className="flex flex-wrap gap-2 mb-4">
                                             {product.freeShipping && (
-                                                <span className="bg-green-100 text-green-800 text-xs font-semibold px-2 sm:px-3 py-1 rounded-full">
-                                                    <span className="hidden sm:inline">Frete Grátis</span>
-                                                    <span className="sm:hidden">Grátis</span>
+                                                <span className="bg-linear-to-r from-green-500 to-emerald-600 text-white text-xs sm:text-sm font-bold px-3 py-1.5 rounded-lg shadow-md flex items-center gap-1.5">
+                                                    <Truck className="w-3.5 h-3.5" />
+                                                    <span>Frete Grátis</span>
                                                 </span>
                                             )}
-                                            {product.inStock ? (
-                                                <span className="bg-green-100 text-green-800 text-xs font-semibold px-2 sm:px-3 py-1 rounded-full">
-                                                    <span className="hidden sm:inline">Em estoque</span>
-                                                    <span className="sm:hidden">Disponível</span>
-                                                </span>
-                                            ) : (
-                                                <span className="bg-red-100 text-red-800 text-xs font-semibold px-2 sm:px-3 py-1 rounded-full">
-                                                    Esgotado
+                                            {product.inStock && (
+                                                <span className="bg-green-50 text-green-700 text-xs sm:text-sm font-bold px-3 py-1.5 rounded-lg border-2 border-green-200 flex items-center gap-1.5">
+                                                    <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                                                    <span>Em estoque</span>
                                                 </span>
                                             )}
+                                        </div>
+
+                                        {/* Reviews */}
+                                        <div className="flex items-center gap-2 text-sm text-gray-600">
+                                            <div className="flex items-center gap-1">
+                                                {[...Array(5)].map((_, i) => (
+                                                    <Star
+                                                        key={i}
+                                                        className={`w-4 h-4 ${
+                                                            i < Math.floor(product.rating)
+                                                                ? 'fill-amber-400 text-amber-400'
+                                                                : 'fill-gray-300 text-gray-300'
+                                                        }`}
+                                                    />
+                                                ))}
+                                            </div>
+                                            <span className="font-semibold text-gray-900">{product.rating}</span>
+                                            <span className="text-gray-400">({product.totalReviews} avaliações)</span>
                                         </div>
                                     </div>
 
                                     {/* Preço e Ação */}
-                                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+                                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pt-4 border-t-2 border-gray-100 mt-4">
                                         <div>
                                             {product.originalPrice > product.price && (
-                                                <p className="text-sm text-gray-400 line-through mb-1">
-                                                    €{product.originalPrice.toLocaleString('pt-PT', { 
-                                                        minimumFractionDigits: 0,
-                                                        maximumFractionDigits: 0
-                                                    })}
-                                                </p>
+                                                <div className="flex items-center gap-2 mb-2">
+                                                    <p className="text-base text-gray-400 line-through">
+                                                        €{product.originalPrice.toLocaleString('pt-PT', { 
+                                                            minimumFractionDigits: 2,
+                                                            maximumFractionDigits: 2
+                                                        })}
+                                                    </p>
+                                                    <span className="text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded-lg">
+                                                        Poupa €{(product.originalPrice - product.price).toLocaleString('pt-PT', { 
+                                                            minimumFractionDigits: 2,
+                                                            maximumFractionDigits: 2
+                                                        })}
+                                                    </span>
+                                                </div>
                                             )}
-                                            <p className="text-2xl sm:text-3xl font-black text-primary">
+                                            <p className="text-3xl sm:text-4xl font-black text-primary">
                                                 €{product.price.toLocaleString('pt-PT', { 
-                                                    minimumFractionDigits: 0,
-                                                    maximumFractionDigits: 0
+                                                    minimumFractionDigits: 2,
+                                                    maximumFractionDigits: 2
                                                 })}
                                             </p>
                                         </div>
@@ -579,14 +684,21 @@ export default function MainContent() {
                                                 e.stopPropagation();
                                                 // Adicionar ao carrinho
                                             }}
-                                            className={`px-4 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-bold rounded-lg sm:rounded-xl transition-all duration-300 w-full sm:w-auto ${
+                                            className={`px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-bold rounded-xl transition-all duration-300 w-full sm:w-auto shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center justify-center gap-2 ${
                                                 product.inStock
-                                                    ? 'bg-primary hover:bg-tertiary text-white hover:shadow-lg'
+                                                    ? 'bg-linear-to-r from-primary to-tertiary text-white hover:from-tertiary hover:to-primary'
                                                     : 'bg-gray-200 text-gray-500 cursor-not-allowed'
                                             }`}
                                         >
-                                            <span className="hidden sm:inline">{product.inStock ? 'Adicionar ao Carrinho' : 'Indisponível'}</span>
-                                            <span className="sm:hidden">{product.inStock ? 'Adicionar' : 'Indisponível'}</span>
+                                            {product.inStock ? (
+                                                <>
+                                                    <ShoppingCart className="w-5 h-5" />
+                                                    <span className="hidden sm:inline">Adicionar ao Carrinho</span>
+                                                    <span className="sm:hidden">Adicionar</span>
+                                                </>
+                                            ) : (
+                                                'Indisponível'
+                                            )}
                                         </button>
                                     </div>
                                 </div>

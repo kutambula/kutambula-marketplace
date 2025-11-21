@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Search, ChevronDown, Menu, X, Store, Tag, Headset, Globe, ShoppingBag, User, MessageCircle, FileText, HelpCircle, Mail, Phone, MessageSquare } from 'lucide-react';
+import { Search, ChevronDown, Menu, X, Store, Headset, Globe, ShoppingBag, User, FileText, Phone, Heart, Package, TrendingUp, MessageCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import icon from '../../assets/images/icon.png';
 import icon4 from '../../assets/images/icon4.png';
@@ -7,6 +7,8 @@ import icon4 from '../../assets/images/icon4.png';
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [currentLanguage, setCurrentLanguage] = useState('pt');
+    const [showCategoriesMenu, setShowCategoriesMenu] = useState(false);
+    const [showLanguagesMenu, setShowLanguagesMenu] = useState(false);
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -21,304 +23,510 @@ export default function Header() {
 		{ code: 'st', name: 'Santomense', flag: '🇸🇹' },          // São Tomé e Príncipe
 	];
 
+    const featuredCategories = [
+        { 
+            icon: '☕', 
+            name: 'Cafés & Infusões', 
+            link: '/categorias/cafes',
+            description: 'Cafés etíopes, chás africanos',
+            badge: 'Popular'
+        },
+        { 
+            icon: '🌶️', 
+            name: 'Temperos & Molhos', 
+            link: '/categorias/temperos',
+            description: 'Piri-piri, berbere, harissa'
+        },
+        { 
+            icon: '🍹', 
+            name: 'Bebidas Artesanais', 
+            link: '/categorias/bebidas',
+            description: 'Vinhos, licores, sumos naturais'
+        },
+        { 
+            icon: '🌾', 
+            name: 'Cereais & Grãos', 
+            link: '/categorias/cereais',
+            description: 'Funge, fubá, milho'
+        },
+        { 
+            icon: '🥜', 
+            name: 'Óleos & Manteigas', 
+            link: '/categorias/oleos',
+            description: 'Óleo de coco, karité, palma',
+            badge: 'Premium'
+        },
+        { 
+            icon: '🍯', 
+            name: 'Doces & Snacks', 
+            link: '/categorias/doces',
+            description: 'Mel, frutos secos, biscoitos'
+        },
+        { 
+            icon: '✨', 
+            name: 'Especiarias', 
+            link: '/categorias/especiarias',
+            description: 'Gengibre, canela, cardamomo'
+        },
+        { 
+            icon: '🥘', 
+            name: 'Produtos Frescos', 
+            link: '/categorias/frescos',
+            description: 'Frutas, vegetais, carnes'
+        }
+    ];
 
     return (
-        <header className="bg-primary md:bg-white sticky top-0 z-50">
+        <header className="bg-primary md:bg-white sticky top-0 z-50 shadow-sm">
+            {/* Top Bar - Desktop Only */}
+            <div className='hidden lg:block bg-orange-50 border-b border-orange-100'>
+                <div className='container mx-auto px-6'>
+                    <div className='flex items-center justify-between py-2.5'>
+                        {/* Left Side - Info */}
+                        <div className='flex items-center gap-6 text-sm'>
+                            <div className='flex items-center gap-2 text-gray-600'>
+                                <Store className="w-3.5 h-3.5 text-primary" />
+                                <span className='font-medium'>Marketplace Africano de Confiança</span>
+                            </div>
+                            <div className='flex items-center gap-2 text-gray-600'>
+                                <Package className="w-3.5 h-3.5 text-primary" />
+                                <span>Entregas em Angola & Europa</span>
+                            </div>
+                        </div>
 
-            {/* Navigation Links Bar */}
-            <div className='relative african-pattern'>
-                <div className='container mx-auto px-4 relative z-10'>
-                    {/* Desktop Navigation */}
-                    <nav className='hidden lg:flex items-center justify-between py-2'>
-                        <ul className='flex items-center gap-6'>
-                            <li>
-                                <Link to="/marketplace" className='flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-primary transition-colors py-2'>
-                                    <Store className="w-4 h-4" />
-                                    Marketplace
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/ofertas" className='flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-primary transition-colors py-2'>
-                                    <Tag className="w-4 h-4" />
-                                    Ofertas
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/categorias" className='flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-primary transition-colors py-2'>
-                                    Categorias
-                                </Link>
-                            </li>
-                        </ul>
-
-                        <ul className='flex items-center gap-6'>
-                            <li>
-                                <a href="tel:+244999000000" className='flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-primary transition-colors py-2'>
-                                    <Phone className="w-4 h-4" />
-                                    Contacto
-                                </a>
-                            </li>
-                            <li className="relative group">
-                                <button className='flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-primary transition-colors py-2'>
-                                    <Globe className="w-4 h-4" />
-                                    {languages.find(lang => lang.code === currentLanguage)?.name}
+                        {/* Right Side - Actions */}
+                        <div className='flex items-center gap-5'>
+                            <Link to="/torne-se-vendedor" className='flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-tertiary transition-colors'>
+                                <TrendingUp className="w-3.5 h-3.5" />
+                                Vender no Kutambula
+                            </Link>
+                            <div className='w-px h-4 bg-gray-300'></div>
+                            <a href="tel:+244999000000" className='flex items-center gap-1.5 text-sm text-gray-700 hover:text-primary transition-colors'>
+                                <Phone className="w-3.5 h-3.5" />
+                                +244 999 000 000
+                            </a>
+                            <div className='w-px h-4 bg-gray-300'></div>
+                            <div className="relative group">
+                                <button className='flex items-center gap-1.5 text-sm text-gray-700 hover:text-primary transition-colors'>
+                                    <Globe className="w-3.5 h-3.5" />
+                                    <span className='font-medium'>{languages.find(lang => lang.code === currentLanguage)?.flag}</span>
                                     <ChevronDown className="w-3 h-3" />
                                 </button>
-                                <div className="absolute right-0 top-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[180px] z-50">
+                                <div className="absolute right-0 top-full mt-2 bg-white border border-gray-200 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[180px] z-50 overflow-hidden">
                                     {languages.map((lang) => (
                                         <button
                                             key={lang.code}
                                             onClick={() => setCurrentLanguage(lang.code)}
-                                            className={`w-full flex items-center gap-2 px-4 py-2 text-sm hover:bg-gray-50 transition-colors text-left ${currentLanguage === lang.code ? 'text-primary font-semibold' : 'text-gray-700'
-                                                }`}
+                                            className={`w-full flex items-center gap-3 px-4 py-2.5 text-sm hover:bg-orange-50 transition-colors text-left ${
+                                                currentLanguage === lang.code ? 'text-primary font-semibold bg-orange-50' : 'text-gray-700'
+                                            }`}
                                         >
-                                            <span className="shrink-0">{lang.flag}</span>
+                                            <span className="text-lg">{lang.flag}</span>
                                             <span className="truncate">{lang.name}</span>
                                         </button>
                                     ))}
                                 </div>
-                            </li>
-                        </ul>
-                    </nav>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            {/* Main Navigation */}
-            <nav className='container mx-auto px-4 py-3 md:py-4' >
+            {/* Main Navigation - Desktop */}
+            <nav className='hidden lg:block container mx-auto px-6 py-4'>
+                <div className="flex items-center justify-between gap-8">
+                    {/* Logo */}
+                    <Link to="/" className="shrink-0 group">
+                        <img
+                            src={icon}
+                            alt="Kutambula Marketplace"
+                            className="h-14 w-auto object-contain group-hover:scale-105 transition-transform duration-200"
+                        />
+                    </Link>
+
+                    {/* Search Bar */}
+                    <div className='flex-1 max-w-3xl'>
+                        <div className='w-full flex items-center gap-0 border-2 border-gray-300 hover:border-primary focus-within:border-primary focus-within:shadow-md rounded-full transition-all duration-200 overflow-hidden bg-white'>
+                            <input
+                                type="search"
+                                placeholder="Procurar café etíope, piri-piri, berbere, óleo de coco..."
+                                className='flex-1 bg-transparent text-sm placeholder:text-gray-500 focus:outline-none px-5 py-3.5 text-gray-700'
+                            />
+
+                            <button
+                                className='flex items-center gap-2 px-8 py-3.5 bg-primary hover:bg-tertiary text-white font-bold transition-all duration-200 hover:shadow-md active:scale-95'
+                                aria-label="Pesquisar"
+                            >
+                                <Search className="w-5 h-5" />
+                                <span>Pesquisar</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Right Actions */}
+                    <div className="flex items-center gap-4">
+                        {/* Wishlist */}
+                        <Link 
+                            to="/favoritos"
+                            className='flex flex-col items-center gap-1 p-2 hover:text-primary transition-colors group'
+                            aria-label="Lista de Desejos"
+                        >
+                            <div className='relative'>
+                                <Heart className="w-6 h-6 text-gray-700 group-hover:text-primary group-hover:fill-primary transition-all" />
+                                <span className='absolute -top-1 -right-1 bg-primary text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center'>0</span>
+                            </div>
+                            <span className='text-xs font-medium text-gray-600 group-hover:text-primary'>Favoritos</span>
+                        </Link>
+
+                        {/* Cart */}
+                        <Link 
+                            to="/carrinho"
+                            className='flex flex-col items-center gap-1 p-2 hover:text-primary transition-colors group'
+                            aria-label="Carrinho de Compras"
+                        >
+                            <div className='relative'>
+                                <ShoppingBag className="w-6 h-6 text-gray-700 group-hover:text-primary transition-colors" />
+                                <span className='absolute -top-1 -right-1 bg-primary text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center'>0</span>
+                            </div>
+                            <span className='text-xs font-medium text-gray-600 group-hover:text-primary'>Carrinho</span>
+                        </Link>
+
+                        {/* User Account */}
+                        <Link 
+                            to="/conta"
+                            className='flex flex-col items-center gap-1 p-2 hover:text-primary transition-colors group'
+                            aria-label="Minha Conta"
+                        >
+                            <User className="w-6 h-6 text-gray-700 group-hover:text-primary transition-colors" />
+                            <span className='text-xs font-medium text-gray-600 group-hover:text-primary'>Conta</span>
+                        </Link>
+                    </div>
+                </div>
+            </nav>
+
+            {/* Categories Bar - Desktop */}
+            <div className='hidden lg:block bg-secondary border-t border-gray-200'>
+                <div className='container mx-auto px-6'>
+                    <div className='flex items-center justify-between'>
+                        {/* Categories Mega Menu Trigger */}
+                        <div className='relative'>
+                            <button
+                                onMouseEnter={() => setShowCategoriesMenu(true)}
+                                onMouseLeave={() => setShowCategoriesMenu(false)}
+                                className='flex items-center gap-3 px-6 py-4 bg-primary hover:bg-tertiary text-white font-bold transition-colors'
+                            >
+                                <Menu className="w-5 h-5" />
+                                <span>Todas as Categorias</span>
+                                <ChevronDown className="w-4 h-4" />
+                            </button>
+
+                            {/* Mega Menu */}
+                            {showCategoriesMenu && (
+                                <div 
+                                    onMouseEnter={() => setShowCategoriesMenu(true)}
+                                    onMouseLeave={() => setShowCategoriesMenu(false)}
+                                    className='absolute top-full left-0 bg-white shadow-2xl rounded-b-xl overflow-hidden z-50 w-[800px] border-t-4 border-primary'
+                                >
+                                    <div className='grid grid-cols-2 gap-0'>
+                                        {featuredCategories.map((category, index) => (
+                                            <Link
+                                                key={index}
+                                                to={category.link}
+                                                className='flex items-start gap-4 p-5 hover:bg-orange-50 transition-all group border-b border-r border-gray-100'
+                                            >
+                                                <div className='text-3xl bg-orange-100 rounded-lg p-3 group-hover:scale-110 transition-transform'>
+                                                    {category.icon}
+                                                </div>
+                                                <div className='flex-1'>
+                                                    <div className='flex items-center gap-2 mb-1'>
+                                                        <h3 className='font-bold text-gray-800 group-hover:text-primary transition-colors'>
+                                                            {category.name}
+                                                        </h3>
+                                                        {category.badge && (
+                                                            <span className='text-xs font-bold px-2 py-0.5 bg-primary text-white rounded-full'>
+                                                                {category.badge}
+                                                            </span>
+                                                        )}
+                                                    </div>
+                                                    <p className='text-sm text-gray-600'>{category.description}</p>
+                                                </div>
+                                            </Link>
+                                        ))}
+                                    </div>
+                                    <div className='bg-orange-50 p-4 text-center'>
+                                        <Link to="/categorias" className='text-primary font-bold hover:text-tertiary transition-colors'>
+                                            Ver Todas as Categorias →
+                                        </Link>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Quick Links */}
+                        <nav className='flex items-center gap-1'>
+                            <Link to="/marketplace" className='flex items-center gap-2 px-5 py-4 text-white hover:bg-white/10 font-semibold transition-colors'>
+                                <Store className="w-4 h-4" />
+                                Lojas
+                            </Link>
+                            <Link to="/chat-ia" className='flex items-center gap-2 px-5 py-4 text-white hover:bg-white/10 font-semibold transition-colors'>
+                                <MessageCircle className="w-4 h-4" />
+                                Chat de IA
+                                <span className='bg-primary text-white text-xs font-bold px-2 py-0.5 rounded-full'>Novo</span>
+                            </Link>
+                            <Link to="/servicos" className='flex items-center gap-2 px-5 py-4 text-white hover:bg-white/10 font-semibold transition-colors'>
+                                <TrendingUp className="w-4 h-4" />
+                                Serviços
+                            </Link>
+                            <Link to="/contacto" className='flex items-center gap-2 px-5 py-4 text-white hover:bg-white/10 font-semibold transition-colors'>
+                                <Headset className="w-4 h-4" />
+                                Ajuda
+                            </Link>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+            {/* Mobile Navigation */}
+            <nav className='lg:hidden bg-primary'>
                 {/* Mobile Menu Overlay */}
                 <div 
-                    className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-50 lg:hidden transition-opacity duration-300 ${
+                    className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-50 lg:hidden transition-opacity duration-300 ${
                         isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
                     }`}
                     onClick={toggleMenu}
                 />
 
-                <div className="flex items-center justify-between gap-2 md:gap-6">
-                    {/* Mobile Layout */}
-                    <div className="flex items-center gap-3 lg:hidden">
-                        {/* Mobile Menu Button */}
-                        <button
-                            onClick={toggleMenu}
-                            className="cursor-pointer transition-colors"
-                            aria-label="Toggle Menu"
-                        >
-                            {isMenuOpen ? (
-                                <X className="w-6 h-6 text-white" />
-                            ) : (
-                                <Menu className="w-6 h-6 text-white" />
-                            )}
-                        </button>
-                        {/* Mobile Logo */}
-                        <Link to={`/`} className="shrink-0">
-                            <img
-                                src={icon4}
-                                alt="Kutambula Marketplace Logo"
-                                className="w-28 object-contain transition-transform duration-200 cursor-pointer"
-                            />
-                        </Link>
-                    </div>
-
-                    {/* Desktop Logo */}
-                    <Link
-                        to={`/`}
-                        className="shrink-0 hidden lg:block"
-                    >
-                        <img
-                            src={icon}
-                            alt="Kutambula Marketplace Logo"
-                            className="w-12 object-contain transition-transform duration-200 cursor-pointer"
-                        />
-                    </Link>
-
-                    {/* Search Bar - Desktop */}
-                    <div className='hidden lg:flex flex-1 max-w-2xl'>
-                        <div className='w-full flex items-center gap-2 border-1 border-gray-300 hover:border-primary focus-within:border-primary px-4 py-2.5 rounded-full transition-colors duration-200'>
-                            <div className='relative'>
-                                <select
-                                    name="category"
-                                    aria-label="Selecionar categoria"
-                                    className="appearance-none bg-transparent pr-8 pl-2 py-1 text-sm font-medium text-gray-700 focus:outline-none cursor-pointer hover:text-primary transition-colors"
-                                >
-                                    <option value="all-categories">Todas as Categorias</option>
-                                    <option value="category-1">Eletrônicos</option>
-                                    <option value="category-2">Moda</option>
-                                    <option value="category-3">Casa & Jardim</option>
-                                    <option value="category-4">Esportes</option>
-                                </select>
-                                <ChevronDown className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
-                            </div>
-
-                            <div className='w-px h-6 bg-gray-300'></div>
-
-                            <input
-                                type="search"
-                                placeholder="Pesquisa por produtos e lojas..."
-                                className='flex-1 bg-transparent text-sm placeholder:text-gray-400 focus:outline-none px-2'
-                            />
-
+                <div className="container mx-auto px-4 py-3.5">
+                    <div className="flex items-center justify-between gap-2">
+                        {/* Mobile Layout */}
+                        <div className="flex items-center gap-3">
+                            {/* Mobile Menu Button */}
                             <button
-                                className='flex items-center gap-2 px-4 py-2 rounded-full bg-primary hover:bg-tertiary text-white font-medium transition-all duration-200 hover:shadow-md active:scale-95'
-                                aria-label="Search"
+                                onClick={toggleMenu}
+                                className="p-2 hover:bg-white/10 rounded-lg transition-all active:scale-95"
+                                aria-label="Toggle Menu"
                             >
-                                <Search className="w-4 h-4" />
-                                <span>Buscar</span>
+                                {isMenuOpen ? (
+                                    <X className="w-6 h-6 text-white" />
+                                ) : (
+                                    <Menu className="w-6 h-6 text-white" />
+                                )}
                             </button>
+                            {/* Mobile Logo */}
+                            <Link to="/" className="shrink-0">
+                                <img
+                                    src={icon4}
+                                    alt="Kutambula Marketplace Logo"
+                                    className="w-32 object-contain transition-transform duration-200 active:scale-95"
+                                />
+                            </Link>
                         </div>
-                    </div>
 
-                    {/* Right Menu */}
-                    <div className="flex items-center gap-1 md:gap-2">
-                        {/* Cart */}
-                        <button
-                            className='relative p-2 md:p-2.5 cursor-pointer transition-colors duration-200'
-                            aria-label="Shopping Cart"
-                        >
-                            <ShoppingBag className="w-5 h-5 md:w-6 md:h-6 text-gray-700" />
-                        </button>
+                        {/* Right Menu */}
+                        <div className="flex items-center gap-2">
+                            {/* Wishlist */}
+                            <Link 
+                                to="/favoritos"
+                                className='relative p-2 hover:bg-white/10 rounded-lg transition-all active:scale-95'
+                                aria-label="Lista de Desejos"
+                            >
+                                <Heart className="w-5 h-5 text-white" />
+                                <span className='absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center border-2 border-primary'>0</span>
+                            </Link>
 
-                        {/* User Account */}
-                        <button
-                            className='flex items-center gap-2 p-2 md:px-3 md:py-2.5 cursor-pointer transition-colors duration-200'
-                            aria-label="User Account"
-                        >
-                            <User className="w-5 h-5 md:w-6 md:h-6 text-gray-700" />
-                        </button>
+                            {/* Cart */}
+                            <Link
+                                to="/carrinho"
+                                className='relative p-2 hover:bg-white/10 rounded-lg transition-all active:scale-95'
+                                aria-label="Carrinho de Compras"
+                            >
+                                <ShoppingBag className="w-5 h-5 text-white" />
+                                <span className='absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center border-2 border-primary'>0</span>
+                            </Link>
+
+                            {/* User Account */}
+                            <Link
+                                to="/conta"
+                                className='p-2 hover:bg-white/10 rounded-lg transition-all active:scale-95'
+                                aria-label="Minha Conta"
+                            >
+                                <User className="w-5 h-5 text-white" />
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </nav>
 
             {/* Mobile Search Bar */}
-            <div className="lg:hidden bg-white border-t border-gray-200 px-4 py-3">
-                <div className="relative">
-                    <input
-                        type="search"
-                        placeholder="Pesquisar produtos e lojas..."
-                        className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary text-sm"
-                    />
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                    <button
-                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-primary hover:bg-tertiary text-white px-3 py-1.5 rounded-md text-sm font-medium transition-colors"
-                    >
-                        Buscar
-                    </button>
+            <div className="lg:hidden bg-white shadow-md">
+                <div className="container mx-auto px-4 py-3">
+                    <div className="relative">
+                        <input
+                            type="search"
+                            placeholder="Café, temperos, bebidas..."
+                            className="w-full pl-10 pr-20 py-3.5 border-2 border-gray-200 rounded-full focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 text-sm bg-gray-50 focus:bg-white transition-all"
+                        />
+                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                        <button
+                            className="absolute right-2 top-1/2 -translate-y-1/2 bg-primary hover:bg-tertiary text-white px-4 py-2 rounded-full text-xs font-bold transition-all active:scale-95 shadow-md"
+                        >
+                            Buscar
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            {/* Mobile Navigation Links */}
-            <div className="lg:hidden bg-gray-50 border-t border-gray-200 overflow-x-auto">
-                <div className="px-4 py-3">
-                    <nav className="flex gap-4 min-w-max">
-                        <a href="#comentarios" className="flex items-center gap-2 text-xs font-medium text-gray-700 hover:text-primary transition-colors whitespace-nowrap px-3 py-2 rounded-lg hover:bg-white">
+            {/* Mobile Quick Navigation */}
+            <div className="lg:hidden bg-orange-50 border-y border-orange-100 overflow-x-auto scrollbar-hide">
+                <div className="container mx-auto px-4 py-3">
+                    <nav className="flex gap-2 min-w-max">
+                        <Link to="/marketplace" className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 hover:text-primary transition-all whitespace-nowrap px-3 py-2 rounded-lg bg-white hover:bg-orange-50 shadow-sm border border-gray-100 active:scale-95">
+                            <Store className="w-3.5 h-3.5" />
+                            Lojas
+                        </Link>
+                        <Link to="/chat-ia" className="flex items-center gap-1.5 text-xs font-semibold text-white hover:text-white transition-all whitespace-nowrap px-3 py-2 rounded-lg bg-primary hover:bg-tertiary shadow-md active:scale-95">
                             <MessageCircle className="w-3.5 h-3.5" />
-                            Comentários
-                        </a>
-                        <Link to="/reclamacoes" className="flex items-center gap-2 text-xs font-medium text-gray-700 hover:text-primary transition-colors whitespace-nowrap px-3 py-2 rounded-lg hover:bg-white">
-                            <FileText className="w-3.5 h-3.5" />
-                            Reclamações
+                            Chat IA
+                            <span className="bg-white text-primary text-[10px] font-bold px-1.5 py-0.5 rounded-full">Novo</span>
                         </Link>
-                        <Link to="/suporte" className="flex items-center gap-2 text-xs font-medium text-gray-700 hover:text-primary transition-colors whitespace-nowrap px-3 py-2 rounded-lg hover:bg-white">
-                            <HelpCircle className="w-3.5 h-3.5" />
-                            Suporte
+                        <Link to="/categorias" className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 hover:text-primary transition-all whitespace-nowrap px-3 py-2 rounded-lg bg-white hover:bg-orange-50 shadow-sm border border-gray-100 active:scale-95">
+                            <span className="text-sm">📦</span>
+                            Categorias
                         </Link>
-                        <a href="mailto:suporte@kutambula.com" className="flex items-center gap-2 text-xs font-medium text-gray-700 hover:text-primary transition-colors whitespace-nowrap px-3 py-2 rounded-lg hover:bg-white">
-                            <Mail className="w-3.5 h-3.5" />
-                            E-mail
-                        </a>
-                        <a href="#chat" className="flex items-center gap-2 text-xs font-medium text-gray-700 hover:text-primary transition-colors whitespace-nowrap px-3 py-2 rounded-lg hover:bg-white">
-                            <MessageSquare className="w-3.5 h-3.5" />
-                            Chat
-                        </a>
+                        <Link to="/torne-se-vendedor" className="flex items-center gap-1.5 text-xs font-bold text-white hover:text-white transition-all whitespace-nowrap px-3 py-2 rounded-lg bg-primary hover:bg-tertiary shadow-md active:scale-95">
+                            <TrendingUp className="w-3.5 h-3.5" />
+                            Vender
+                        </Link>
                     </nav>
                 </div>
             </div>
 
-            {/* Mobile Menu */}
-            <div className={`fixed top-0 left-0 h-full w-80 max-w-[80vw] bg-white shadow-2xl z-50 lg:hidden transform transition-transform duration-300 ease-in-out ${
+            {/* Mobile Sidebar Menu */}
+            <div className={`fixed top-0 left-0 h-full w-[340px] max-w-[85vw] bg-white shadow-2xl z-50 lg:hidden transform transition-transform duration-300 ease-in-out ${
                 isMenuOpen ? 'translate-x-0' : '-translate-x-full'
             }`}>
                 {/* Mobile Menu Header */}
-                <div className="flex items-center justify-between p-4 border-b border-gray-200">
+                <div className="flex items-center justify-between p-4 bg-primary">
                     <div className="flex items-center gap-3">
                         <img
                             src={icon}
                             alt="Kutambula"
-                            className="w-8 h-8 object-contain"
+                            className="w-10 h-10 object-contain bg-white rounded-lg p-1.5 shadow-md"
                         />
-                        <h2 className="text-lg font-bold text-gray-900">Menu</h2>
+                        <div>
+                            <h2 className="text-base font-bold text-white">Kutambula</h2>
+                            <p className="text-xs text-white/80">Sabores Africanos</p>
+                        </div>
                     </div>
                     <button
                         onClick={toggleMenu}
-                        className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                        className="p-2 hover:bg-white/20 rounded-lg transition-colors active:scale-95"
                         aria-label="Fechar Menu"
                     >
-                        <X className="w-6 h-6 text-gray-700" />
+                        <X className="w-6 h-6 text-white" />
                     </button>
                 </div>
 
                 {/* Mobile Menu Content */}
                 <div className="flex flex-col h-full overflow-y-auto">
                     {/* Search Bar Mobile */}
-                    <div className="p-4 border-b border-gray-200">
+                    <div className="p-4 border-b border-gray-200 bg-orange-50">
                         <div className="relative">
                             <input
                                 type="search"
-                                placeholder="Pesquisar produtos..."
-                                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary text-sm"
+                                placeholder="Buscar produtos africanos..."
+                                className="w-full pl-10 pr-4 py-3 border-2 border-amber-200 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 text-sm bg-white"
                             />
-                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-amber-600" />
                         </div>
                     </div>
 
                     {/* Navigation Links */}
-                    <div className="flex-1 p-4">
-                        <nav className="space-y-1">
+                    <div className="flex-1 p-4 pb-20 overflow-y-auto">
+                        <nav className="space-y-2">
+                            {/* Featured Actions */}
+                            <div className="mb-4 space-y-2">
+                                <Link 
+                                    to="/chat-ia" 
+                                    className="flex items-center justify-between p-4 bg-primary hover:bg-tertiary rounded-xl shadow-md transition-all active:scale-95"
+                                    onClick={toggleMenu}
+                                >
+                                    <div className="flex items-center gap-3">
+                                        <div className="bg-white/20 p-2 rounded-lg">
+                                            <MessageCircle className="w-5 h-5 text-white" />
+                                        </div>
+                                        <div>
+                                            <span className="block font-bold text-white text-sm">Chat de IA</span>
+                                            <span className="block text-white/80 text-xs">Assistente inteligente</span>
+                                        </div>
+                                    </div>
+                                    <span className="bg-white text-primary text-xs font-bold px-2 py-1 rounded-full">Novo</span>
+                                </Link>
+
+                                <Link 
+                                    to="/torne-se-vendedor" 
+                                    className="flex items-center justify-between p-4 bg-primary hover:bg-tertiary rounded-xl shadow-md transition-all active:scale-95"
+                                    onClick={toggleMenu}
+                                >
+                                    <div className="flex items-center gap-3">
+                                        <div className="bg-white/20 p-2 rounded-lg">
+                                            <TrendingUp className="w-5 h-5 text-white" />
+                                        </div>
+                                        <div>
+                                            <span className="block font-bold text-white text-sm">Vender no Kutambula</span>
+                                            <span className="block text-white/80 text-xs">Crie sua loja grátis</span>
+                                        </div>
+                                    </div>
+                                </Link>
+                            </div>
+
+                            {/* Categories Grid */}
+                            {/* <div className="mb-6">
+                                <h3 className="text-xs font-bold text-gray-900 uppercase tracking-wide mb-3 px-1">Categorias Populares</h3>
+                                <div className="grid grid-cols-2 gap-2">
+                                    {featuredCategories.slice(0, 6).map((category, index) => (
+                                        <Link
+                                            key={index}
+                                            to={category.link}
+                                            className="flex flex-col items-center gap-2 p-3 bg-orange-50 hover:bg-orange-100 rounded-xl transition-all active:scale-95 border border-orange-200"
+                                            onClick={toggleMenu}
+                                        >
+                                            <span className="text-2xl">{category.icon}</span>
+                                            <span className="text-xs font-semibold text-gray-700 text-center leading-tight">{category.name}</span>
+                                        </Link>
+                                    ))}
+                                </div>
+                                <Link 
+                                    to="/categorias" 
+                                    className="block text-center mt-3 text-sm font-semibold text-primary hover:text-tertiary transition-colors"
+                                    onClick={toggleMenu}
+                                >
+                                    Ver Todas as Categorias →
+                                </Link>
+                            </div> */}
+
                             {/* Main Navigation */}
                             <div className="mb-6">
-                                <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-3">Navegação</h3>
+                                <h3 className="text-xs font-bold text-gray-900 uppercase tracking-wide mb-3 px-1">Explorar</h3>
                                 <ul className="space-y-1">
                                     <li>
                                         <Link 
                                             to="/marketplace" 
-                                            className="flex items-center gap-3 px-3 py-3 text-gray-700 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors"
+                                            className="flex items-center gap-3 px-3 py-3 text-gray-700 hover:bg-orange-50 hover:text-primary rounded-xl transition-all"
                                             onClick={toggleMenu}
                                         >
                                             <Store className="w-5 h-5" />
-                                            <span className="font-medium">Marketplace</span>
+                                            <span className="font-semibold">Todas as Lojas</span>
                                         </Link>
                                     </li>
                                     <li>
                                         <Link 
-                                            to="/ofertas" 
-                                            className="flex items-center gap-3 px-3 py-3 text-gray-700 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors"
+                                            to="/servicos" 
+                                            className="flex items-center gap-3 px-3 py-3 text-gray-700 hover:bg-orange-50 hover:text-primary rounded-xl transition-all"
                                             onClick={toggleMenu}
                                         >
-                                            <Tag className="w-5 h-5" />
-                                            <span className="font-medium">Ofertas</span>
-                                            <span className="ml-auto bg-red-500 text-white text-xs px-2 py-1 rounded-full">Hot</span>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link 
-                                            to="/categorias" 
-                                            className="flex items-center gap-3 px-3 py-3 text-gray-700 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors"
-                                            onClick={toggleMenu}
-                                        >
-                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14-7H3a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zM9 7v10" />
-                                            </svg>
-                                            <span className="font-medium">Categorias</span>
-                                            <ChevronDown className="w-4 h-4 ml-auto" />
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link 
-                                            to="/lojas" 
-                                            className="flex items-center gap-3 px-3 py-3 text-gray-700 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors"
-                                            onClick={toggleMenu}
-                                        >
-                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                                            </svg>
-                                            <span className="font-medium">Lojas Verificadas</span>
+                                            <Package className="w-5 h-5" />
+                                            <span className="font-semibold">Serviços</span>
                                         </Link>
                                     </li>
                                 </ul>
@@ -326,39 +534,42 @@ export default function Header() {
 
                             {/* Account Section */}
                             <div className="mb-6">
-                                <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-3">Conta</h3>
+                                <h3 className="text-xs font-bold text-gray-900 uppercase tracking-wide mb-3 px-1">Minha Conta</h3>
                                 <ul className="space-y-1">
                                     <li>
                                         <Link 
                                             to="/login" 
-                                            className="flex items-center gap-3 px-3 py-3 text-gray-700 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors"
+                                            className="flex items-center gap-3 px-3 py-3.5 bg-primary hover:bg-tertiary text-white rounded-xl transition-all active:scale-95 shadow-md"
                                             onClick={toggleMenu}
                                         >
                                             <User className="w-5 h-5" />
-                                            <span className="font-medium">Entrar / Registar</span>
+                                            <span className="font-bold">Entrar / Registar</span>
                                         </Link>
                                     </li>
                                     <li>
                                         <Link 
                                             to="/carrinho" 
-                                            className="flex items-center gap-3 px-3 py-3 text-gray-700 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors"
+                                            className="flex items-center justify-between px-3 py-3 text-gray-700 hover:bg-orange-50 hover:text-primary rounded-xl transition-all"
                                             onClick={toggleMenu}
                                         >
-                                            <ShoppingBag className="w-5 h-5" />
-                                            <span className="font-medium">Carrinho</span>
-                                            <span className="ml-auto bg-primary text-white text-xs px-2 py-1 rounded-full">3</span>
+                                            <div className="flex items-center gap-3">
+                                                <ShoppingBag className="w-5 h-5" />
+                                                <span className="font-semibold">Meu Carrinho</span>
+                                            </div>
+                                            <span className="bg-primary text-white text-xs font-bold px-2 py-1 rounded-full">0</span>
                                         </Link>
                                     </li>
                                     <li>
                                         <Link 
                                             to="/favoritos" 
-                                            className="flex items-center gap-3 px-3 py-3 text-gray-700 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors"
+                                            className="flex items-center justify-between px-3 py-3 text-gray-700 hover:bg-orange-50 hover:text-primary rounded-xl transition-all"
                                             onClick={toggleMenu}
                                         >
-                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                                            </svg>
-                                            <span className="font-medium">Lista de Desejos</span>
+                                            <div className="flex items-center gap-3">
+                                                <Heart className="w-5 h-5" />
+                                                <span className="font-semibold">Favoritos</span>
+                                            </div>
+                                            <span className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">0</span>
                                         </Link>
                                     </li>
                                 </ul>
@@ -366,40 +577,38 @@ export default function Header() {
 
                             {/* Support Section */}
                             <div className="mb-6">
-                                <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-3">Suporte</h3>
+                                <h3 className="text-xs font-bold text-gray-900 uppercase tracking-wide mb-3 px-1">Suporte & Ajuda</h3>
                                 <ul className="space-y-1">
                                     <li>
                                         <Link 
                                             to="/contato" 
-                                            className="flex items-center gap-3 px-3 py-3 text-gray-700 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors"
+                                            className="flex items-center gap-3 px-3 py-3 text-gray-700 hover:bg-orange-50 hover:text-primary rounded-xl transition-all"
                                             onClick={toggleMenu}
                                         >
                                             <Headset className="w-5 h-5" />
-                                            <span className="font-medium">Centro de Ajuda</span>
+                                            <span className="font-semibold">Fale Connosco</span>
                                         </Link>
                                     </li>
                                     <li>
                                         <Link 
                                             to="/sobre" 
-                                            className="flex items-center gap-3 px-3 py-3 text-gray-700 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors"
+                                            className="flex items-center gap-3 px-3 py-3 text-gray-700 hover:bg-orange-50 hover:text-primary rounded-xl transition-all"
                                             onClick={toggleMenu}
                                         >
                                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                             </svg>
-                                            <span className="font-medium">Sobre Nós</span>
+                                            <span className="font-semibold">Nossa História</span>
                                         </Link>
                                     </li>
                                     <li>
                                         <Link 
                                             to="/reclamacoes" 
-                                            className="flex items-center gap-3 px-3 py-3 text-gray-700 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors"
+                                            className="flex items-center gap-3 px-3 py-3 text-gray-700 hover:bg-orange-50 hover:text-primary rounded-xl transition-all"
                                             onClick={toggleMenu}
                                         >
-                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.864-.833-2.634 0L4.179 16.5c-.77.833.192 2.5 1.732 2.5z" />
-                                            </svg>
-                                            <span className="font-medium">Portal de Reclamações</span>
+                                            <FileText className="w-5 h-5" />
+                                            <span className="font-semibold">Reclamações</span>
                                         </Link>
                                     </li>
                                 </ul>
@@ -408,37 +617,54 @@ export default function Header() {
                     </div>
 
                     {/* Language Selector - Mobile */}
-                    <div className="p-4 border-t border-gray-200">
-                        <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-3">Idioma</h3>
-                        <div className="grid grid-cols-2 gap-2">
-                            {languages.map((lang) => (
-                                <button
-                                    key={lang.code}
-                                    onClick={() => {
-                                        setCurrentLanguage(lang.code);
-                                        toggleMenu();
-                                    }}
-                                    className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-colors ${
-                                        currentLanguage === lang.code 
-                                            ? 'bg-primary text-white' 
-                                            : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
-                                    }`}
-                                >
-                                    <span className="text-base">{lang.flag}</span>
-                                    <span className="font-medium truncate">{lang.name.split(' ')[0]}</span>
-                                </button>
-                            ))}
+                    <div className="border-t border-gray-200 bg-gray-50">
+                        <button
+                            onClick={() => setShowLanguagesMenu(!showLanguagesMenu)}
+                            className="w-full flex items-center justify-between p-4 hover:bg-orange-50 transition-colors"
+                        >
+                            <div className="flex items-center gap-3">
+                                <Globe className="w-5 h-5 text-primary" />
+                                <div className="text-left">
+                                    <h3 className="text-sm font-bold text-gray-900">Idioma</h3>
+                                    <p className="text-xs text-gray-600">{languages.find(lang => lang.code === currentLanguage)?.flag} {languages.find(lang => lang.code === currentLanguage)?.name}</p>
+                                </div>
+                            </div>
+                            <ChevronDown className={`w-5 h-5 text-gray-600 transition-transform duration-300 ${showLanguagesMenu ? 'rotate-180' : ''}`} />
+                        </button>
+                        
+                        <div className={`overflow-hidden transition-all duration-300 ${showLanguagesMenu ? 'max-h-96' : 'max-h-0'}`}>
+                            <div className="p-4 pt-0 grid grid-cols-2 gap-2">
+                                {languages.map((lang) => (
+                                    <button
+                                        key={lang.code}
+                                        onClick={() => {
+                                            setCurrentLanguage(lang.code);
+                                            setShowLanguagesMenu(false);
+                                        }}
+                                        className={`flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-semibold transition-all active:scale-95 ${
+                                            currentLanguage === lang.code 
+                                                ? 'bg-primary text-white shadow-md' 
+                                                : 'bg-white text-gray-700 hover:bg-orange-50 border border-gray-200'
+                                        }`}
+                                    >
+                                        <span className="text-lg">{lang.flag}</span>
+                                        <span className="truncate">{lang.name.split(' ')[0]}</span>
+                                    </button>
+                                ))}
+                            </div>
                         </div>
                     </div>
 
                     {/* Footer */}
-                    <div className="p-4 bg-gray-50 text-center">
-                        <p className="text-xs text-gray-500 mb-2">© 2025 Kutambula Marketplace</p>
+                    <div className="p-4 bg-secondary text-center">
+                        <p className="text-xs text-white/90 mb-2 font-medium">© 2025 Kutambula Marketplace</p>
+                        <p className="text-xs text-white/70 mb-3">Sabores Autênticos de África</p>
                         <div className="flex justify-center gap-4">
-                            <Link to="/privacidade" className="text-xs text-gray-500 hover:text-primary" onClick={toggleMenu}>
+                            <Link to="/privacidade" className="text-xs text-white/80 hover:text-white font-medium transition-colors" onClick={toggleMenu}>
                                 Privacidade
                             </Link>
-                            <Link to="/termos" className="text-xs text-gray-500 hover:text-primary" onClick={toggleMenu}>
+                            <span className="text-white/40">•</span>
+                            <Link to="/termos" className="text-xs text-white/80 hover:text-white font-medium transition-colors" onClick={toggleMenu}>
                                 Termos
                             </Link>
                         </div>

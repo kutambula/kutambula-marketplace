@@ -198,6 +198,64 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000' fill-opacity='1'%3E%3Cpath d='M20 20c0-11.046-8.954-20-20-20v20h20z'/%3E%3C/g%3E%3C/svg%3E");
 }
 
+/* Custom Header Animations */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header-animate-in {
+  animation: slideDown 0.3s ease-out;
+}
+
+/* Smooth shadow transitions */
+.shadow-soft {
+  box-shadow: 0 2px 15px -3px rgba(242, 143, 56, 0.1), 0 4px 6px -4px rgba(242, 143, 56, 0.1);
+}
+
+.shadow-medium {
+  box-shadow: 0 4px 20px -2px rgba(242, 143, 56, 0.15), 0 8px 12px -4px rgba(242, 143, 56, 0.1);
+}
+
+/* Hover glow effect for primary buttons */
+.btn-glow:hover {
+  box-shadow: 0 0 20px rgba(242, 143, 56, 0.4), 0 0 40px rgba(242, 143, 56, 0.2);
+}
+
+/* Hide scrollbar for horizontal scroll */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Custom scrollbar for mobile sidebar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #F28F38;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #BF8049;
+}
+
 /* Swiper Custom Styles */
 @import 'swiper/css';
 @import 'swiper/css/navigation';
