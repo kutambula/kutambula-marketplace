@@ -8,6 +8,7 @@ import HowItWorks from '../../components/layout/HowItWorks';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import HomeHero from '../../components/sections/HomeHero';
+import WhyKutambula from '../../components/sections/WhyKutambula';
 
 export default function HomePage() {
 	const featuredStores = [
@@ -425,6 +426,9 @@ export default function HomePage() {
 			<div className="container mx-auto px-4 py-6">
 				<MainContent />
 			</div>
+
+			{/* Why Kutambula Section */}
+			<WhyKutambula />
 
 			{/* Floating Action Buttons */}
 			<div className="fixed right-4 sm:right-6 bottom-6 z-50 flex flex-col gap-3">

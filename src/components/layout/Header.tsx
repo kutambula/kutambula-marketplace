@@ -393,7 +393,7 @@ export default function Header() {
                             className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 hover:text-primary transition-all whitespace-nowrap px-3 py-2 rounded-lg bg-white hover:bg-orange-50 shadow-sm border border-gray-100 active:scale-95"
                         >
                             <TrendingUp className="w-3.5 h-3.5" />
-                            Parceiro
+                            Tornar-se Parceiro
                         </button>
                         <Link to="/servicos" className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 hover:text-primary transition-all whitespace-nowrap px-3 py-2 rounded-lg bg-white hover:bg-orange-50 shadow-sm border border-gray-100 active:scale-95">
                             <Package className="w-3.5 h-3.5" />
@@ -465,21 +465,23 @@ export default function Header() {
                                     <span className="bg-white text-primary text-xs font-bold px-2 py-1 rounded-full">Novo</span>
                                 </Link>
 
-                                <Link 
-                                    to="/torne-se-vendedor" 
-                                    className="flex items-center justify-between p-4 bg-primary hover:bg-tertiary rounded-xl shadow-md transition-all active:scale-95"
-                                    onClick={toggleMenu}
+                                <button 
+                                    onClick={() => {
+                                        setShowPartnerModal(true);
+                                        toggleMenu();
+                                    }}
+                                    className="w-full flex items-center justify-between p-4 bg-primary hover:bg-tertiary rounded-xl shadow-md transition-all active:scale-95"
                                 >
                                     <div className="flex items-center gap-3">
                                         <div className="bg-white/20 p-2 rounded-lg">
                                             <TrendingUp className="w-5 h-5 text-white" />
                                         </div>
                                         <div>
-                                            <span className="block font-bold text-white text-sm">Vender no Kutambula</span>
-                                            <span className="block text-white/80 text-xs">Crie sua loja grátis</span>
+                                            <span className="block font-bold text-white text-sm">Tornar-se Parceiro</span>
+                                            <span className="block text-white/80 text-xs">Vendedor ou Fornecedor</span>
                                         </div>
                                     </div>
-                                </Link>
+                                </button>
                             </div>
 
                             {/* Categories Grid */}
