@@ -87,7 +87,7 @@ export default function Header() {
                         <div className='flex items-center gap-6 text-sm'>
                             <div className='flex items-center gap-2 text-gray-600'>
                                 <Store className="w-3.5 h-3.5 text-primary" />
-                                <span className='font-medium'>Marketplace Africano de Confiança</span>
+                                <span className='font-medium'>Marketplace de Confiança</span>
                             </div>
                             <div className='flex items-center gap-2 text-gray-600'>
                                 <Package className="w-3.5 h-3.5 text-primary" />

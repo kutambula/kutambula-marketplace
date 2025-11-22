@@ -1,10 +1,10 @@
 
 import { useState } from 'react';
-import { Grid, List, SlidersHorizontal, Star, ShoppingCart, Truck, Store, Eye, Tag, Package } from 'lucide-react';
+import { Star, ShoppingCart, Truck, Store, Eye, Tag, Package } from 'lucide-react';
 import ProductDetailModal from '../common/ProductDetailModal';
 
 export default function MainContent() {
-    const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+    const viewMode = 'grid';
     const [selectedProduct, setSelectedProduct] = useState<typeof products[0] | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -333,66 +333,34 @@ export default function MainContent() {
         }
     ];
 
-
-
     return (
         <div className="flex gap-4 lg:gap-6">
             {/* Conteúdo Principal */}
             <main className="flex-1 min-w-0">
-                {/* Header do Conteúdo */}
-                <div className="bg-white rounded-lg sm:rounded-xl shadow-sm border border-gray-200 p-3 sm:p-4 md:p-6 mb-4 sm:mb-6">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
-                        {/* Título e Quantidade */}
-                        <div>
-                            <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 mb-1">Produtos em Destaque</h1>
-                            <p className="text-xs sm:text-sm text-gray-600">Mostrando 1-20 de 500 produtos</p>
-                        </div>
-
-                        {/* Controles */}
-                        <div className="flex items-center gap-2 sm:gap-3">
-                            {/* Ordenação */}
-                            <select 
-                                className="bg-gray-50 border-2 border-gray-200 hover:border-primary focus:border-primary rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm text-gray-700 focus:outline-none cursor-pointer transition-colors flex-1 sm:flex-none min-w-0"
-                                aria-label="Ordenar produtos"
-                            >
-                                <option value="relevance">Relevantes</option>
-                                <option value="price-low">Menor Preço</option>
-                                <option value="price-high">Maior Preço</option>
-                                <option value="newest">Recentes</option>
-                                <option value="rating">Avaliação</option>
-                            </select>
-
-                            {/* Botão de Filtros Mobile */}
-                            <button className="lg:hidden flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors text-xs sm:text-sm shrink-0">
-                                <SlidersHorizontal className="w-3 h-3 sm:w-4 sm:h-4" />
-                                <span className="font-medium hidden xs:inline">Filtros</span>
-                            </button>
-
-                            {/* Visualização - Hidden on small mobile */}
-                            <div className="hidden sm:flex items-center gap-1 bg-gray-100 rounded-lg p-1">
-                                <button
-                                    onClick={() => setViewMode('grid')}
-                                    className={`p-1.5 sm:p-2 rounded-md transition-colors ${
-                                        viewMode === 'grid'
-                                            ? 'bg-white text-primary shadow-sm'
-                                            : 'text-gray-600 hover:text-gray-800'
-                                    }`}
-                                    aria-label="Grid View"
-                                >
-                                    <Grid className="w-3 h-3 sm:w-4 sm:h-4" />
-                                </button>
-                                <button
-                                    onClick={() => setViewMode('list')}
-                                    className={`p-1.5 sm:p-2 rounded-md transition-colors ${
-                                        viewMode === 'list'
-                                            ? 'bg-white text-primary shadow-sm'
-                                            : 'text-gray-600 hover:text-gray-800'
-                                    }`}
-                                    aria-label="List View"
-                                >
-                                    <List className="w-3 h-3 sm:w-4 sm:h-4" />
-                                </button>
+                {/* Header da Home - Estilo melhorado e centralizado */}
+                <div className="mb-8 sm:mb-10 md:mb-12">
+                    <div className="text-center">
+                        {/* Título com Ícone */}
+                        <div className="flex items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                            <div className="relative">
+                                <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full"></div>
+                                <Package className="relative w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 text-primary animate-bounce" style={{ animationDuration: '3s' }} />
                             </div>
+                            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 bg-linear-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text">
+                                Produtos Africanos Autênticos
+                            </h2>
+                        </div>
+                        
+                        {/* Descrição */}
+                        <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto px-4 leading-relaxed">
+                            Descubra sabores únicos e produtos tradicionais, direto de vendedores verificados de toda a África
+                        </p>
+
+                        {/* Decorative Line */}
+                        <div className="flex items-center justify-center gap-3 mt-6">
+                            <div className="h-1 w-16 bg-linear-to-r from-transparent via-primary to-primary rounded-full"></div>
+                            <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+                            <div className="h-1 w-16 bg-linear-to-l from-transparent via-primary to-primary rounded-full"></div>
                         </div>
                     </div>
                 </div>
@@ -705,6 +673,23 @@ export default function MainContent() {
                             </div>
                         )
                     ))}
+                </div>
+
+                {/* Botão Ver Mais Produtos */}
+                <div className="mt-8 sm:mt-12 flex justify-center">
+                    <button className="group relative inline-flex items-center gap-3 px-8 sm:px-12 py-4 sm:py-5 bg-linear-to-r from-primary to-tertiary hover:from-tertiary hover:to-primary text-white font-bold text-base sm:text-lg rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden">
+                        {/* Background Animation */}
+                        <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                        
+                        {/* Content */}
+                        <Package className="w-5 h-5 sm:w-6 sm:h-6 relative z-10" />
+                        <span className="relative z-10">Ver Mais Produtos</span>
+                        <div className="relative z-10 flex items-center gap-1">
+                            <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                            <div className="w-2 h-2 bg-white rounded-full animate-pulse delay-75"></div>
+                            <div className="w-2 h-2 bg-white rounded-full animate-pulse delay-150"></div>
+                        </div>
+                    </button>
                 </div>
             </main>
 
