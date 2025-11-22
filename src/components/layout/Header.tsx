@@ -388,11 +388,6 @@ export default function Header() {
                             <Store className="w-3.5 h-3.5" />
                             Lojas
                         </Link>
-                        <Link to="/chat-ia" className="flex items-center gap-1.5 text-xs font-semibold text-white hover:text-white transition-all whitespace-nowrap px-3 py-2 rounded-lg bg-primary hover:bg-tertiary shadow-md active:scale-95">
-                            <MessageCircle className="w-3.5 h-3.5" />
-                            Chat IA
-                            <span className="bg-white text-primary text-[10px] font-bold px-1.5 py-0.5 rounded-full">Novo</span>
-                        </Link>
                         <button 
                             onClick={() => setShowPartnerModal(true)}
                             className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 hover:text-primary transition-all whitespace-nowrap px-3 py-2 rounded-lg bg-white hover:bg-orange-50 shadow-sm border border-gray-100 active:scale-95"
