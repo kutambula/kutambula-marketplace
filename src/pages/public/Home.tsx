@@ -2,7 +2,7 @@ import Header from '../../components/layout/Header';
 import MainContent from '../../components/layout/MainContent';
 import Footer from '../../components/layout/Footer';
 import { Link } from 'react-router-dom';
-import { Star, ChevronLeft, ChevronRight, ArrowRight, ChevronDown, ChevronUp } from 'lucide-react';
+import { Star, ChevronLeft, ChevronRight, ArrowRight, ChevronDown, ChevronUp, Bot, Share2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import HowItWorks from '../../components/layout/HowItWorks';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -110,6 +110,7 @@ export default function HomePage() {
 	];
 
 	const [isAtTop, setIsAtTop] = useState(true);
+	const [showSocialLinks, setShowSocialLinks] = useState(false);
 
 	const handleScroll = () => {
 		const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -425,12 +426,81 @@ export default function HomePage() {
 				<MainContent />
 			</div>
 
-			{/* Scroll helper (toggle top/bottom) */}
-			<div className="fixed right-6 bottom-6 z-50">
+			{/* Floating Action Buttons */}
+			<div className="fixed right-4 sm:right-6 bottom-6 z-50 flex flex-col gap-3">
+				{/* Social Links - Expandable */}
+				<div className="flex flex-col items-end gap-2">
+					{/* Social buttons that appear when expanded */}
+					<div className={`flex flex-col gap-2 transition-all duration-300 ${showSocialLinks ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}`}>
+						<a
+							href="https://facebook.com/kutambula"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="w-11 h-11 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-110"
+							aria-label="Facebook"
+						>
+							<i className='bx bxl-facebook text-xl'></i>
+						</a>
+						<a
+							href="https://instagram.com/kutambula"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="w-11 h-11 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-pink-600 hover:text-white transition-all duration-300 hover:scale-110"
+							aria-label="Instagram"
+						>
+							<i className='bx bxl-instagram text-xl'></i>
+						</a>
+						<a
+							href="https://tiktok.com/@kutambula"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="w-11 h-11 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-900 hover:text-white transition-all duration-300 hover:scale-110"
+							aria-label="TikTok"
+						>
+							<i className='bx bxl-tiktok text-xl'></i>
+						</a>
+						<a
+							href="https://youtube.com/@kutambula"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="w-11 h-11 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-red-600 hover:text-white transition-all duration-300 hover:scale-110"
+							aria-label="YouTube"
+						>
+							<i className='bx bxl-youtube text-xl'></i>
+						</a>
+					</div>
+
+					{/* Toggle social button */}
+					<button
+						onClick={() => setShowSocialLinks(!showSocialLinks)}
+						aria-label="Redes sociais"
+						className={`w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 ${
+							showSocialLinks 
+								? 'bg-gray-900 text-white rotate-45' 
+								: 'bg-white text-gray-700 hover:bg-gray-900 hover:text-white hover:scale-110'
+						}`}
+					>
+						<Share2 className="w-5 h-5" />
+					</button>
+				</div>
+
+				{/* Chat AI Button */}
+				<Link to="/chat-ia">
+					<button
+						aria-label="Chat com IA"
+						className="w-12 h-12 bg-primary rounded-full shadow-lg flex items-center justify-center hover:bg-tertiary hover:scale-110 transition-all duration-300 text-white group relative"
+					>
+						<Bot className="w-6 h-6" />
+						{/* Pulse animation */}
+						<span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-75"></span>
+					</button>
+				</Link>
+
+				{/* Scroll toggle button */}
 				<button
 					onClick={handleScrollToggle}
 					aria-label={isAtTop ? "Ir para o final da página" : "Ir para o topo"}
-					className="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
+					className="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110"
 				>
 					{isAtTop ? (
 						<ChevronDown className="w-6 h-6" />

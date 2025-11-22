@@ -9,6 +9,7 @@ export default function Header() {
     const [currentLanguage, setCurrentLanguage] = useState('pt');
     const [showCategoriesMenu, setShowCategoriesMenu] = useState(false);
     const [showLanguagesMenu, setShowLanguagesMenu] = useState(false);
+    const [showPartnerModal, setShowPartnerModal] = useState(false);
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -96,10 +97,13 @@ export default function Header() {
 
                         {/* Right Side - Actions */}
                         <div className='flex items-center gap-5'>
-                            <Link to="/torne-se-vendedor" className='flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-tertiary transition-colors'>
+                            <button 
+                                onClick={() => setShowPartnerModal(true)}
+                                className='flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-tertiary transition-colors'
+                            >
                                 <TrendingUp className="w-3.5 h-3.5" />
-                                Vender no Kutambula
-                            </Link>
+                                Tornar-se Parceiro
+                            </button>
                             <div className='w-px h-4 bg-gray-300'></div>
                             <a href="tel:+244999000000" className='flex items-center gap-1.5 text-sm text-gray-700 hover:text-primary transition-colors'>
                                 <Phone className="w-3.5 h-3.5" />
@@ -389,13 +393,16 @@ export default function Header() {
                             Chat IA
                             <span className="bg-white text-primary text-[10px] font-bold px-1.5 py-0.5 rounded-full">Novo</span>
                         </Link>
-                        <Link to="/categorias" className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 hover:text-primary transition-all whitespace-nowrap px-3 py-2 rounded-lg bg-white hover:bg-orange-50 shadow-sm border border-gray-100 active:scale-95">
-                            <span className="text-sm">📦</span>
-                            Categorias
-                        </Link>
-                        <Link to="/torne-se-vendedor" className="flex items-center gap-1.5 text-xs font-bold text-white hover:text-white transition-all whitespace-nowrap px-3 py-2 rounded-lg bg-primary hover:bg-tertiary shadow-md active:scale-95">
+                        <button 
+                            onClick={() => setShowPartnerModal(true)}
+                            className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 hover:text-primary transition-all whitespace-nowrap px-3 py-2 rounded-lg bg-white hover:bg-orange-50 shadow-sm border border-gray-100 active:scale-95"
+                        >
                             <TrendingUp className="w-3.5 h-3.5" />
-                            Vender
+                            Parceiro
+                        </button>
+                        <Link to="/servicos" className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 hover:text-primary transition-all whitespace-nowrap px-3 py-2 rounded-lg bg-white hover:bg-orange-50 shadow-sm border border-gray-100 active:scale-95">
+                            <Package className="w-3.5 h-3.5" />
+                            Serviços
                         </Link>
                     </nav>
                 </div>
@@ -671,6 +678,113 @@ export default function Header() {
                     </div>
                 </div>
             </div>
+
+            {/* Partner Modal */}
+            {showPartnerModal && (
+                <div className="fixed inset-0 z-100 flex items-center justify-center bg-black/50 backdrop-blur-sm p-3 sm:p-4">
+                    <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                        {/* Modal Header */}
+                        <div className="relative bg-primary text-white p-4 sm:p-6 rounded-t-xl sm:rounded-t-2xl">
+                            <button
+                                onClick={() => setShowPartnerModal(false)}
+                                className="absolute top-3 right-3 p-1.5 hover:bg-white/20 rounded-lg transition-colors"
+                                aria-label="Fechar"
+                            >
+                                <X className="w-4 h-4 sm:w-5 sm:h-5" />
+                            </button>
+                            <div className="flex items-center gap-2 sm:gap-3 mb-1.5 sm:mb-2">
+                                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/20 rounded-lg sm:rounded-xl flex items-center justify-center">
+                                    <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6" />
+                                </div>
+                                <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold">Tornar-se Parceiro</h2>
+                            </div>
+                            <p className="text-white/90 text-xs sm:text-sm leading-relaxed">
+                                Escolha como deseja colaborar com o Kutambula Marketplace
+                            </p>
+                        </div>
+
+                        {/* Modal Content */}
+                        <div className="p-4 sm:p-6 lg:p-8 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 lg:gap-6">
+                            {/* Opção 1: Ser Vendedor */}
+                            <Link
+                                to="/anuncie"
+                                onClick={() => setShowPartnerModal(false)}
+                                className="group relative bg-white border-2 border-gray-200 rounded-lg sm:rounded-xl p-4 sm:p-5 lg:p-6 hover:border-primary hover:shadow-lg transition-all duration-300"
+                            >
+                                <div className="flex flex-col h-full">
+                                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-primary/10 rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform">
+                                        <Store className="w-6 h-6 sm:w-7 sm:h-7 text-primary" />
+                                    </div>
+                                    <h3 className="text-lg sm:text-xl font-bold text-secondary mb-1.5 sm:mb-2">Ser Vendedor</h3>
+                                    <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 grow leading-relaxed">
+                                        Crie sua própria loja virtual e venda produtos africanos autênticos para clientes em Angola e Europa.
+                                    </p>
+                                    <div className="space-y-1.5 sm:space-y-2 mb-3 sm:mb-4">
+                                        <div className="flex items-start gap-2">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1 shrink-0"></div>
+                                            <span className="text-[11px] sm:text-xs text-gray-600">Sua própria loja online</span>
+                                        </div>
+                                        <div className="flex items-start gap-2">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1 shrink-0"></div>
+                                            <span className="text-[11px] sm:text-xs text-gray-600">Gestão de produtos</span>
+                                        </div>
+                                        <div className="flex items-start gap-2">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1 shrink-0"></div>
+                                            <span className="text-[11px] sm:text-xs text-gray-600">Alcance internacional</span>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center gap-1.5 sm:gap-2 text-primary font-semibold text-xs sm:text-sm group-hover:gap-3 transition-all">
+                                        <span>Começar agora</span>
+                                        <ChevronDown className="w-3.5 h-3.5 sm:w-4 sm:h-4 -rotate-90" />
+                                    </div>
+                                </div>
+                            </Link>
+
+                            {/* Opção 2: Ser Fornecedor */}
+                            <Link
+                                to="/contato?tipo=fornecedor"
+                                onClick={() => setShowPartnerModal(false)}
+                                className="group relative bg-white border-2 border-gray-200 rounded-lg sm:rounded-xl p-4 sm:p-5 lg:p-6 hover:border-primary hover:shadow-lg transition-all duration-300"
+                            >
+                                <div className="flex flex-col h-full">
+                                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-secondary/10 rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform">
+                                        <Package className="w-6 h-6 sm:w-7 sm:h-7 text-secondary" />
+                                    </div>
+                                    <h3 className="text-lg sm:text-xl font-bold text-secondary mb-1.5 sm:mb-2">Ser Fornecedor</h3>
+                                    <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 grow leading-relaxed">
+                                        Forneça produtos em grande escala para vendedores do marketplace e expanda seu negócio.
+                                    </p>
+                                    <div className="space-y-1.5 sm:space-y-2 mb-3 sm:mb-4">
+                                        <div className="flex items-start gap-2">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-secondary mt-1 shrink-0"></div>
+                                            <span className="text-[11px] sm:text-xs text-gray-600">Vendas em volume</span>
+                                        </div>
+                                        <div className="flex items-start gap-2">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-secondary mt-1 shrink-0"></div>
+                                            <span className="text-[11px] sm:text-xs text-gray-600">Rede de vendedores</span>
+                                        </div>
+                                        <div className="flex items-start gap-2">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-secondary mt-1 shrink-0"></div>
+                                            <span className="text-[11px] sm:text-xs text-gray-600">Logística facilitada</span>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center gap-1.5 sm:gap-2 text-secondary font-semibold text-xs sm:text-sm group-hover:gap-3 transition-all">
+                                        <span>Entrar em contato</span>
+                                        <ChevronDown className="w-3.5 h-3.5 sm:w-4 sm:h-4 -rotate-90" />
+                                    </div>
+                                </div>
+                            </Link>
+                        </div>
+
+                        {/* Modal Footer */}
+                        <div className="bg-gray-50 px-4 sm:px-6 lg:px-8 py-3 sm:py-4 rounded-b-xl sm:rounded-b-2xl border-t border-gray-200">
+                            <p className="text-[11px] sm:text-xs text-gray-600 text-center leading-relaxed">
+                                Tem dúvidas? <Link to="/contato" onClick={() => setShowPartnerModal(false)} className="text-primary font-semibold hover:underline">Entre em contato</Link> com nossa equipe.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            )}
 
         </header>
     );
