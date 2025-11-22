@@ -304,9 +304,9 @@ export default function HomePage() {
 										to={`/loja/${store.id}`}
 										className="group block h-full cursor-pointer"
 									>
-										<div className="relative bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 h-full flex flex-col border-2 border-gray-100 hover:border-primary active:scale-95">
+										<div className="relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 h-full min-h-[420px] sm:min-h-[460px] flex flex-col border-2 border-gray-100 hover:border-primary active:scale-[0.98]">
 											{/* Header com Banner */}
-											<div className="relative h-28 sm:h-32 overflow-hidden">
+											<div className="relative h-40 sm:h-44 md:h-48 overflow-hidden">
 												<img
 													src={store.banner}
 													alt={store.name}
@@ -314,67 +314,84 @@ export default function HomePage() {
 												/>
 												{/* Overlay gradiente africano */}
 												<div className="absolute inset-0 bg-linear-to-br from-orange-600/40 via-amber-500/30 to-red-600/40 group-hover:opacity-70 transition-opacity duration-500" />
-												<div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
+												<div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
 
 												{/* Badge verificação */}
 												{store.verified && (
-													<div className="absolute top-2 right-2 bg-linear-to-r from-green-500 to-emerald-600 text-white text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1 shadow-lg">
-														<i className='bx bxs-badge-check text-xs'></i>
+													<div className="absolute top-2.5 right-2.5 bg-linear-to-r from-green-500 to-emerald-600 text-white text-[10px] sm:text-xs font-bold px-2 sm:px-2.5 py-1 sm:py-1.5 rounded-full flex items-center gap-1 shadow-lg">
+														<i className='bx bxs-badge-check text-xs sm:text-sm'></i>
 														<span className="hidden sm:inline">Verificada</span>
 													</div>
 												)}
 
-												{/* Badge de categoria */}
-												<div className="absolute bottom-2 left-2 bg-white/95 backdrop-blur-sm text-primary text-xs font-bold px-2 py-1 rounded-full shadow-md">
-													<i className='bx bx-category-alt text-xs mr-0.5'></i>
-													<span className="hidden sm:inline">{store.category}</span>
+												{/* Badge de categoria - Melhorado para mobile */}
+												<div className="absolute bottom-2.5 left-2.5 bg-white/95 backdrop-blur-sm text-primary text-[10px] sm:text-xs font-bold px-2.5 py-1.5 rounded-lg shadow-lg flex items-center gap-1">
+													<i className='bx bx-category-alt text-xs'></i>
+													<span>{store.category}</span>
 												</div>
 											</div>
 
 											{/* Conteúdo */}
 											<div className="p-4 sm:p-5 flex-1 flex flex-col">
 												{/* Logo e Nome */}
-												<div className="flex items-start gap-3 mb-3 -mt-8">
-													<div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-3 border-white shadow-xl bg-white shrink-0 group-hover:scale-105 transition-transform duration-300">
+												<div className="flex items-start gap-3 mb-3 sm:mb-4 -mt-9 sm:-mt-10">
+													<div className="relative w-16 h-16 sm:w-18 sm:h-18 rounded-xl overflow-hidden border-4 border-white shadow-2xl bg-white shrink-0 group-hover:scale-105 transition-transform duration-300">
 														<img
 															src={store.logo}
 															alt={`${store.name} logo`}
 															className="w-full h-full object-cover"
 														/>
 													</div>
-													<div className="flex-1 min-w-0 mt-6">
-														<h3 className="text-base sm:text-lg font-black text-gray-900 mb-1 group-hover:text-primary transition-colors truncate leading-tight">
+													<div className="flex-1 min-w-0 mt-7 sm:mt-8">
+														<h3 className="text-base sm:text-lg font-black text-gray-900 mb-1 group-hover:text-primary transition-colors line-clamp-1 leading-tight">
 															{store.name}
 														</h3>
+														{/* Rating mobile - movido para aqui */}
+														<div className="flex items-center gap-1.5 sm:hidden">
+															<Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
+															<span className="font-bold text-xs text-gray-900">{store.rating}</span>
+															<span className="text-gray-400">•</span>
+															<span className="text-xs text-gray-500 font-semibold">{store.totalProducts} produtos</span>
+														</div>
 													</div>
 												</div>
 
-												{/* Descrição */}
-												<p className="text-xs sm:text-sm text-gray-600 mb-3 line-clamp-2 leading-relaxed hidden sm:block">
+												{/* Descrição - Visível no mobile */}
+												<p className="text-xs sm:text-sm text-gray-600 mb-3 line-clamp-2 leading-relaxed">
 													{store.description}
 												</p>
 
-												{/* Especialidades */}
-												<div className="flex flex-wrap gap-1.5 mb-3">
-													{store.specialties.slice(0, 2).map((specialty, idx) => (
-														<span key={idx} className="text-xs bg-linear-to-r from-amber-50 to-orange-50 text-amber-700 font-semibold px-2 py-0.5 rounded-md border border-amber-200/50">
+												{/* Especialidades - Melhoradas */}
+												<div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4">
+													{store.specialties.slice(0, 3).map((specialty, idx) => (
+														<span key={idx} className="text-[10px] sm:text-xs bg-linear-to-r from-amber-50 to-orange-50 text-amber-700 font-bold px-2 sm:px-2.5 py-1 rounded-lg border border-amber-200/50 shadow-sm">
 															{specialty}
 														</span>
 													))}
 												</div>
 
-												{/* Estatísticas */}
-												<div className="flex items-center justify-between pt-3 border-t border-gray-100 mt-auto">
-													<div className="flex items-center gap-1">
-														<Star className="w-3 h-3 sm:w-4 sm:h-4 text-amber-500 fill-amber-500" />
+												{/* Estatísticas - Escondidas no mobile, visíveis no tablet+ */}
+												<div className="hidden sm:flex items-center justify-between pt-3 border-t border-gray-100 mt-auto">
+													<div className="flex items-center gap-1.5">
+														<Star className="w-4 h-4 text-amber-500 fill-amber-500" />
 														<span className="font-bold text-sm text-gray-900">{store.rating}</span>
 													</div>
 													<div className="text-right">
-														<div className="text-sm sm:text-base font-black text-primary">{store.totalProducts}</div>
+														<div className="text-base font-black text-primary">{store.totalProducts}</div>
 														<div className="text-xs text-gray-500 font-medium">produtos</div>
 													</div>
 													<div className="flex items-center gap-1 text-primary">
 														<ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+													</div>
+												</div>
+
+												{/* Botão CTA Mobile */}
+												<div className="sm:hidden mt-auto pt-3 border-t border-gray-100">
+													<div className="flex items-center justify-between">
+														<span className="text-xs font-bold text-gray-700">Ver loja</span>
+														<div className="bg-primary/10 text-primary p-2 rounded-lg group-hover:bg-primary group-hover:text-white transition-colors">
+															<ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+														</div>
 													</div>
 												</div>
 											</div>
