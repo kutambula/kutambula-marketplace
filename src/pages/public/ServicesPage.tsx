@@ -1,11 +1,11 @@
 import Header from '../../components/layout/Header';
 import Footer from '../../components/layout/Footer';
 import { Link } from 'react-router-dom';
-import { Package, Truck, ShieldCheck, Headset, CreditCard, ArrowRight, CheckCircle, Clock, Award, Camera, ChevronDown } from 'lucide-react';
-import { useState } from 'react';
+import { Package, Truck, ShieldCheck, Headset, 
+		CreditCard, ArrowRight, CheckCircle,  Camera 
+} from 'lucide-react';
 
 export default function ServicesPage() {
-	const [openAccordion, setOpenAccordion] = useState<number | null>(null);
 
 	const services = [
 		{
@@ -71,7 +71,7 @@ export default function ServicesPage() {
 		{
 			id: 7,
 			icon: <Camera className="w-8 h-8" />,
-			title: 'Fotografia Profissional',
+			title: 'Fotografia Profissional para catálogo',
 			description: 'Serviço completo de fotografia para destacar seus produtos e atrair mais clientes.',
 			features: [
 				'Sessão fotográfica em estúdio',
@@ -79,33 +79,6 @@ export default function ServicesPage() {
 				'Fotos de alta qualidade para e-commerce',
 				'Pacotes personalizados para vendedores'
 			]
-		}
-	];
-
-	const benefits = [
-		{
-			icon: <Clock className="w-6 h-6 text-primary" />,
-			title: 'Economia de Tempo',
-			description: 'Encontre todos os produtos africanos num só lugar',
-			details: 'Com o Kutambula, você não precisa mais visitar várias lojas ou sites diferentes. Reunimos os melhores vendedores e produtos africanos em uma única plataforma, economizando horas de pesquisa e comparação.'
-		},
-		{
-			icon: <ShieldCheck className="w-6 h-6 text-primary" />,
-			title: 'Compra Segura',
-			description: 'Proteção total em todas as suas transações',
-			details: 'Sistema de pagamento criptografado, proteção ao comprador, verificação de vendedores e garantia de reembolso caso algo não saia como esperado. Sua segurança é nossa prioridade número um.'
-		},
-		{
-			icon: <Award className="w-6 h-6 text-primary" />,
-			title: 'Produtos Autênticos',
-			description: 'Garantia de origem e qualidade certificada',
-			details: 'Trabalhamos apenas com fornecedores verificados que garantem a autenticidade dos produtos. Cada item passa por controle de qualidade rigoroso para assegurar que você receba exatamente o que espera.'
-		},
-		{
-			icon: <Headset className="w-6 h-6 text-primary" />,
-			title: 'Suporte 24/7',
-			description: 'Assistência sempre que você precisar',
-			details: 'Nossa equipa de suporte está disponível 24 horas por dia, 7 dias por semana, através de chat, email e telefone. Respondemos em português e estamos prontos para ajudar com qualquer dúvida ou problema.'
 		}
 	];
 
@@ -210,93 +183,6 @@ export default function ServicesPage() {
 								</div>
 							</div>
 						))}
-					</div>
-				</div>
-			</section>
-
-			{/* Benefits Section */}
-			<section className="py-12 sm:py-16 md:py-20 bg-orange-50">
-				<div className="container mx-auto px-4">
-					<div className="text-center mb-12">
-						<h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 mb-4">
-							Por Que Escolher o Kutambula?
-						</h2>
-						<p className="text-lg text-gray-600 max-w-2xl mx-auto">
-							Benefícios exclusivos para sua experiência de compra
-						</p>
-					</div>
-
-					<div className="max-w-4xl mx-auto space-y-4">
-						{benefits.map((benefit, index) => (
-							<div
-								key={index}
-								className="bg-white rounded-xl shadow-md border-2 border-gray-100 overflow-hidden"
-							>
-								<button
-									onClick={() => setOpenAccordion(openAccordion === index ? null : index)}
-									className="w-full flex items-center justify-between p-6 hover:bg-orange-50 transition-colors text-left"
-								>
-									<div className="flex items-center gap-4 flex-1">
-										<div className="bg-orange-100 rounded-lg p-3 shrink-0">
-											{benefit.icon}
-										</div>
-										<div className="flex-1">
-											<h3 className="text-lg font-bold text-gray-900 mb-1">
-												{benefit.title}
-											</h3>
-											<p className="text-sm text-gray-600">
-												{benefit.description}
-											</p>
-										</div>
-									</div>
-									<ChevronDown 
-										className={`w-6 h-6 text-gray-600 transition-transform duration-300 shrink-0 ml-4 ${
-											openAccordion === index ? 'rotate-180' : ''
-										}`}
-									/>
-								</button>
-								
-								<div 
-									className={`overflow-hidden transition-all duration-300 ${
-										openAccordion === index ? 'max-h-96' : 'max-h-0'
-									}`}
-								>
-									<div className="px-6 pb-6 pt-2">
-										<p className="text-gray-700 leading-relaxed bg-orange-50 p-4 rounded-lg">
-											{benefit.details}
-										</p>
-									</div>
-								</div>
-							</div>
-						))}
-					</div>
-				</div>
-			</section>
-
-			{/* CTA Section */}
-			<section className="py-12 sm:py-16 md:py-20">
-				<div className="container mx-auto px-4">
-					<div className="bg-primary rounded-3xl p-8 sm:p-12 md:p-16 text-center text-white shadow-xl">
-						<h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-4">
-							Pronto para Começar?
-						</h2>
-						<p className="text-lg sm:text-xl mb-8 max-w-2xl mx-auto">
-							Junte-se a milhares de clientes satisfeitos que já confiam no Kutambula Marketplace
-						</p>
-						<div className="flex flex-wrap items-center justify-center gap-4">
-							<Link to="/marketplace">
-								<button className="bg-white text-primary hover:bg-gray-50 font-bold px-8 py-4 rounded-xl transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 flex items-center gap-2">
-									<Package className="w-5 h-5" />
-									<span>Explorar Marketplace</span>
-								</button>
-							</Link>
-							<Link to="/contacto">
-								<button className="bg-secondary hover:bg-secondary/90 text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 flex items-center gap-2">
-									<Headset className="w-5 h-5" />
-									<span>Falar com Suporte</span>
-								</button>
-							</Link>
-						</div>
 					</div>
 				</div>
 			</section>

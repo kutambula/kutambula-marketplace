@@ -39,7 +39,7 @@ export default function AdvertiseHero() {
 							</button>
 						</div>
 
-						<div className="grid grid-cols-3 gap-6 pt-8 border-t border-white/10">
+						{/* <div className="grid grid-cols-3 gap-6 pt-8 border-t border-white/10">
 							<div>
 								<div className="text-3xl font-black text-white mb-1">15k+</div>
 								<div className="text-sm text-gray-400">Vendedores Ativos</div>
@@ -52,7 +52,7 @@ export default function AdvertiseHero() {
 								<div className="text-3xl font-black text-white mb-1">98%</div>
 								<div className="text-sm text-gray-400">Satisfação</div>
 							</div>
-						</div>
+						</div> */}
 					</div>
 
 					{/* Visual Content */}
