@@ -65,6 +65,7 @@ export default function ServicesPage() {
 				'Cartão de crédito/débito',
 				'Transferência bancária',
 				'MB WAY',
+				'Referência Multibanco',
 				'Pagamento com conversão automática de moeda'
 			]
 		},
