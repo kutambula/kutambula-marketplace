@@ -64,8 +64,8 @@ export default function ServicesPage() {
 			features: [
 				'Cartão de crédito/débito',
 				'Transferência bancária',
-				'PayPal e Stripe',
-				'Pagamento na entrega (Angola)'
+				'MB WAY',
+				'Pagamento com conversão automática de moeda'
 			]
 		},
 		{
