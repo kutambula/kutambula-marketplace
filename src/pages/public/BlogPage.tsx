@@ -1,7 +1,7 @@
 import Header from '../../components/layout/Header';
 import Footer from '../../components/layout/Footer';
 import { Link } from 'react-router-dom';
-import { Calendar, Clock, User, ArrowRight, Search, TrendingUp, BookOpen } from 'lucide-react';
+import { Calendar, Clock, User, ArrowRight, Search, Tag, TrendingUp, BookOpen } from 'lucide-react';
 import { useState } from 'react';
 
 export default function BlogPage() {
@@ -138,6 +138,7 @@ export default function BlogPage() {
 	});
 
 	const featuredPosts = blogPosts.filter(post => post.featured);
+	const popularTags = ['receitas', 'angola', 'especiarias', 'café', 'nutrição', 'tradição', 'dicas', 'empreendedorismo'];
 
 	const formatDate = (dateString: string) => {
 		const date = new Date(dateString);
@@ -209,57 +210,61 @@ export default function BlogPage() {
 			</section>
 
 			<div className="container mx-auto px-4 py-10 sm:py-12 md:py-16">
-				<div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-					{/* Main Content */}
-					<div className="lg:col-span-2">
-						{/* Featured Posts */}
-						{selectedCategory === 'todos' && searchTerm === '' && (
-							<div className="mb-12">
-								<h2 className="text-2xl sm:text-3xl font-black text-gray-900 mb-6 flex items-center gap-3">
-									<TrendingUp className="w-7 h-7 text-primary" />
-									Artigos em Destaque
-								</h2>
-								<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-									{featuredPosts.map((post) => (
-										<Link
-											key={post.id}
-											to={`/blog/${post.id}`}
-											className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500"
-										>
-											<div className="relative h-56 overflow-hidden">
-												<img
-													src={post.image}
-													alt={post.title}
-													className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-												/>
-												<div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
-												<div className="absolute top-4 left-4">
-													<span className="bg-primary text-white text-xs font-bold px-3 py-1.5 rounded-full">
-														{categories.find(c => c.id === post.category)?.name}
-													</span>
-												</div>
-												<div className="absolute bottom-4 left-4 right-4">
-													<h3 className="text-lg sm:text-xl font-bold text-white mb-2 line-clamp-2 group-hover:text-primary transition-colors">
-														{post.title}
-													</h3>
-													<div className="flex items-center gap-3 text-white/80 text-sm">
-														<span className="flex items-center gap-1">
-															<Calendar className="w-4 h-4" />
-															{formatDate(post.date)}
-														</span>
-														<span className="flex items-center gap-1">
-															<Clock className="w-4 h-4" />
-															{post.readTime}
-														</span>
-													</div>
-												</div>
+				{/* Featured Posts - Full Width */}
+				{selectedCategory === 'todos' && searchTerm === '' && (
+					<div className="mb-12">
+						<h2 className="text-2xl sm:text-3xl font-black text-gray-900 mb-6 flex items-center gap-3">
+							<TrendingUp className="w-7 h-7 text-primary" />
+							Artigos em Destaque
+						</h2>
+						<div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+							{featuredPosts.map((post) => (
+								<Link
+									key={post.id}
+									to={`/blog/${post.id}`}
+									className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500"
+								>
+									<div className="relative h-64 lg:h-72 overflow-hidden">
+										<img
+											src={post.image}
+											alt={post.title}
+											className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+										/>
+										<div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
+										<div className="absolute top-4 left-4">
+											<span className="bg-primary text-white text-xs font-bold px-3 py-1.5 rounded-full">
+												{categories.find(c => c.id === post.category)?.name}
+											</span>
+										</div>
+										<div className="absolute bottom-4 left-4 right-4">
+											<h3 className="text-xl lg:text-2xl font-bold text-white mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+												{post.title}
+											</h3>
+											<p className="text-white/80 text-sm mb-3 line-clamp-2 hidden sm:block">
+												{post.excerpt}
+											</p>
+											<div className="flex items-center gap-3 text-white/80 text-sm">
+												<span className="flex items-center gap-1">
+													<Calendar className="w-4 h-4" />
+													{formatDate(post.date)}
+												</span>
+												<span className="flex items-center gap-1">
+													<Clock className="w-4 h-4" />
+													{post.readTime}
+												</span>
 											</div>
-										</Link>
-									))}
-								</div>
-							</div>
-						)}
+										</div>
+									</div>
+								</Link>
+							))}
+						</div>
+					</div>
+				)}
 
+				{/* Main Grid with Sidebar */}
+				<div className="grid grid-cols-1 xl:grid-cols-4 gap-8">
+					{/* Main Content - Takes 3 columns on xl */}
+					<div className="xl:col-span-3">
 						{/* All Posts Grid */}
 						<div>
 							<h2 className="text-2xl sm:text-3xl font-black text-gray-900 mb-6 flex items-center gap-3">
@@ -269,7 +274,7 @@ export default function BlogPage() {
 							</h2>
 
 							{filteredPosts.length > 0 ? (
-								<div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+								<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 									{filteredPosts.map((post) => (
 										<Link
 											key={post.id}
@@ -328,6 +333,89 @@ export default function BlogPage() {
 									</button>
 								</div>
 							)}
+						</div>
+					</div>
+
+					{/* Sidebar - Takes 1 column on xl */}
+					<div className="xl:col-span-1">
+						<div className="sticky top-[140px] space-y-6">
+							{/* Popular Tags */}
+							<div className="bg-white rounded-2xl p-6 shadow-md border-2 border-gray-100">
+								<h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+									<Tag className="w-5 h-5 text-primary" />
+									Tags Populares
+								</h3>
+								<div className="flex flex-wrap gap-2">
+									{popularTags.map((tag) => (
+										<button
+											key={tag}
+											onClick={() => setSearchTerm(tag)}
+											className="bg-gray-100 hover:bg-primary hover:text-white text-gray-700 text-sm font-medium px-3 py-1.5 rounded-full transition-colors"
+										>
+											#{tag}
+										</button>
+									))}
+								</div>
+							</div>
+
+							{/* Newsletter */}
+							<div className="bg-linear-to-br from-primary to-tertiary rounded-2xl p-6 shadow-lg text-white">
+								<h3 className="text-lg font-bold mb-2">📬 Newsletter</h3>
+								<p className="text-white/90 text-sm mb-4">
+									Receba as últimas receitas e dicas diretamente no seu email.
+								</p>
+								<input
+									type="email"
+									placeholder="O seu email"
+									className="w-full px-4 py-3 rounded-lg text-gray-700 text-sm mb-3 focus:outline-none focus:ring-2 focus:ring-white/50"
+								/>
+								<button className="w-full bg-white text-primary font-bold py-3 rounded-lg hover:bg-gray-100 transition-colors">
+									Subscrever
+								</button>
+							</div>
+
+							{/* CTA - Sell Products */}
+							<div className="bg-white rounded-2xl p-6 shadow-md border-2 border-gray-100">
+								<div className="text-center">
+									<div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+										<i className='bx bx-store-alt text-3xl text-primary'></i>
+									</div>
+									<h3 className="text-lg font-bold text-gray-900 mb-2">Vende Produtos Africanos?</h3>
+									<p className="text-sm text-gray-600 mb-4">
+										Junte-se ao Kutambula e alcance milhares de clientes em Portugal e Europa.
+									</p>
+									<Link
+										to="/anuncie"
+										className="block w-full bg-primary text-white font-bold py-3 rounded-lg hover:bg-tertiary transition-colors"
+									>
+										Começar a Vender
+									</Link>
+								</div>
+							</div>
+
+							{/* Categories Quick Access */}
+							<div className="bg-white rounded-2xl p-6 shadow-md border-2 border-gray-100">
+								<h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+									<BookOpen className="w-5 h-5 text-primary" />
+									Categorias
+								</h3>
+								<div className="space-y-2">
+									{categories.slice(1).map((category) => (
+										<button
+											key={category.id}
+											onClick={() => setSelectedCategory(category.id)}
+											className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-all ${
+												selectedCategory === category.id
+													? 'bg-primary text-white'
+													: 'bg-gray-50 text-gray-700 hover:bg-gray-100'
+											}`}
+										>
+											<span className="text-lg">{category.icon}</span>
+											<span className="font-medium text-sm">{category.name}</span>
+										</button>
+									))}
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
