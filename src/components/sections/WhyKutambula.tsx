@@ -51,7 +51,7 @@ export default function WhyKutambula() {
 							<div className="absolute inset-0 bg-primary/20 blur-xl animate-pulse"></div>
 						</div>
 						<h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900">
-							Porquê Escolher o Kutambula
+							Por que Escolher o Kutambula
 						</h2>
 					</div>
 					<p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4 leading-relaxed">
