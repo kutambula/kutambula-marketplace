@@ -119,26 +119,7 @@ export default function WhyKutambula() {
 						);
 					})}
 				</div>
-
-				{/* Stats Section */}
-				<div className="mt-12 sm:mt-16 md:mt-20 grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-					<div className="text-center p-6 sm:p-8 bg-white rounded-2xl shadow-lg border-2 border-gray-100 hover:border-primary transition-all duration-300 hover:scale-105">
-						<div className="text-3xl sm:text-4xl md:text-5xl font-black text-primary mb-2">500+</div>
-						<div className="text-sm sm:text-base text-gray-600 font-semibold">Produtos Disponíveis</div>
-					</div>
-					<div className="text-center p-6 sm:p-8 bg-white rounded-2xl shadow-lg border-2 border-gray-100 hover:border-tertiary transition-all duration-300 hover:scale-105">
-						<div className="text-3xl sm:text-4xl md:text-5xl font-black text-tertiary mb-2">50+</div>
-						<div className="text-sm sm:text-base text-gray-600 font-semibold">Lojas Verificadas</div>
-					</div>
-					<div className="text-center p-6 sm:p-8 bg-white rounded-2xl shadow-lg border-2 border-gray-100 hover:border-primary transition-all duration-300 hover:scale-105">
-						<div className="text-3xl sm:text-4xl md:text-5xl font-black text-primary mb-2">10K+</div>
-						<div className="text-sm sm:text-base text-gray-600 font-semibold">Clientes Satisfeitos</div>
-					</div>
-					<div className="text-center p-6 sm:p-8 bg-white rounded-2xl shadow-lg border-2 border-gray-100 hover:border-tertiary transition-all duration-300 hover:scale-105">
-						<div className="text-3xl sm:text-4xl md:text-5xl font-black text-tertiary mb-2">4.8★</div>
-						<div className="text-sm sm:text-base text-gray-600 font-semibold">Avaliação Média</div>
-					</div>
-				</div>
+				
 			</div>
 		</section>
 	);

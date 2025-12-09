@@ -5,6 +5,7 @@ import ComplaintsPage from '../pages/public/ComplaintsPage';
 import AdvertisePage from '../pages/public/AdvertisePage';
 import ServicesPage from '../pages/public/ServicesPage';
 import ChatPage from '../pages/public/ChatPage';
+import BlogPage from '../pages/public/BlogPage';
 import { Route, Routes } from 'react-router-dom';
 
 export default function LayoutRoot() {
@@ -17,6 +18,7 @@ export default function LayoutRoot() {
 			<Route path='/anuncie' element={<AdvertisePage />} />
 			<Route path='/servicos' element={<ServicesPage />} />
 			<Route path='/chat-ia' element={<ChatPage />} />
+			<Route path='/blog' element={<BlogPage />} />
 		</Routes>
 	);
 }

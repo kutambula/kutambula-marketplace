@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Search, ChevronDown, Menu, X, Store, Headset, Globe, ShoppingBag, User, FileText, Phone, Heart, Package, TrendingUp, MessageCircle } from 'lucide-react';
+import { Search, ChevronDown, Menu, X, Store, Headset, Globe, ShoppingBag, User, FileText, Phone, Heart, Package, TrendingUp, MessageCircle, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import icon from '../../assets/images/icon.png';
 import icon4 from '../../assets/images/icon4.png';
@@ -272,6 +272,10 @@ export default function Header() {
                                 <Store className="w-4 h-4" />
                                 Lojas
                             </Link>
+                            <Link to="/blog" className='flex items-center gap-2 px-5 py-4 text-white hover:bg-white/10 font-semibold transition-colors'>
+                                <BookOpen className="w-4 h-4" />
+                                Blog
+                            </Link>
                             <Link to="/chat-ia" className='flex items-center gap-2 px-5 py-4 text-white hover:bg-white/10 font-semibold transition-colors'>
                                 <MessageCircle className="w-4 h-4" />
                                 Chat de IA
@@ -398,6 +402,10 @@ export default function Header() {
                         <Link to="/anuncie" className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 hover:text-primary transition-all whitespace-nowrap px-3 py-2 rounded-lg bg-white hover:bg-orange-50 shadow-sm border border-gray-100 active:scale-95">
                             <Package className="w-3.5 h-3.5" />
                             Anúncios
+                        </Link>
+                        <Link to="/blog" className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 hover:text-primary transition-all whitespace-nowrap px-3 py-2 rounded-lg bg-white hover:bg-orange-50 shadow-sm border border-gray-100 active:scale-95">
+                            <BookOpen className="w-3.5 h-3.5" />
+                            Blog
                         </Link>
                     </nav>
                 </div>
