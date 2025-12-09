@@ -367,7 +367,7 @@ export default function BlogPage() {
 								<input
 									type="email"
 									placeholder="O seu email"
-									className="w-full px-4 py-3 rounded-lg text-gray-700 text-sm mb-3 focus:outline-none focus:ring-2 focus:ring-white/50"
+									className="w-full px-4 py-3 rounded-lg bg-white text-gray-700 placeholder-gray-400 text-sm mb-3 focus:outline-none focus:ring-2 focus:ring-white/50"
 								/>
 								<button className="w-full bg-white text-primary font-bold py-3 rounded-lg hover:bg-gray-100 transition-colors">
 									Subscrever
