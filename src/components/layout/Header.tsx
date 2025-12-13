@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Search, ChevronDown, Menu, X, Store, Headset, Globe, ShoppingBag, User, FileText, Phone, Heart, Package, TrendingUp, MessageCircle, BookOpen } from 'lucide-react';
+import { Search, ChevronDown, Menu, X, Store, Headset, Globe, ShoppingBag, User, FileText, Heart, Package, TrendingUp, MessageCircle, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import icon from '../../assets/images/icon.png';
 import icon4 from '../../assets/images/icon4.png';
@@ -7,7 +7,6 @@ import icon4 from '../../assets/images/icon4.png';
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [currentLanguage, setCurrentLanguage] = useState('pt');
-    const [showCategoriesMenu, setShowCategoriesMenu] = useState(false);
     const [showLanguagesMenu, setShowLanguagesMenu] = useState(false);
     const [showPartnerModal, setShowPartnerModal] = useState(false);
 
@@ -24,281 +23,81 @@ export default function Header() {
 		{ code: 'st', name: 'Santomense', flag: '🇸🇹' },          // São Tomé e Príncipe
 	];
 
-    const featuredCategories = [
-        { 
-            icon: '☕', 
-            name: 'Cafés & Infusões', 
-            link: '/categorias/cafes',
-            description: 'Cafés etíopes, chás africanos',
-            badge: 'Popular'
-        },
-        { 
-            icon: '🌶️', 
-            name: 'Temperos & Molhos', 
-            link: '/categorias/temperos',
-            description: 'Piri-piri, berbere, harissa'
-        },
-        { 
-            icon: '🍹', 
-            name: 'Bebidas Artesanais', 
-            link: '/categorias/bebidas',
-            description: 'Vinhos, licores, sumos naturais'
-        },
-        { 
-            icon: '🌾', 
-            name: 'Cereais & Grãos', 
-            link: '/categorias/cereais',
-            description: 'Funge, fubá, milho'
-        },
-        { 
-            icon: '🥜', 
-            name: 'Óleos & Manteigas', 
-            link: '/categorias/oleos',
-            description: 'Óleo de coco, karité, palma',
-            badge: 'Premium'
-        },
-        { 
-            icon: '🍯', 
-            name: 'Doces & Snacks', 
-            link: '/categorias/doces',
-            description: 'Mel, frutos secos, biscoitos'
-        },
-        { 
-            icon: '✨', 
-            name: 'Especiarias', 
-            link: '/categorias/especiarias',
-            description: 'Gengibre, canela, cardamomo'
-        },
-        { 
-            icon: '🥘', 
-            name: 'Produtos Frescos', 
-            link: '/categorias/frescos',
-            description: 'Frutas, vegetais, carnes'
-        }
-    ];
-
     return (
-        <header className="bg-primary md:bg-white sticky top-0 z-50 shadow-sm">
-            {/* Top Bar - Desktop Only */}
-            <div className='hidden lg:block bg-orange-50 border-b border-orange-100'>
-                <div className='container mx-auto px-6'>
-                    <div className='flex items-center justify-between py-2.5'>
-                        {/* Left Side - Info */}
-                        <div className='flex items-center gap-6 text-sm'>
-                            <div className='flex items-center gap-2 text-gray-600'>
-                                <Store className="w-3.5 h-3.5 text-primary" />
-                                <span className='font-medium'>Marketplace de Confiança</span>
-                            </div>
-                            <div className='flex items-center gap-2 text-gray-600'>
-                                <Package className="w-3.5 h-3.5 text-primary" />
-                                <span>Entregas em Angola & Europa</span>
-                            </div>
-                        </div>
-
-                        {/* Right Side - Actions */}
-                        <div className='flex items-center gap-5'>
-                            <button 
-                                onClick={() => setShowPartnerModal(true)}
-                                className='flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-tertiary transition-colors'
-                            >
-                                <TrendingUp className="w-3.5 h-3.5" />
-                                Torna-te parceiro
-                            </button>
-                            <div className='w-px h-4 bg-gray-300'></div>
-                            <a href="tel:+244999000000" className='flex items-center gap-1.5 text-sm text-gray-700 hover:text-primary transition-colors'>
-                                <Phone className="w-3.5 h-3.5" />
-                                +244 999 000 000
-                            </a>
-                            <div className='w-px h-4 bg-gray-300'></div>
-                            <div className="relative group">
-                                <button className='flex items-center gap-1.5 text-sm text-gray-700 hover:text-primary transition-colors'>
-                                    <Globe className="w-3.5 h-3.5" />
-                                    <span className='font-medium'>{languages.find(lang => lang.code === currentLanguage)?.flag}</span>
-                                    <ChevronDown className="w-3 h-3" />
-                                </button>
-                                <div className="absolute right-0 top-full mt-2 bg-white border border-gray-200 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[180px] z-50 overflow-hidden">
-                                    {languages.map((lang) => (
-                                        <button
-                                            key={lang.code}
-                                            onClick={() => setCurrentLanguage(lang.code)}
-                                            className={`w-full flex items-center gap-3 px-4 py-2.5 text-sm hover:bg-orange-50 transition-colors text-left ${
-                                                currentLanguage === lang.code ? 'text-primary font-semibold bg-orange-50' : 'text-gray-700'
-                                            }`}
-                                        >
-                                            <span className="text-lg">{lang.flag}</span>
-                                            <span className="truncate">{lang.name}</span>
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+        <header className="bg-primary sticky top-0 z-50 shadow-sm">
+        
             {/* Main Navigation - Desktop */}
-            <nav className='hidden lg:block container mx-auto px-6 py-4'>
-                <div className="flex items-center justify-between gap-8">
-                    {/* Logo */}
-                    <Link to="/" className="shrink-0 group">
-                        <img
-                            src={icon}
-                            alt="Kutambula Marketplace"
-                            className="h-14 w-auto object-contain group-hover:scale-105 transition-transform duration-200"
-                        />
-                    </Link>
-
-                    {/* Search Bar */}
-                    <div className='flex-1 max-w-3xl'>
-                        <div className='w-full flex items-center gap-0 border-2 border-gray-300 hover:border-primary focus-within:border-primary focus-within:shadow-md rounded-full transition-all duration-200 overflow-hidden bg-white'>
-                            <input
-                                type="search"
-                                placeholder="Procurar café etíope, piri-piri, berbere, óleo de coco..."
-                                className='flex-1 bg-transparent text-sm placeholder:text-gray-500 focus:outline-none px-5 py-3.5 text-gray-700'
-                            />
-
-                            <button
-                                className='flex items-center gap-2 px-8 py-3.5 bg-primary hover:bg-tertiary text-white font-bold transition-all duration-200 hover:shadow-md active:scale-95'
-                                aria-label="Pesquisar"
-                            >
-                                <Search className="w-5 h-5" />
-                                <span>Pesquisar</span>
-                            </button>
+            <nav className='hidden lg:block bg-primary'>
+                <div className="container mx-auto px-6 py-4">
+                    <div className="flex items-center justify-between gap-6">
+                        {/* Menu Button & Logo */}
+                        <div className="flex items-center gap-4">
+                            <Link to="/" className="shrink-0 group">
+                                <img
+                                    src={icon4}
+                                    alt="Kutambula Marketplace"
+                                    className="w-60 object-contain group-hover:scale-105 transition-transform duration-200"
+                                />
+                            </Link>
                         </div>
-                    </div>
 
-                    {/* Right Actions */}
-                    <div className="flex items-center gap-4">
-                        {/* Wishlist */}
-                        <Link 
-                            to="/favoritos"
-                            className='flex flex-col items-center gap-1 p-2 hover:text-primary transition-colors group'
-                            aria-label="Lista de Desejos"
-                        >
+                        {/* Search Bar */}
+                        <div className='flex-1 max-w-2xl'>
                             <div className='relative'>
-                                <Heart className="w-6 h-6 text-gray-700 group-hover:text-primary group-hover:fill-primary transition-all" />
-                                <span className='absolute -top-1 -right-1 bg-primary text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center'>0</span>
+                                <input
+                                    type="search"
+                                    placeholder="Café, temperos, bebidas..."
+                                    className='w-full pl-10 pr-20 py-3 border-2 border-white rounded-full focus:outline-none focus:border-white focus:ring-2 focus:ring-white/20 text-sm bg-white/10 text-white placeholder:text-white/70 transition-all'
+                                />
+                                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/70" />
+                                <button
+                                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-white text-primary px-5 py-1.5 rounded-full text-sm font-bold transition-all active:scale-95 hover:shadow-md"
+                                >
+                                    Buscar
+                                </button>
                             </div>
-                            <span className='text-xs font-medium text-gray-600 group-hover:text-primary'>Favoritos</span>
-                        </Link>
+                        </div>
 
-                        {/* Cart */}
-                        <Link 
-                            to="/carrinho"
-                            className='flex flex-col items-center gap-1 p-2 hover:text-primary transition-colors group'
-                            aria-label="Carrinho de Compras"
-                        >
-                            <div className='relative'>
-                                <ShoppingBag className="w-6 h-6 text-gray-700 group-hover:text-primary transition-colors" />
-                                <span className='absolute -top-1 -right-1 bg-primary text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center'>0</span>
-                            </div>
-                            <span className='text-xs font-medium text-gray-600 group-hover:text-primary'>Carrinho</span>
-                        </Link>
+                        {/* Right Actions */}
+                        <div className="flex items-center gap-3">
+                            {/* Wishlist */}
+                            <Link 
+                                to="/favoritos"
+                                className='relative p-2 hover:bg-white/10 rounded-lg transition-all'
+                                aria-label="Lista de Desejos"
+                            >
+                                <Heart className="w-5 h-5 text-white" />
+                                <span className='absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center border-2 border-primary'>0</span>
+                            </Link>
 
-                        {/* User Account */}
-                        <Link 
-                            to="/conta"
-                            className='flex flex-col items-center gap-1 p-2 hover:text-primary transition-colors group'
-                            aria-label="Minha Conta"
-                        >
-                            <User className="w-6 h-6 text-gray-700 group-hover:text-primary transition-colors" />
-                            <span className='text-xs font-medium text-gray-600 group-hover:text-primary'>Conta</span>
-                        </Link>
+                            {/* Cart */}
+                            <Link 
+                                to="/carrinho"
+                                className='relative p-2 hover:bg-white/10 rounded-lg transition-all'
+                                aria-label="Carrinho de Compras"
+                            >
+                                <ShoppingBag className="w-5 h-5 text-white" />
+                                <span className='absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center border-2 border-primary'>0</span>
+                            </Link>
+
+                            {/* User Account */}
+                            <Link 
+                                to="/conta"
+                                className='p-2 hover:bg-white/10 rounded-lg transition-all'
+                                aria-label="Minha Conta"
+                            >
+                                <User className="w-5 h-5 text-white" />
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </nav>
-
-            {/* Categories Bar - Desktop */}
-            <div className='hidden lg:block bg-secondary border-t border-gray-200'>
-                <div className='container mx-auto px-6'>
-                    <div className='flex items-center justify-between'>
-                        {/* Categories Mega Menu Trigger */}
-                        <div className='relative'>
-                            <button
-                                onMouseEnter={() => setShowCategoriesMenu(true)}
-                                onMouseLeave={() => setShowCategoriesMenu(false)}
-                                className='flex items-center gap-3 px-6 py-4 bg-primary hover:bg-tertiary text-white font-bold transition-colors'
-                            >
-                                <Menu className="w-5 h-5" />
-                                <span>Todas as Categorias</span>
-                                <ChevronDown className="w-4 h-4" />
-                            </button>
-
-                            {/* Mega Menu */}
-                            {showCategoriesMenu && (
-                                <div 
-                                    onMouseEnter={() => setShowCategoriesMenu(true)}
-                                    onMouseLeave={() => setShowCategoriesMenu(false)}
-                                    className='absolute top-full left-0 bg-white shadow-2xl rounded-b-xl overflow-hidden z-50 w-[800px] border-t-4 border-primary'
-                                >
-                                    <div className='grid grid-cols-2 gap-0'>
-                                        {featuredCategories.map((category, index) => (
-                                            <Link
-                                                key={index}
-                                                to={category.link}
-                                                className='flex items-start gap-4 p-5 hover:bg-orange-50 transition-all group border-b border-r border-gray-100'
-                                            >
-                                                <div className='text-3xl bg-orange-100 rounded-lg p-3 group-hover:scale-110 transition-transform'>
-                                                    {category.icon}
-                                                </div>
-                                                <div className='flex-1'>
-                                                    <div className='flex items-center gap-2 mb-1'>
-                                                        <h3 className='font-bold text-gray-800 group-hover:text-primary transition-colors'>
-                                                            {category.name}
-                                                        </h3>
-                                                        {category.badge && (
-                                                            <span className='text-xs font-bold px-2 py-0.5 bg-primary text-white rounded-full'>
-                                                                {category.badge}
-                                                            </span>
-                                                        )}
-                                                    </div>
-                                                    <p className='text-sm text-gray-600'>{category.description}</p>
-                                                </div>
-                                            </Link>
-                                        ))}
-                                    </div>
-                                    <div className='bg-orange-50 p-4 text-center'>
-                                        <Link to="/categorias" className='text-primary font-bold hover:text-tertiary transition-colors'>
-                                            Ver Todas as Categorias →
-                                        </Link>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-
-                        {/* Quick Links */}
-                        <nav className='flex items-center gap-1'>
-                            <Link to="/marketplace" className='flex items-center gap-2 px-5 py-4 text-white hover:bg-white/10 font-semibold transition-colors'>
-                                <Store className="w-4 h-4" />
-                                Lojas
-                            </Link>
-                            <Link to="/blog" className='flex items-center gap-2 px-5 py-4 text-white hover:bg-white/10 font-semibold transition-colors'>
-                                <BookOpen className="w-4 h-4" />
-                                Blog
-                            </Link>
-                            <Link to="/chat-ia" className='flex items-center gap-2 px-5 py-4 text-white hover:bg-white/10 font-semibold transition-colors'>
-                                <MessageCircle className="w-4 h-4" />
-                                Chat de IA
-                                <span className='bg-primary text-white text-xs font-bold px-2 py-0.5 rounded-full'>Novo</span>
-                            </Link>
-                            <Link to="/servicos" className='flex items-center gap-2 px-5 py-4 text-white hover:bg-white/10 font-semibold transition-colors'>
-                                <TrendingUp className="w-4 h-4" />
-                                Serviços
-                            </Link>
-                            <Link to="/contacto" className='flex items-center gap-2 px-5 py-4 text-white hover:bg-white/10 font-semibold transition-colors'>
-                                <Headset className="w-4 h-4" />
-                                Ajuda
-                            </Link>
-                        </nav>
-                    </div>
-                </div>
-            </div>
 
             {/* Mobile Navigation */}
             <nav className='lg:hidden bg-primary'>
                 {/* Mobile Menu Overlay */}
                 <div 
-                    className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-50 lg:hidden transition-opacity duration-300 ${
+                    className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-50 transition-opacity duration-300 ${
                         isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
                     }`}
                     onClick={toggleMenu}
@@ -384,35 +183,45 @@ export default function Header() {
                 </div>
             </div>
 
-            {/* Mobile Quick Navigation */}
-            <div className="lg:hidden bg-orange-50 border-y border-orange-100 overflow-x-auto scrollbar-hide">
-                <div className="container mx-auto px-4 py-3">
-                    <nav className="flex gap-2 min-w-max">
-                        {/* <Link to="/marketplace" className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 hover:text-primary transition-all whitespace-nowrap px-3 py-2 rounded-lg bg-white hover:bg-orange-50 shadow-sm border border-gray-100 active:scale-95">
-                            <Store className="w-3.5 h-3.5" />
-                            Lojas
-                        </Link> */}
-                        <button 
-                            onClick={() => setShowPartnerModal(true)}
-                            className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 hover:text-primary transition-all whitespace-nowrap px-3 py-2 rounded-lg bg-white hover:bg-orange-50 shadow-sm border border-gray-100 active:scale-95"
-                        >
-                            <TrendingUp className="w-3.5 h-3.5" />
-                            Torna-te parceiro
-                        </button>
-                        <Link to="/anuncie" className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 hover:text-primary transition-all whitespace-nowrap px-3 py-2 rounded-lg bg-white hover:bg-orange-50 shadow-sm border border-gray-100 active:scale-95">
-                            <Package className="w-3.5 h-3.5" />
-                            Anúncios
-                        </Link>
-                        <Link to="/blog" className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 hover:text-primary transition-all whitespace-nowrap px-3 py-2 rounded-lg bg-white hover:bg-orange-50 shadow-sm border border-gray-100 active:scale-95">
-                            <BookOpen className="w-3.5 h-3.5" />
-                            Blog
-                        </Link>
+            {/* Quick Navigation - Desktop & Mobile */}
+            <div className="bg-orange-50 border-y border-orange-100 overflow-x-auto scrollbar-hide">
+                <div className="container mx-auto px-4 lg:px-6 py-3">
+                    <nav className="flex items-center justify-between gap-4">
+                        {/* Left Side - Menu Button (Desktop only) */}
+                        <div className="hidden lg:flex items-center gap-2">
+                            <button
+                                onClick={toggleMenu}
+                                className="flex items-center gap-2 text-sm font-semibold text-gray-700 hover:text-primary transition-all whitespace-nowrap px-3 py-2 rounded-lg bg-white hover:bg-orange-50 shadow-sm border border-gray-100 active:scale-95"
+                            >
+                                <Menu className="w-3.5 h-3.5" />
+                                Menu
+                            </button>
+                        </div>
+
+                        {/* Right Side - Quick Links */}
+                        <div className="flex gap-2 min-w-max lg:ml-auto">
+                            <button 
+                                onClick={() => setShowPartnerModal(true)}
+                                className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 hover:text-primary transition-all whitespace-nowrap px-3 py-2 rounded-lg bg-white hover:bg-orange-50 shadow-sm border border-gray-100 active:scale-95"
+                            >
+                                <TrendingUp className="w-3.5 h-3.5" />
+                                Torna-te parceiro
+                            </button>
+                            <Link to="/anuncie" className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 hover:text-primary transition-all whitespace-nowrap px-3 py-2 rounded-lg bg-white hover:bg-orange-50 shadow-sm border border-gray-100 active:scale-95">
+                                <Package className="w-3.5 h-3.5" />
+                                Anúncios
+                            </Link>
+                            <Link to="/blog" className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 hover:text-primary transition-all whitespace-nowrap px-3 py-2 rounded-lg bg-white hover:bg-orange-50 shadow-sm border border-gray-100 active:scale-95">
+                                <BookOpen className="w-3.5 h-3.5" />
+                                Blog
+                            </Link>
+                        </div>
                     </nav>
                 </div>
             </div>
 
-            {/* Mobile Sidebar Menu */}
-            <div className={`fixed top-0 left-0 h-full w-[340px] max-w-[85vw] bg-white shadow-2xl z-50 lg:hidden transform transition-transform duration-300 ease-in-out ${
+            {/* Sidebar Menu */}
+            <div className={`fixed top-0 left-0 h-full w-[340px] max-w-[85vw] bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${
                 isMenuOpen ? 'translate-x-0' : '-translate-x-full'
             }`}>
                 {/* Mobile Menu Header */}
