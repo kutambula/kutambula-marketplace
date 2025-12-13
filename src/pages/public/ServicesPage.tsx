@@ -1,84 +1,48 @@
 import Header from '../../components/layout/Header';
 import Footer from '../../components/layout/Footer';
 import { Link } from 'react-router-dom';
-import { Package, Truck, ShieldCheck, Headset, 
-		CreditCard, ArrowRight, CheckCircle,  Camera 
-} from 'lucide-react';
+import { ShoppingBag, Camera, Megaphone, ArrowRight, CheckCircle } from 'lucide-react';
 
 export default function ServicesPage() {
 
 	const services = [
 		{
 			id: 1,
-			icon: <Package className="w-8 h-8" />,
-			title: 'Importação de Produtos Africanos',
-			description: 'Facilitamos a importação de produtos autênticos diretamente de África para sua casa ou negócio.',
+			icon: <ShoppingBag className="w-8 h-8" />,
+			title: 'Venda de Produtos Alimentares e de Bebidas de Origem Africana',
+			description: 'Conectamos você aos melhores produtos alimentares e bebidas autênticos de África, com qualidade garantida e entrega confiável.',
 			features: [
-				'Seleção cuidadosa de fornecedores',
-				'Certificação de qualidade',
-				'Documentação aduaneira completa',
-				'Rastreamento em tempo real'
+				'Ampla variedade de produtos alimentares africanos',
+				'Bebidas tradicionais e autênticas',
+				'Produtos frescos e de qualidade',
+				'Importação direta de África',
+				'Certificação de origem e qualidade'
 			]
 		},
 		{
 			id: 2,
-			icon: <Truck className="w-8 h-8" />,
-			title: 'Entrega Expressa',
-			description: 'Entregamos seus produtos africanos favoritos de forma rápida e segura em Angola e Europa.',
+			icon: <Camera className="w-8 h-8" />,
+			title: 'Fotografia Profissional para Catálogo de Produtos',
+			description: 'Serviço completo de fotografia profissional para destacar seus produtos e atrair mais clientes no marketplace.',
 			features: [
-				'Entregas em 24-48h em Luanda',
-				'Entregas internacionais 5-7 dias',
-				'Embalagem térmica para frescos',
-				'Seguro de transporte incluído'
+				'Sessão fotográfica em estúdio profissional',
+				'Edição e tratamento de imagens',
+				'Fotos de alta qualidade para e-commerce',
+				'Pacotes personalizados para vendedores',
+				'Imagens otimizadas para catálogo online'
 			]
 		},
 		{
 			id: 3,
-			icon: <ShieldCheck className="w-8 h-8" />,
-			title: 'Garantia de Qualidade',
-			description: 'Todos os produtos passam por rigoroso controle de qualidade antes de chegarem até você.',
+			icon: <Megaphone className="w-8 h-8" />,
+			title: 'Serviço de Anúncio',
+			description: 'Promova seus produtos de forma eficaz no Kutambula Marketplace e alcance mais clientes com nossos serviços de anúncio.',
 			features: [
-				'Inspeção de produtos',
-				'Certificados sanitários',
-				'Garantia de frescor',
-				'Política de devolução 30 dias'
-			]
-		},
-		{
-			id: 4,
-			icon: <Headset className="w-8 h-8" />,
-			title: 'Suporte Personalizado',
-			description: 'Nossa equipa está sempre disponível para ajudar com suas dúvidas e necessidades.',
-			features: [
-				'Atendimento em português',
-				'WhatsApp Business ativo',
-				'Suporte via email e telefone',
-				'Consultoria de produtos gratuita'
-			]
-		},
-		{
-			id: 6,
-			icon: <CreditCard className="w-8 h-8" />,
-			title: 'Pagamento Flexível',
-			description: 'Oferecemos múltiplas opções de pagamento para sua comodidade e segurança.',
-			features: [
-				'Cartão de crédito/débito',
-				'Transferência bancária',
-				'MB WAY',
-				'Referência Multibanco',
-				'Pagamento com conversão automática de moeda'
-			]
-		},
-		{
-			id: 7,
-			icon: <Camera className="w-8 h-8" />,
-			title: 'Fotografia Profissional para catálogo',
-			description: 'Serviço completo de fotografia para destacar seus produtos e atrair mais clientes.',
-			features: [
-				'Sessão fotográfica em estúdio',
-				'Edição e tratamento de imagens',
-				'Fotos de alta qualidade para e-commerce',
-				'Pacotes personalizados para vendedores'
+				'Destaque seus produtos no marketplace',
+				'Maior visibilidade para sua loja',
+				'Posicionamento estratégico dos anúncios',
+				'Relatórios de desempenho',
+				'Suporte para otimização de vendas'
 			]
 		}
 	];
@@ -119,7 +83,7 @@ export default function ServicesPage() {
 						<div className="flex flex-wrap items-center justify-center gap-4">
 							<Link to="/marketplace">
 								<button className="bg-primary hover:bg-tertiary text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 flex items-center gap-2">
-									<Package className="w-5 h-5" />
+									<ShoppingBag className="w-5 h-5" />
 									<span>Explorar Produtos</span>
 									<ArrowRight className="w-5 h-5" />
 								</button>
