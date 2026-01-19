@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Chrome, Facebook, Apple, Eye, EyeOff } from 'lucide-react';
-import icon4 from '../../assets/images/icon5.png';
+import icon4 from '../../assets/images/icon.png';
 
 export default function LoginPage() {
     const [identifier, setIdentifier] = useState('');
@@ -11,21 +11,22 @@ export default function LoginPage() {
     return (
         <div className="min-h-screen bg-background flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
             {/* Logo Section */}
-            <div className="mb-6 w-full max-w-sm flex justify-center">
+           
+
+            {/* Login Card */}
+            <div className="w-full max-w-[400px] bg-white rounded-3xl shadow-xl border border-gray-100 p-6 sm:p-8">
+                <div className="text-center mb-2">
+                     <div className="mb-2 w-full max-w-sm flex justify-center">
                 <Link to="/" className="group">
                     <img
                         src={icon4}
                         alt="Kutambula Marketplace"
-                        className="w-32 sm:w-40 object-contain transition-transform duration-300 group-hover:scale-105"
+                        className="w-16 sm:w-16 object-contain transition-transform duration-300 group-hover:scale-105"
                     />
                 </Link>
-            </div>
-
-            {/* Login Card */}
-            <div className="w-full max-w-[400px] bg-white rounded-3xl shadow-xl border border-gray-100 p-6 sm:p-8">
-                <div className="text-center mb-6">
+                </div>
                     <h1 className="text-xl sm:text-2xl font-black text-secondary mb-1">
-                        Inicie sessão na sua conta
+                        Inicie sessão na <br/> sua conta
                     </h1>
                     <p className="text-xs text-gray-500 font-medium">
                         Novo no Kutambula?{' '}

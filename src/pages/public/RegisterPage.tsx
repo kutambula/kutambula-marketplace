@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Chrome, Facebook, Apple, Eye, EyeOff, User, Building2, ChevronDown, CheckCircle2 } from 'lucide-react';
-import icon5 from '../../assets/images/icon5.png';
+import icon5 from '../../assets/images/icon.png';
 import sidebarImage from '../../assets/images/registration_sidebar.png';
 
 export default function RegisterPage() {
@@ -34,11 +34,11 @@ export default function RegisterPage() {
                 />
                 <div className="absolute inset-0 bg-linear-to-tr from-black/80 via-black/40 to-transparent flex flex-col justify-center p-16 xl:p-24">
                     <div className="max-w-xl">
-                        <h2 className="text-5xl xl:text-7xl font-black text-white mb-8 leading-tight drop-shadow-2xl">
-                            Sabores Autênticos <br /> de África
+                        <h2 className="text-4xl xl:text-6xl font-black text-white mb-8 leading-tight drop-shadow-2xl">
+                            Sabores Autênticos de África
                         </h2>
                         <div className="w-24 h-2 bg-primary mb-8 rounded-full"></div>
-                        <p className="text-xl xl:text-3xl text-white/95 font-semibold leading-relaxed drop-shadow-lg">
+                        <p className="text-lg xl:text-2xl text-white/95 font-semibold leading-relaxed drop-shadow-lg">
                             Junte-se à maior comunidade de comércio africano e descubra produtos únicos de todo o continente.
                         </p>
                     </div>
@@ -51,7 +51,7 @@ export default function RegisterPage() {
                     {/* Header */}
                     <div className="flex flex-col items-center mb-4">
                         <Link to="/" className="mb-3 hover:scale-105 transition-transform">
-                            <img src={icon5} alt="Kutambula" className="w-32 sm:w-36 object-contain" />
+                            <img src={icon5} alt="Kutambula" className="w-16 sm:w-16 object-contain" />
                         </Link>
                         <h1 className="text-xl sm:text-2xl font-black text-secondary text-center mb-1">
                             Criar uma conta
