@@ -6,6 +6,8 @@ import AdvertisePage from '../pages/public/AdvertisePage';
 import ServicesPage from '../pages/public/ServicesPage';
 import ChatPage from '../pages/public/ChatPage';
 import BlogPage from '../pages/public/BlogPage';
+import LoginPage from '../pages/public/LoginPage';
+import RegisterPage from '../pages/public/RegisterPage';
 import { Route, Routes } from 'react-router-dom';
 
 export default function LayoutRoot() {
@@ -19,6 +21,8 @@ export default function LayoutRoot() {
 			<Route path='/servicos' element={<ServicesPage />} />
 			<Route path='/chat-ia' element={<ChatPage />} />
 			<Route path='/blog' element={<BlogPage />} />
+			<Route path='/login' element={<LoginPage />} />
+			<Route path='/register' element={<RegisterPage />} />
 		</Routes>
 	);
 }

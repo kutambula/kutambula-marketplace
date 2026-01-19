@@ -13,19 +13,19 @@ export default function Header() {
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
     const languages = [
-		{ code: 'pt', name: 'Português', flag: '🇵🇹' },           // Portugal
-		{ code: 'en', name: 'English', flag: '🇬🇧' },            // Reino Unido
-		{ code: 'fr', name: 'Français', flag: '🇫🇷' },           // França
-		{ code: 'it', name: 'Italiano', flag: '🇮🇹' },           // Itália
-		{ code: 'km', name: 'Kimbundo', flag: '🇦🇴' },           // Angola (língua nacional)
-		{ code: 'gw', name: 'Crioulo Guineense', flag: '🇬🇼' },   // Guiné-Bissau
-		{ code: 'cv', name: 'Cabo-verdiano', flag: '🇨🇻' },       // Cabo Verde
-		{ code: 'st', name: 'Santomense', flag: '🇸🇹' },          // São Tomé e Príncipe
-	];
+        { code: 'pt', name: 'Português', flag: '🇵🇹' },           // Portugal
+        { code: 'en', name: 'English', flag: '🇬🇧' },            // Reino Unido
+        { code: 'fr', name: 'Français', flag: '🇫🇷' },           // França
+        { code: 'it', name: 'Italiano', flag: '🇮🇹' },           // Itália
+        { code: 'km', name: 'Kimbundo', flag: '🇦🇴' },           // Angola (língua nacional)
+        { code: 'gw', name: 'Crioulo Guineense', flag: '🇬🇼' },   // Guiné-Bissau
+        { code: 'cv', name: 'Cabo-verdiano', flag: '🇨🇻' },       // Cabo Verde
+        { code: 'st', name: 'Santomense', flag: '🇸🇹' },          // São Tomé e Príncipe
+    ];
 
     return (
         <header className="bg-primary sticky top-0 z-50 shadow-sm">
-        
+
             {/* Main Navigation - Desktop */}
             <nav className='hidden lg:block bg-primary'>
                 <div className="container mx-auto px-6 py-4">
@@ -61,7 +61,7 @@ export default function Header() {
                         {/* Right Actions */}
                         <div className="flex items-center gap-3">
                             {/* Wishlist */}
-                            <Link 
+                            <Link
                                 to="/favoritos"
                                 className='relative p-2 hover:bg-white/10 rounded-lg transition-all'
                                 aria-label="Lista de Desejos"
@@ -71,7 +71,7 @@ export default function Header() {
                             </Link>
 
                             {/* Cart */}
-                            <Link 
+                            <Link
                                 to="/carrinho"
                                 className='relative p-2 hover:bg-white/10 rounded-lg transition-all'
                                 aria-label="Carrinho de Compras"
@@ -81,8 +81,8 @@ export default function Header() {
                             </Link>
 
                             {/* User Account */}
-                            <Link 
-                                to="/conta"
+                            <Link
+                                to="/login"
                                 className='p-2 hover:bg-white/10 rounded-lg transition-all'
                                 aria-label="Minha Conta"
                             >
@@ -96,10 +96,9 @@ export default function Header() {
             {/* Mobile Navigation */}
             <nav className='lg:hidden bg-primary'>
                 {/* Mobile Menu Overlay */}
-                <div 
-                    className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-50 transition-opacity duration-300 ${
-                        isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
-                    }`}
+                <div
+                    className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-50 transition-opacity duration-300 ${isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+                        }`}
                     onClick={toggleMenu}
                 />
 
@@ -132,7 +131,7 @@ export default function Header() {
                         {/* Right Menu */}
                         <div className="flex items-center gap-2">
                             {/* Wishlist */}
-                            <Link 
+                            <Link
                                 to="/favoritos"
                                 className='relative p-2 hover:bg-white/10 rounded-lg transition-all active:scale-95'
                                 aria-label="Lista de Desejos"
@@ -153,7 +152,7 @@ export default function Header() {
 
                             {/* User Account */}
                             <Link
-                                to="/conta"
+                                to="/login"
                                 className='p-2 hover:bg-white/10 rounded-lg transition-all active:scale-95'
                                 aria-label="Minha Conta"
                             >
@@ -200,7 +199,7 @@ export default function Header() {
 
                         {/* Right Side - Quick Links */}
                         <div className="flex gap-2 min-w-max lg:ml-auto">
-                            <button 
+                            <button
                                 onClick={() => setShowPartnerModal(true)}
                                 className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 hover:text-primary transition-all whitespace-nowrap px-3 py-2 rounded-lg bg-white hover:bg-orange-50 shadow-sm border border-gray-100 active:scale-95"
                             >
@@ -221,9 +220,8 @@ export default function Header() {
             </div>
 
             {/* Sidebar Menu */}
-            <div className={`fixed top-0 left-0 h-full w-[340px] max-w-[85vw] bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${
-                isMenuOpen ? 'translate-x-0' : '-translate-x-full'
-            }`}>
+            <div className={`fixed top-0 left-0 h-full w-[340px] max-w-[85vw] bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'
+                }`}>
                 {/* Mobile Menu Header */}
                 <div className="flex items-center justify-between p-4 bg-primary">
                     <div className="flex items-center gap-3">
@@ -265,8 +263,8 @@ export default function Header() {
                         <nav className="space-y-2">
                             {/* Featured Actions */}
                             <div className="mb-4 space-y-2">
-                                <Link 
-                                    to="/chat-ia" 
+                                <Link
+                                    to="/chat-ia"
                                     className="flex items-center justify-between p-4 bg-primary hover:bg-tertiary rounded-xl shadow-md transition-all active:scale-95"
                                     onClick={toggleMenu}
                                 >
@@ -282,7 +280,7 @@ export default function Header() {
                                     <span className="bg-white text-primary text-xs font-bold px-2 py-1 rounded-full">Novo</span>
                                 </Link>
 
-                                <button 
+                                <button
                                     onClick={() => {
                                         setShowPartnerModal(true);
                                         toggleMenu();
@@ -331,8 +329,8 @@ export default function Header() {
                                 <h3 className="text-xs font-bold text-gray-900 uppercase tracking-wide mb-3 px-1">Explorar</h3>
                                 <ul className="space-y-1">
                                     <li>
-                                        <Link 
-                                            to="/marketplace" 
+                                        <Link
+                                            to="/marketplace"
                                             className="flex items-center gap-3 px-3 py-3 text-gray-700 hover:bg-orange-50 hover:text-primary rounded-xl transition-all"
                                             onClick={toggleMenu}
                                         >
@@ -341,8 +339,8 @@ export default function Header() {
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link 
-                                            to="/servicos" 
+                                        <Link
+                                            to="/servicos"
                                             className="flex items-center gap-3 px-3 py-3 text-gray-700 hover:bg-orange-50 hover:text-primary rounded-xl transition-all"
                                             onClick={toggleMenu}
                                         >
@@ -358,8 +356,8 @@ export default function Header() {
                                 <h3 className="text-xs font-bold text-gray-900 uppercase tracking-wide mb-3 px-1">Minha Conta</h3>
                                 <ul className="space-y-1">
                                     <li>
-                                        <Link 
-                                            to="/login" 
+                                        <Link
+                                            to="/login"
                                             className="flex items-center gap-3 px-3 py-3.5 bg-primary hover:bg-tertiary text-white rounded-xl transition-all active:scale-95 shadow-md"
                                             onClick={toggleMenu}
                                         >
@@ -368,8 +366,8 @@ export default function Header() {
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link 
-                                            to="/carrinho" 
+                                        <Link
+                                            to="/carrinho"
                                             className="flex items-center justify-between px-3 py-3 text-gray-700 hover:bg-orange-50 hover:text-primary rounded-xl transition-all"
                                             onClick={toggleMenu}
                                         >
@@ -381,8 +379,8 @@ export default function Header() {
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link 
-                                            to="/favoritos" 
+                                        <Link
+                                            to="/favoritos"
                                             className="flex items-center justify-between px-3 py-3 text-gray-700 hover:bg-orange-50 hover:text-primary rounded-xl transition-all"
                                             onClick={toggleMenu}
                                         >
@@ -401,8 +399,8 @@ export default function Header() {
                                 <h3 className="text-xs font-bold text-gray-900 uppercase tracking-wide mb-3 px-1">Suporte & Ajuda</h3>
                                 <ul className="space-y-1">
                                     <li>
-                                        <Link 
-                                            to="/contato" 
+                                        <Link
+                                            to="/contato"
                                             className="flex items-center gap-3 px-3 py-3 text-gray-700 hover:bg-orange-50 hover:text-primary rounded-xl transition-all"
                                             onClick={toggleMenu}
                                         >
@@ -411,8 +409,8 @@ export default function Header() {
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link 
-                                            to="/sobre" 
+                                        <Link
+                                            to="/sobre"
                                             className="flex items-center gap-3 px-3 py-3 text-gray-700 hover:bg-orange-50 hover:text-primary rounded-xl transition-all"
                                             onClick={toggleMenu}
                                         >
@@ -423,8 +421,8 @@ export default function Header() {
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link 
-                                            to="/reclamacoes" 
+                                        <Link
+                                            to="/reclamacoes"
                                             className="flex items-center gap-3 px-3 py-3 text-gray-700 hover:bg-orange-50 hover:text-primary rounded-xl transition-all"
                                             onClick={toggleMenu}
                                         >
@@ -452,7 +450,7 @@ export default function Header() {
                             </div>
                             <ChevronDown className={`w-5 h-5 text-gray-600 transition-transform duration-300 ${showLanguagesMenu ? 'rotate-180' : ''}`} />
                         </button>
-                        
+
                         <div className={`overflow-hidden transition-all duration-300 ${showLanguagesMenu ? 'max-h-96' : 'max-h-0'}`}>
                             <div className="p-4 pt-0 grid grid-cols-2 gap-2">
                                 {languages.map((lang) => (
@@ -462,11 +460,10 @@ export default function Header() {
                                             setCurrentLanguage(lang.code);
                                             setShowLanguagesMenu(false);
                                         }}
-                                        className={`flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-semibold transition-all active:scale-95 ${
-                                            currentLanguage === lang.code 
-                                                ? 'bg-primary text-white shadow-md' 
+                                        className={`flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-semibold transition-all active:scale-95 ${currentLanguage === lang.code
+                                                ? 'bg-primary text-white shadow-md'
                                                 : 'bg-white text-gray-700 hover:bg-orange-50 border border-gray-200'
-                                        }`}
+                                            }`}
                                     >
                                         <span className="text-lg">{lang.flag}</span>
                                         <span className="truncate">{lang.name.split(' ')[0]}</span>
