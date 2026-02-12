@@ -9,6 +9,7 @@ import BlogPage from '../pages/public/BlogPage';
 import LoginPage from '../pages/public/LoginPage';
 import RegisterPage from '../pages/public/RegisterPage';
 import { Route, Routes } from 'react-router-dom';
+import DashboardPage from '../pages/public/Dashboard';
 
 export default function LayoutRoot() {
 	return (
@@ -17,6 +18,7 @@ export default function LayoutRoot() {
 			<Route path='/loja/:storeId' element={<StorePage />} />
 			<Route path='/contato' element={<ContactPage />} />
 			<Route path='/reclamacoes' element={<ComplaintsPage />} />
+			<Route path='/dashboard' element={<DashboardPage />} />
 			<Route path='/anuncie' element={<AdvertisePage />} />
 			<Route path='/servicos' element={<ServicesPage />} />
 			<Route path='/chat-ia' element={<ChatPage />} />

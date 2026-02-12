@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import { Chrome, Facebook, Apple, Eye, EyeOff, User, Building2, ChevronDown, CheckCircle2 } from 'lucide-react';
 import icon5 from '../../assets/images/icon.png';
 import sidebarImage from '../../assets/images/registration_sidebar.png';
+import { authClient } from '../../lib/auth-client';
 
 export default function RegisterPage() {
-    const [accountType, setAccountType] = useState('personal');
+    const [accountType, setAccountType] = useState<"personal" | "admin" | "business">('personal');
     const [showPassword, setShowPassword] = useState(false);
+    const [error, setError] = useState('');
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -22,6 +24,32 @@ export default function RegisterPage() {
         const val = type === 'checkbox' ? (e.target as HTMLInputElement).checked : value;
         setFormData(prev => ({ ...prev, [id]: val }));
     };
+
+    const handlerCreateUser = async (e: any) => {
+        e.preventDefault()
+
+        const { data, error } = await authClient.signUp.email({
+            email: formData.email, // user email address
+            password: formData.password, // user password -> min 8 characters by default
+            name: `${formData.firstName} ${formData.lastName}`,
+            callbackURL: "/dashboard" // A URL to redirect to after the user verifies their email (optional)
+        }, {
+            onRequest: (ctx) => {
+
+            },
+            onSuccess: (ctx) => {
+                //redirect to the dashboard or sign in page
+            },
+            onError: (ctx) => {
+                // display the error message
+                alert(ctx.error.message);
+            },
+        });
+
+        if (error) setError(error.message as string)
+
+        console.log(data)
+    }
 
     return (
         <div className="min-h-screen flex flex-col lg:flex-row bg-white">
@@ -97,7 +125,7 @@ export default function RegisterPage() {
                         </div>
                     )}
 
-                    <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
+                    <form className="space-y-3" onSubmit={handlerCreateUser}>
                         {accountType === 'personal' ? (
                             <div className="grid grid-cols-2 gap-3">
                                 {/* First Name */}

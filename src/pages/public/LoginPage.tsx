@@ -2,31 +2,46 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Chrome, Facebook, Apple, Eye, EyeOff } from 'lucide-react';
 import icon4 from '../../assets/images/icon.png';
+import { handlerProvider } from '../../hooks/useAuth';
+import { authClient } from '../../lib/auth-client';
 
 export default function LoginPage() {
     const [identifier, setIdentifier] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+
+    const handlerSignIn = async (e: any) => {
+        e.preventDefault()
+        const { data, error } = await authClient.signIn.email({
+            email: identifier,
+            password: password,
+            rememberMe: true,
+            callbackURL: "/dashboard",
+        });
+
+        if (error) setError(error.message as string)
+    }
 
     return (
         <div className="min-h-screen bg-background flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
             {/* Logo Section */}
-           
+
 
             {/* Login Card */}
             <div className="w-full max-w-[400px] bg-white rounded-3xl shadow-xl border border-gray-100 p-6 sm:p-8">
                 <div className="text-center mb-2">
-                     <div className="mb-2 w-full max-w-sm flex justify-center">
-                <Link to="/" className="group">
-                    <img
-                        src={icon4}
-                        alt="Kutambula Marketplace"
-                        className="w-16 sm:w-16 object-contain transition-transform duration-300 group-hover:scale-105"
-                    />
-                </Link>
-                </div>
+                    <div className="mb-2 w-full max-w-sm flex justify-center">
+                        <Link to="/" className="group">
+                            <img
+                                src={icon4}
+                                alt="Kutambula Marketplace"
+                                className="w-16 sm:w-16 object-contain transition-transform duration-300 group-hover:scale-105"
+                            />
+                        </Link>
+                    </div>
                     <h1 className="text-xl sm:text-2xl font-black text-secondary mb-1">
-                        Inicie sessão na <br/> sua conta
+                        Inicie sessão na <br /> sua conta
                     </h1>
                     <p className="text-xs text-gray-500 font-medium">
                         Novo no Kutambula?{' '}
@@ -36,7 +51,7 @@ export default function LoginPage() {
                     </p>
                 </div>
 
-                <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+                <form className="space-y-4" onSubmit={handlerSignIn}>
                     {/* Identifier Input */}
                     <div className="space-y-1.5">
                         <label htmlFor="identifier" className="block text-xs font-bold text-gray-700 ml-1">
@@ -97,6 +112,8 @@ export default function LoginPage() {
                         </span>
                     </label>
 
+                    <span className='text-red-600 text-sm'>{error}</span>
+
                     {/* Continue Button */}
                     <button
                         type="submit"
@@ -118,7 +135,9 @@ export default function LoginPage() {
 
                 {/* Social Logins */}
                 <div className="grid grid-cols-3 gap-3">
-                    <button className="flex items-center justify-center py-2 border-2 border-gray-100 rounded-xl hover:bg-gray-50 hover:border-gray-200 transition-all active:scale-[0.98]" title="Google">
+                    <button
+                        onClick={() => handlerProvider('google')}
+                        className="flex items-center justify-center py-2 border-2 border-gray-100 rounded-xl hover:bg-gray-50 hover:border-gray-200 transition-all active:scale-[0.98]" title="Google">
                         <Chrome className="w-4 h-4 text-[#4285F4]" />
                     </button>
                     <button className="flex items-center justify-center py-2 border-2 border-gray-100 rounded-xl hover:bg-gray-50 hover:border-gray-200 transition-all active:scale-[0.98]" title="Apple">
