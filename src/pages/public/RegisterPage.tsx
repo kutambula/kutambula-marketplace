@@ -1,12 +1,13 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, redirect, useNavigate } from 'react-router-dom';
 import { Chrome, Facebook, Apple, Eye, EyeOff, User, Building2, ChevronDown, CheckCircle2 } from 'lucide-react';
 import icon5 from '../../assets/images/icon.png';
 import sidebarImage from '../../assets/images/registration_sidebar.png';
-import { authClient } from '../../lib/auth-client';
+import { useRegister } from '../../hooks/useRegister';
+import { handlerProvider } from '../../hooks/useAuth';
 
 export default function RegisterPage() {
-    const [accountType, setAccountType] = useState<"personal" | "admin" | "business">('personal');
+    const [accountType, setAccountType] = useState<"personal" | "business">('personal');
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
     const [formData, setFormData] = useState({
@@ -19,6 +20,9 @@ export default function RegisterPage() {
         onlyBuying: false
     });
 
+    const muatationRegister = useRegister();
+    const navigate = useNavigate();
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { id, value, type } = e.target as HTMLInputElement;
         const val = type === 'checkbox' ? (e.target as HTMLInputElement).checked : value;
@@ -28,27 +32,24 @@ export default function RegisterPage() {
     const handlerCreateUser = async (e: any) => {
         e.preventDefault()
 
-        const { data, error } = await authClient.signUp.email({
-            email: formData.email, // user email address
-            password: formData.password, // user password -> min 8 characters by default
-            name: `${formData.firstName} ${formData.lastName}`,
-            callbackURL: "/dashboard" // A URL to redirect to after the user verifies their email (optional)
+        muatationRegister.mutate({
+            email: formData.email,
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            businessName: formData.businessName,
+            password: formData.password,
+            country: formData.country,
+            onlyBuying: formData.onlyBuying,
+            accountType,
         }, {
-            onRequest: (ctx) => {
-
+            onSuccess: () => {
+                navigate("/login")
             },
-            onSuccess: (ctx) => {
-                //redirect to the dashboard or sign in page
-            },
-            onError: (ctx) => {
-                // display the error message
-                alert(ctx.error.message);
-            },
-        });
-
-        if (error) setError(error.message as string)
-
-        console.log(data)
+            onError: (error) => {
+                setError(error.message)
+                console.error(error)
+            }
+        })
     }
 
     return (
@@ -268,12 +269,18 @@ export default function RegisterPage() {
                             </p>
                         </div>
 
+                        <span className='text-red text-sm'>{error}</span>
+
                         {/* Submit Button */}
                         <button
                             type="submit"
+                            disabled={muatationRegister.isPending}
                             className="w-full bg-primary hover:bg-tertiary text-white font-black py-3 rounded-xl shadow-md hover:shadow-primary/20 transition-all duration-300 active:scale-[0.98] transform mt-1 text-sm"
                         >
-                            Criar conta {accountType === 'personal' ? 'pessoal' : 'empresarial'}
+                            {muatationRegister.isPending
+                                ? 'Criando conta...'
+                                : `Criar conta ${accountType === 'personal' ? 'pessoal' : 'empresarial'}`
+                            }
                         </button>
                     </form>
 
@@ -290,13 +297,19 @@ export default function RegisterPage() {
                             </div>
 
                             <div className="grid grid-cols-3 gap-3">
-                                <button className="flex items-center justify-center py-2 border-2 border-gray-100 rounded-xl hover:bg-white hover:border-gray-200 transition-all active:scale-[0.98] bg-white shadow-sm" title="Google">
+                                <button
+                                    onClick={() => handlerProvider('google')}
+                                    className="flex items-center justify-center py-2 border-2 border-gray-100 rounded-xl hover:bg-white hover:border-gray-200 transition-all active:scale-[0.98] bg-white shadow-sm" title="Google">
                                     <Chrome className="w-4 h-4 text-[#4285F4]" />
                                 </button>
-                                <button className="flex items-center justify-center py-2 border-2 border-gray-100 rounded-xl hover:bg-white hover:border-gray-200 transition-all active:scale-[0.98] bg-white shadow-sm" title="Apple">
+                                <button
+                                    onClick={() => handlerProvider('google')}
+                                    className="flex items-center justify-center py-2 border-2 border-gray-100 rounded-xl hover:bg-white hover:border-gray-200 transition-all active:scale-[0.98] bg-white shadow-sm" title="Apple">
                                     <Apple className="w-4 h-4 text-black" />
                                 </button>
-                                <button className="flex items-center justify-center py-2 border-2 border-gray-100 rounded-xl hover:bg-white hover:border-gray-200 transition-all active:scale-[0.98] bg-white shadow-sm" title="Facebook">
+                                <button
+                                    onClick={() => handlerProvider('google')}
+                                    className="flex items-center justify-center py-2 border-2 border-gray-100 rounded-xl hover:bg-white hover:border-gray-200 transition-all active:scale-[0.98] bg-white shadow-sm" title="Facebook">
                                     <Facebook className="w-4 h-4 text-[#1877F2]" />
                                 </button>
                             </div>

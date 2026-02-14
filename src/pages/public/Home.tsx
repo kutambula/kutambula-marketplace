@@ -9,106 +9,39 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import HomeHero from '../../components/sections/HomeHero';
 import WhyKutambula from '../../components/sections/WhyKutambula';
+import { useQuery } from '@tanstack/react-query';
+
+export interface organizationResponse {
+	id: string,
+	category: string,
+	averageRating: number,
+	ratingsCount: number,
+	_count: {
+		products: number
+	},
+	specialties: [string]
+	name: string
+	logo: string
+	banner: string
+	description: string
+	verified: true,
+}
 
 export default function HomePage() {
-	const featuredStores = [
-		{
-			id: 1,
-			name: 'Sabores da África',
-			logo: 'https://images.unsplash.com/photo-1488900128323-21503983a07e?w=200&h=200&fit=crop',
-			banner: 'https://images.unsplash.com/photo-1578474846511-04ba529f0b88?w=800&h=400&fit=crop',
-			category: 'Alimentos Tradicionais',
-			rating: 4.9,
-			totalProducts: 450,
-			verified: true,
-			description: 'Ingredientes autênticos e especiarias africanas',
-			specialties: ['Fufu', 'Especiarias', 'Grãos']
+	const [page, setPage] = useState(1);
+	const [limit] = useState(5);
+
+	const { data: featuredStores, isLoading, error } = useQuery<organizationResponse[] | null>({
+		queryKey: ['organizations'],
+		queryFn: async () => {
+			const res = await fetch(`${import.meta.env.VITE_API_URL}/organization/list?limit=${limit}&page=${page}`);
+			if (!res.ok) throw new Error('Network response was not ok');
+			return res.json() as Promise<organizationResponse[]>;
 		},
-		{
-			id: 2,
-			name: 'Bebidas Ancestrais',
-			logo: 'https://images.unsplash.com/photo-1544145945-f90425340c7e?w=200&h=200&fit=crop',
-			banner: 'https://images.unsplash.com/photo-1560512823-829485b8bf24?w=800&h=400&fit=crop',
-			category: 'Bebidas Artesanais',
-			rating: 4.8,
-			totalProducts: 280,
-			verified: true,
-			description: 'Sucos naturais, chás e bebidas tradicionais',
-			specialties: ['Bissap', 'Vinho de Palma', 'Chás']
-		},
-		{
-			id: 3,
-			name: 'Mercado Kizomba',
-			logo: 'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=200&h=200&fit=crop',
-			banner: 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=800&h=400&fit=crop',
-			category: 'Mercearia Africana',
-			rating: 4.7,
-			totalProducts: 680,
-			verified: true,
-			description: 'Variedade completa de produtos africanos',
-			specialties: ['Óleos', 'Farinhas', 'Conservas']
-		},
-		{
-			id: 4,
-			name: 'Aromas da Savana',
-			logo: 'https://images.unsplash.com/photo-1596040033229-a0b4d1ab7faa?w=200&h=200&fit=crop',
-			banner: 'https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=800&h=400&fit=crop',
-			category: 'Temperos & Molhos',
-			rating: 4.9,
-			totalProducts: 320,
-			verified: true,
-			description: 'Temperos exclusivos e molhos tradicionais',
-			specialties: ['Piri-Piri', 'Suya', 'Berbere']
-		},
-		{
-			id: 5,
-			name: 'Café Africano Premium',
-			logo: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=200&h=200&fit=crop',
-			banner: 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=800&h=400&fit=crop',
-			category: 'Cafés & Infusões',
-			rating: 4.8,
-			totalProducts: 190,
-			verified: true,
-			description: 'Cafés etíopes, quenianos e mais',
-			specialties: ['Etiópia', 'Quênia', 'Ruanda']
-		},
-		{
-			id: 6,
-			name: 'Doçura Africana',
-			logo: 'https://images.unsplash.com/photo-1514517521153-1be72277b32f?w=200&h=200&fit=crop',
-			banner: 'https://images.unsplash.com/photo-1587241321921-91a834d6d191?w=800&h=400&fit=crop',
-			category: 'Doces & Snacks',
-			rating: 4.6,
-			totalProducts: 240,
-			verified: true,
-			description: 'Doces tradicionais e snacks africanos',
-			specialties: ['Beignets', 'Chin Chin', 'Puff-Puff']
-		},
-		{
-			id: 7,
-			name: 'Grãos da Terra',
-			logo: 'https://images.unsplash.com/photo-1595855759920-86582396756a?w=200&h=200&fit=crop',
-			banner: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=800&h=400&fit=crop',
-			category: 'Cereais & Legumes',
-			rating: 4.7,
-			totalProducts: 410,
-			verified: true,
-			description: 'Milhete, sorgo, feijões e mais',
-			specialties: ['Milhete', 'Sorgo', 'Feijão Bambara']
-		},
-		{
-			id: 8,
-			name: 'Óleos & Manteigas',
-			logo: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=200&h=200&fit=crop',
-			banner: 'https://images.unsplash.com/photo-1609501676725-7186f017a4b0?w=800&h=400&fit=crop',
-			category: 'Óleos Naturais',
-			rating: 4.8,
-			totalProducts: 150,
-			verified: true,
-			description: 'Óleo de palma, karité e mais',
-			specialties: ['Palma', 'Karité', 'Coco']
-		}
-	];
+	});
+
+	if(featuredStores)
+		console.log(featuredStores)
 
 	const [isAtTop, setIsAtTop] = useState(true);
 
@@ -155,7 +88,7 @@ export default function HomePage() {
 			{/* Lojas em Destaque Section */}
 			<section className="py-8 sm:py-12 md:py-16">
 				<div className="container mx-auto px-4">
-					
+
 					<div className="text-center mb-8 sm:mb-10 md:mb-12">
 						<div className="flex items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4">
 							<i className='bx bx-store-alt text-2xl sm:text-3xl md:text-4xl text-primary'></i>
@@ -168,7 +101,9 @@ export default function HomePage() {
 
 					{/* Desktop Grid - Hidden on mobile/tablet */}
 					<div className="hidden lg:grid grid-cols-4 gap-6 xl:gap-8">
-						{featuredStores.map((store) => (
+						{isLoading && <span>Carregando...</span>}
+						{error && <span className='text-red-6000'>{error.message}</span>}
+						{featuredStores && featuredStores.map((store) => (
 							<Link
 								to={`/loja/${store.id}`}
 								key={store.id}
@@ -225,13 +160,13 @@ export default function HomePage() {
 										</p>
 
 										{/* Especialidades - Novo elemento */}
-											<div className="flex flex-wrap gap-2 mb-4 min-h-8">
-												{store.specialties.map((specialty, idx) => (
-													<span key={idx} className="text-xs bg-linear-to-r from-amber-50 to-orange-50 text-amber-700 font-semibold px-2.5 py-1 rounded-lg border border-amber-200/50">
-														{specialty}
-													</span>
-												))}
-											</div>
+										<div className="flex flex-wrap gap-2 mb-4 min-h-8">
+											{store.specialties.map((specialty, idx) => (
+												<span key={idx} className="text-xs bg-linear-to-r from-amber-50 to-orange-50 text-amber-700 font-semibold px-2.5 py-1 rounded-lg border border-amber-200/50">
+													{specialty}
+												</span>
+											))}
+										</div>
 
 										{/* Estatísticas - Redesenhadas */}
 										<div className="flex items-center justify-between py-4 border-t border-gray-100 mt-auto">
@@ -240,18 +175,17 @@ export default function HomePage() {
 													{[...Array(5)].map((_, i) => (
 														<Star
 															key={i}
-															className={`w-3.5 h-3.5 ${
-																i < Math.floor(store.rating)
-																	? 'text-amber-500 fill-amber-500'
-																	: 'text-gray-300 fill-gray-300'
-															}`}
+															className={`w-3.5 h-3.5 ${i < Math.floor(store.averageRating)
+																? 'text-amber-500 fill-amber-500'
+																: 'text-gray-300 fill-gray-300'
+																}`}
 														/>
 													))}
 												</div>
-												<span className="font-bold text-sm text-gray-900">{store.rating}</span>
+												<span className="font-bold text-sm text-gray-900">{store.averageRating}</span>
 											</div>
 											<div className="text-right">
-												<div className="text-lg font-black text-primary">{store.totalProducts}</div>
+												<div className="text-lg font-black text-primary">{store._count.products}</div>
 												<div className="text-xs text-gray-500 font-medium">produtos</div>
 											</div>
 										</div>
@@ -297,7 +231,7 @@ export default function HomePage() {
 							}}
 							className="stores-swiper pb-12!"
 						>
-							{featuredStores.map((store) => (
+							{featuredStores && featuredStores.map((store) => (
 								<SwiperSlide key={store.id}>
 									<Link
 										to={`/loja/${store.id}`}
@@ -348,9 +282,9 @@ export default function HomePage() {
 														{/* Rating mobile - movido para aqui */}
 														<div className="flex items-center gap-1.5 sm:hidden">
 															<Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
-															<span className="font-bold text-xs text-gray-900">{store.rating}</span>
+															<span className="font-bold text-xs text-gray-900">{store.averageRating}</span>
 															<span className="text-gray-400">•</span>
-															<span className="text-xs text-gray-500 font-semibold">{store.totalProducts} produtos</span>
+															<span className="text-xs text-gray-500 font-semibold">{store._count.products} produtos</span>
 														</div>
 													</div>
 												</div>
@@ -373,10 +307,10 @@ export default function HomePage() {
 												<div className="hidden sm:flex items-center justify-between pt-3 border-t border-gray-100 mt-auto">
 													<div className="flex items-center gap-1.5">
 														<Star className="w-4 h-4 text-amber-500 fill-amber-500" />
-														<span className="font-bold text-sm text-gray-900">{store.rating}</span>
+														<span className="font-bold text-sm text-gray-900">{store.averageRating}</span>
 													</div>
 													<div className="text-right">
-														<div className="text-base font-black text-primary">{store.totalProducts}</div>
+														<div className="text-base font-black text-primary">{store._count.products}</div>
 														<div className="text-xs text-gray-500 font-medium">produtos</div>
 													</div>
 													<div className="flex items-center gap-1 text-primary">
@@ -402,14 +336,14 @@ export default function HomePage() {
 
 						{/* Navigation buttons - Hidden on mobile, visible on tablet+ */}
 						<div className="hidden sm:flex justify-center items-center gap-4 mt-6">
-							<button 
+							<button
 								className="stores-swiper-button-prev w-12 h-12 bg-linear-to-r from-primary to-tertiary text-white rounded-full flex items-center justify-center hover:from-tertiary hover:to-primary transition-all duration-300 shadow-lg hover:shadow-xl"
 								aria-label="Loja anterior"
 							>
 								<ChevronLeft className="w-6 h-6" />
 							</button>
 							<div className="stores-swiper-pagination position-static! w-auto!"></div>
-							<button 
+							<button
 								className="stores-swiper-button-next w-12 h-12 bg-linear-to-r from-primary to-tertiary text-white rounded-full flex items-center justify-center hover:from-tertiary hover:to-primary transition-all duration-300 shadow-lg hover:shadow-xl"
 								aria-label="Próxima loja"
 							>
@@ -448,7 +382,7 @@ export default function HomePage() {
 
 			{/* Floating Action Buttons */}
 			<div className="fixed right-4 sm:right-6 bottom-6 z-50 flex flex-col gap-3">
-			
+
 				{/* Chat AI Button */}
 				<Link to="/chat-ia">
 					<button

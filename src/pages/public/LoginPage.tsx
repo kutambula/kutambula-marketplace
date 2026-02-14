@@ -13,7 +13,7 @@ export default function LoginPage() {
 
     const handlerSignIn = async (e: any) => {
         e.preventDefault()
-        const { data, error } = await authClient.signIn.email({
+        const { error } = await authClient.signIn.email({
             email: identifier,
             password: password,
             rememberMe: true,
@@ -140,10 +140,14 @@ export default function LoginPage() {
                         className="flex items-center justify-center py-2 border-2 border-gray-100 rounded-xl hover:bg-gray-50 hover:border-gray-200 transition-all active:scale-[0.98]" title="Google">
                         <Chrome className="w-4 h-4 text-[#4285F4]" />
                     </button>
-                    <button className="flex items-center justify-center py-2 border-2 border-gray-100 rounded-xl hover:bg-gray-50 hover:border-gray-200 transition-all active:scale-[0.98]" title="Apple">
+                    <button
+                        onClick={() => handlerProvider('google')}
+                        className="flex items-center justify-center py-2 border-2 border-gray-100 rounded-xl hover:bg-gray-50 hover:border-gray-200 transition-all active:scale-[0.98]" title="Apple">
                         <Apple className="w-4 h-4 text-black" />
                     </button>
-                    <button className="flex items-center justify-center py-2 border-2 border-gray-100 rounded-xl hover:bg-gray-50 hover:border-gray-200 transition-all active:scale-[0.98]" title="Facebook">
+                    <button
+                        onClick={() => handlerProvider('google')}
+                        className="flex items-center justify-center py-2 border-2 border-gray-100 rounded-xl hover:bg-gray-50 hover:border-gray-200 transition-all active:scale-[0.98]" title="Facebook">
                         <Facebook className="w-4 h-4 text-[#1877F2]" />
                     </button>
                 </div>
