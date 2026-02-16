@@ -45,25 +45,14 @@ export default function WhyKutambula() {
 			<div className="container mx-auto px-4 relative z-10">
 				{/* Header */}
 				<div className="text-center mb-10 sm:mb-12 md:mb-16">
-					<div className="flex items-center justify-center gap-2 sm:gap-3 mb-4 sm:mb-5">
-						<div className="relative">
-							<Award className="w-8 sm:w-10 md:w-12 h-8 sm:h-10 md:h-12 text-primary animate-bounce" style={{ animationDuration: '3s' }} />
-							<div className="absolute inset-0 bg-primary/20 blur-xl animate-pulse"></div>
-						</div>
-						<h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900">
-							Por que Escolher o Kutambula
-						</h2>
-					</div>
+					
+					<h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900">
+						Por que Escolher o Kutambula
+					</h2>
+				
 					<p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4 leading-relaxed">
 						Conectamos a diáspora africana em Portugal aos sabores autênticos de casa com qualidade, confiança e conveniência
 					</p>
-					
-					{/* Decorative line */}
-					<div className="flex items-center justify-center gap-3 mt-6">
-						<div className="h-1 w-16 sm:w-24 bg-linear-to-r from-transparent via-primary to-primary rounded-full"></div>
-						<div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-						<div className="h-1 w-16 sm:w-24 bg-linear-to-l from-transparent via-tertiary to-tertiary rounded-full"></div>
-					</div>
 				</div>
 
 				{/* Accordion Benefits */}

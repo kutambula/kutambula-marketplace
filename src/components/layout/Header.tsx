@@ -3,6 +3,7 @@ import { Search, ChevronDown, Menu, X, Store, Headset, Globe, ShoppingBag, User,
 import { Link } from 'react-router-dom';
 import icon from '../../assets/images/icon.png';
 import icon4 from '../../assets/images/icon4.png';
+import { authClient } from '../../lib/auth-client';
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,6 +12,8 @@ export default function Header() {
     const [showPartnerModal, setShowPartnerModal] = useState(false);
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+    const { data: session, isPending } = authClient.useSession()
 
     const languages = [
         { code: 'pt', name: 'Português', flag: '🇵🇹' },           // Portugal
@@ -32,7 +35,7 @@ export default function Header() {
                     <div className="flex items-center justify-between gap-6">
                         {/* Menu Button & Logo */}
                         <div className="flex items-center gap-4">
-                            <Link to="/" className="shrink-0 group">
+                            <Link to={`${session ? '/': "/"}`} className="shrink-0 group">
                                 <img
                                     src={icon4}
                                     alt="Kutambula Marketplace"
@@ -81,13 +84,29 @@ export default function Header() {
                             </Link>
 
                             {/* User Account */}
-                            <Link
-                                to="/login"
-                                className='p-2 hover:bg-white/10 rounded-lg transition-all'
-                                aria-label="Minha Conta"
-                            >
-                                <User className="w-5 h-5 text-white" />
-                            </Link>
+                            {isPending && (<div className="rounded-full bg-white w-8 h-8 m-0 animate-pulse" />)}
+                            {!isPending &&
+                                (session?.user ? (
+                                    <Link
+                                        to="/dashboard"
+                                        className=''
+                                        aria-label="Minha Conta"
+                                    >
+                                        <img
+                                            src={session.user.image || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFCzxivJXCZk0Kk8HsHujTO3Olx0ngytPrWw&s"}
+                                            alt={session.user.name}
+                                            className='rounded-full bg-white w-8 h-8 m-0'
+                                        />
+                                    </Link>
+                                ) : (
+                                    <Link
+                                        to="/login"
+                                        className='p-2 hover:bg-white/10 rounded-lg transition-all'
+                                        aria-label="Minha Conta"
+                                    >
+                                        <User className="w-5 h-5 text-white" />
+                                    </Link>
+                                ))}
                         </div>
                     </div>
                 </div>
@@ -461,8 +480,8 @@ export default function Header() {
                                             setShowLanguagesMenu(false);
                                         }}
                                         className={`flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-semibold transition-all active:scale-95 ${currentLanguage === lang.code
-                                                ? 'bg-primary text-white shadow-md'
-                                                : 'bg-white text-gray-700 hover:bg-orange-50 border border-gray-200'
+                                            ? 'bg-primary text-white shadow-md'
+                                            : 'bg-white text-gray-700 hover:bg-orange-50 border border-gray-200'
                                             }`}
                                     >
                                         <span className="text-lg">{lang.flag}</span>
