@@ -34,11 +34,11 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
 	) => {
 		const selectId = id || label?.toLowerCase().replace(/\s+/g, "-");
 
-		const baseSelectStyles = "w-full px-4 py-2.5 border rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 disabled:bg-gray-100 disabled:cursor-not-allowed appearance-none bg-white";
+		const baseSelectStyles = "w-full px-4 py-2.5 border rounded-xl transition-all duration-200 focus:outline-none focus:ring-1 disabled:bg-gray-100 disabled:cursor-not-allowed appearance-none bg-white";
 		
 		const errorStyles = error
-			? "border-red-500 focus:border-red-500 focus:ring-red-500"
-			: "border-gray-200 focus:border-primary focus:ring-primary";
+			? "border-red-500 focus:border-red-500 focus:ring-red-500/50"
+			: "border-gray-200 focus:border-primary focus:ring-primary/40";
 		
 		const iconPaddingStyles = icon ? "pl-11" : "";
 

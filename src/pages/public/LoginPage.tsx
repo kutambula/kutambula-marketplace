@@ -55,7 +55,7 @@ export default function LoginPage() {
                         type="text"
                         value={identifier}
                         onChange={(e) => setIdentifier(e.target.value)}
-                        placeholder="ex: joao@email.com"
+                        placeholder="ex: kutambula@email.com"
                         fullWidth
                     />
 
@@ -74,7 +74,7 @@ export default function LoginPage() {
                                 onClick={() => setShowPassword(!showPassword)}
                                 className="text-gray-400 hover:text-primary transition-colors p-1"
                             >
-                                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                                {showPassword ? <Eye size={18} /> : <EyeOff size={18} />}
                             </button>
                         }
                     />
