@@ -341,27 +341,15 @@ export default function MainContent() {
                 <div className="mb-8 sm:mb-10 md:mb-12">
                     <div className="text-center">
                         {/* Título com Ícone */}
-                        <div className="flex items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-                            <div className="relative">
-                                <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full"></div>
-                                <Package className="relative w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 text-primary animate-bounce" style={{ animationDuration: '3s' }} />
-                            </div>
-                            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 bg-linear-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text">
+                       
+                        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 bg-linear-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text">
                                 Produtos Africanos Autênticos
-                            </h2>
-                        </div>
+                        </h2>
                         
                         {/* Descrição */}
                         <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto px-4 leading-relaxed">
                             Descubra sabores únicos e produtos tradicionais, direto de vendedores verificados de toda a África
                         </p>
-
-                        {/* Decorative Line */}
-                        <div className="flex items-center justify-center gap-3 mt-6">
-                            <div className="h-1 w-16 bg-linear-to-r from-transparent via-primary to-primary rounded-full"></div>
-                            <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-                            <div className="h-1 w-16 bg-linear-to-l from-transparent via-primary to-primary rounded-full"></div>
-                        </div>
                     </div>
                 </div>
                     
@@ -677,7 +665,7 @@ export default function MainContent() {
 
                 {/* Botão Ver Mais Produtos */}
                 <div className="mt-8 sm:mt-12 flex justify-center">
-                    <button className="group relative inline-flex items-center gap-3 px-8 sm:px-12 py-4 sm:py-5 bg-linear-to-r from-primary to-tertiary hover:from-tertiary hover:to-primary text-white font-bold text-base sm:text-lg rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden">
+                    <button className="group relative inline-flex items-center gap-3 px-8 sm:px-12 py-4 sm:py-5 bg-linear-to-r from-primary to-primary hover:from-tertiary hover:to-primary text-white font-bold text-base sm:text-lg rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden">
                         {/* Background Animation */}
                         <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                         

@@ -91,7 +91,6 @@ export default function HomePage() {
 
 					<div className="text-center mb-8 sm:mb-10 md:mb-12">
 						<div className="flex items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-							<i className='bx bx-store-alt text-2xl sm:text-3xl md:text-4xl text-primary'></i>
 							<h2 className="text-xl sm:text-2xl md:text-3xl font-black text-gray-900">Lojas em Destaque</h2>
 						</div>
 						<p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto px-4">
@@ -360,7 +359,7 @@ export default function HomePage() {
 					{/* Botão Ver Todas */}
 					<div className="text-center mt-8 sm:mt-10 md:mt-12">
 						<Link to="/lojas">
-							<button className="bg-linear-to-r from-primary via-tertiary to-primary bg-size-200 hover:bg-pos-100 text-white font-black px-8 sm:px-12 py-4 sm:py-5 rounded-2xl transition-all duration-500 transform hover:scale-105 shadow-xl hover:shadow-2xl text-sm sm:text-base">
+							<button className="bg-linear-to-r from-primary  to-primary bg-size-200 hover:bg-pos-100 text-white font-black px-8 sm:px-12 py-4 sm:py-5 rounded-2xl transition-all duration-500 transform hover:scale-105 shadow-xl hover:shadow-2xl text-sm sm:text-base">
 								<span className="flex items-center gap-3">
 									<i className='bx bx-store-alt text-xl sm:text-2xl'></i>
 									<span className="hidden sm:inline">Explorar Todas as Lojas</span>
