@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Header from '../../components/layout/Header';
 import Footer from '../../components/layout/Footer';
-import { useUpdateOrganization } from '../../hooks/useUpdateOrganization';
+import { useUpdateOrganization } from '../../hooks/useOrganization';
 import { queryClient } from '../../main';
 
 export interface organizationResponse {
@@ -41,7 +41,7 @@ export default function OrganizationSetting() {
         },
     });
 
-    const updateOrganizationMutation = useUpdateOrganization({ organizationId: storeId! })
+    const updateOrganizationMutation = useUpdateOrganization(storeId!)
 
     const [formData, setFormData] = useState({
         name: '',

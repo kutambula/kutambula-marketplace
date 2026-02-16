@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/Footer";
-import { useConfigureAccount } from "../../hooks/useConfigureAccount";
+import { useConfigureAccount } from "../../hooks/useOrganization";
 
 export default function ConfigureAccount() {
     const configureAccountMutation = useConfigureAccount();
