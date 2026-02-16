@@ -10,7 +10,6 @@ export default function CreateOrganization() {
 
     const navegate =  useNavigate();
 
-
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
