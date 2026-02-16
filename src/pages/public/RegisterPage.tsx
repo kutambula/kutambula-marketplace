@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Chrome, Facebook, Apple, Eye, EyeOff, User, Building2, ChevronDown, CheckCircle2 } from 'lucide-react';
+import { Chrome, Facebook, Apple, Eye, EyeOff, User, Building2, CheckCircle2 } from 'lucide-react';
 import icon5 from '../../assets/images/icon.png';
 import sidebarImage from '../../assets/images/registration_sidebar.png';
 import { useRegister } from '../../hooks/useRegister';
 import { handlerProvider } from '../../hooks/useAuth';
+import Input from '../../components/common/Form/Input';
+import Button from '../../components/common/Form/Button';
+import Select from '../../components/common/Form/Select';
 
 export default function RegisterPage() {
     const [accountType, setAccountType] = useState<"personal" | "business">('personal');
@@ -130,117 +133,88 @@ export default function RegisterPage() {
                         {accountType === 'personal' ? (
                             <div className="grid grid-cols-2 gap-3">
                                 {/* First Name */}
-                                <div className="space-y-1">
-                                    <label htmlFor="firstName" className="block text-xs font-bold text-gray-700 ml-1">
-                                        Nome
-                                    </label>
-                                    <input
-                                        id="firstName"
-                                        type="text"
-                                        value={formData.firstName}
-                                        onChange={handleInputChange}
-                                        className="w-full px-3 py-2.5 bg-white border-2 border-gray-100 rounded-xl focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all text-sm font-semibold placeholder:text-gray-400"
-                                        placeholder="João"
-                                    />
-                                </div>
+                                <Input
+                                    id="firstName"
+                                    type="text"
+                                    value={formData.firstName}
+                                    onChange={handleInputChange}
+                                    placeholder="João"
+                                    label="Nome"
+                                />
                                 {/* Last Name */}
-                                <div className="space-y-1">
-                                    <label htmlFor="lastName" className="block text-xs font-bold text-gray-700 ml-1">
-                                        Sobrenome
-                                    </label>
-                                    <input
-                                        id="lastName"
-                                        type="text"
-                                        value={formData.lastName}
-                                        onChange={handleInputChange}
-                                        className="w-full px-3 py-2.5 bg-white border-2 border-gray-100 rounded-xl focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all text-sm font-semibold placeholder:text-gray-400"
-                                        placeholder="Silva"
-                                    />
-                                </div>
+                                <Input
+                                    id="lastName"
+                                    type="text"
+                                    value={formData.lastName}
+                                    onChange={handleInputChange}
+                                    placeholder="Silva"
+                                    label="Sobrenome"
+                                />
                             </div>
                         ) : (
                             /* Business Name */
-                            <div className="space-y-1">
-                                <label htmlFor="businessName" className="block text-xs font-bold text-gray-700 ml-1">
-                                    Nome da Empresa
-                                </label>
-                                <input
-                                    id="businessName"
-                                    type="text"
-                                    value={formData.businessName}
-                                    onChange={handleInputChange}
-                                    className="w-full px-3 py-2.5 bg-white border-2 border-gray-100 rounded-xl focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all text-sm font-semibold placeholder:text-gray-400"
-                                    placeholder="Nome da sua empresa"
-                                />
-                            </div>
+                            <Input
+                                id="businessName"
+                                type="text"
+                                value={formData.businessName}
+                                onChange={handleInputChange}
+                                placeholder="Nome da sua empresa"
+                                label="Nome da Empresa"
+                                fullWidth
+                            />
                         )}
 
                         {/* Email Input */}
-                        <div className="space-y-1">
-                            <label htmlFor="email" className="block text-xs font-bold text-gray-700 ml-1">
-                                {accountType === 'personal' ? 'Email' : 'Email da Empresa'}
-                            </label>
-                            <input
-                                id="email"
-                                type="email"
-                                value={formData.email}
-                                onChange={handleInputChange}
-                                className="w-full px-3 py-2.5 bg-white border-2 border-gray-100 rounded-xl focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all text-sm font-semibold placeholder:text-gray-400"
-                                placeholder="ex: joao@email.com"
-                            />
-                        </div>
+                        <Input
+                            id="email"
+                            type="email"
+                            value={formData.email}
+                            onChange={handleInputChange}
+                            placeholder="ex: joao@email.com"
+                            label={accountType === 'personal' ? 'Email' : 'Email da Empresa'}
+                            fullWidth
+                        />
 
                         {/* Password Input */}
-                        <div className="space-y-1">
-                            <label htmlFor="password" className="block text-xs font-bold text-gray-700 ml-1">
-                                Senha
-                            </label>
-                            <div className="relative group">
-                                <input
-                                    id="password"
-                                    type={showPassword ? 'text' : 'password'}
-                                    value={formData.password}
-                                    onChange={handleInputChange}
-                                    className="w-full px-3 py-2.5 bg-white border-2 border-gray-100 rounded-xl focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all text-sm font-semibold placeholder:text-gray-400 pr-10"
-                                    placeholder="••••••••"
-                                />
+                        <Input
+                            id="password"
+                            type={showPassword ? 'text' : 'password'}
+                            value={formData.password}
+                            onChange={handleInputChange}
+                            placeholder="••••••••"
+                            label="Senha"
+                            fullWidth
+                            iconPosition="right"
+                            icon={
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-primary transition-colors p-1"
+                                    className="text-gray-400 hover:text-primary transition-colors p-1"
                                 >
                                     {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                                 </button>
-                            </div>
-                        </div>
+                            }
+                        />
 
                         {/* Business Location Section */}
                         {accountType === 'business' && (
                             <div className="space-y-3 pt-1">
-                                <div className="space-y-1">
-                                    <label htmlFor="country" className="block text-xs font-bold text-gray-700 ml-1">
-                                        Onde sua empresa está registrada?
-                                    </label>
-                                    <div className="relative">
-                                        <select
-                                            id="country"
-                                            value={formData.country}
-                                            onChange={handleInputChange}
-                                            className="w-full px-3 py-2.5 bg-white border-2 border-gray-100 rounded-xl focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all text-sm font-semibold appearance-none cursor-pointer"
-                                        >
-                                            <option value="Angola">Angola</option>
-                                            <option value="Brasil">Brasil</option>
-                                            <option value="Portugal">Portugal</option>
-                                            <option value="Cabo Verde">Cabo Verde</option>
-                                            <option value="Moçambique">Moçambique</option>
-                                            <option value="Outro">Outro</option>
-                                        </select>
-                                        <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" size={16} />
-                                    </div>
-                                    <p className="text-[10px] text-gray-400 ml-1">
-                                        Se sua empresa não estiver registrada, selecione seu país de residência.
-                                    </p>
-                                </div>
+                                <Select
+                                    id="country"
+                                    value={formData.country}
+                                    onChange={handleInputChange}
+                                    label="Onde sua empresa está registrada?"
+                                    options={[
+                                        { value: 'Angola', label: 'Angola' },
+                                        { value: 'Brasil', label: 'Brasil' },
+                                        { value: 'Portugal', label: 'Portugal' },
+                                        { value: 'Cabo Verde', label: 'Cabo Verde' },
+                                        { value: 'Moçambique', label: 'Moçambique' },
+                                        { value: 'Outro', label: 'Outro' }
+                                    ]}
+                                    fullWidth
+                                    helperText="Se sua empresa não estiver registrada, selecione seu país de residência."
+                                />
 
                                 <label className="flex items-start gap-2 cursor-pointer group p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                                     <div className="relative flex items-center mt-0.5">
@@ -269,19 +243,22 @@ export default function RegisterPage() {
                             </p>
                         </div>
 
-                        <span className='text-red text-sm'>{error}</span>
+                        <span className='text-red-600 text-sm'>{error}</span>
 
                         {/* Submit Button */}
-                        <button
+                        <Button
                             type="submit"
                             disabled={muatationRegister.isPending}
-                            className="w-full bg-primary hover:bg-tertiary text-white font-black py-3 rounded-xl shadow-md hover:shadow-primary/20 transition-all duration-300 active:scale-[0.98] transform mt-1 text-sm"
+                            variant="primary"
+                            size="lg"
+                            fullWidth
+                            className="mt-1"
                         >
                             {muatationRegister.isPending
                                 ? 'Criando conta...'
                                 : `Criar conta ${accountType === 'personal' ? 'pessoal' : 'empresarial'}`
                             }
-                        </button>
+                        </Button>
                     </form>
 
                     {/* Social Login Divider (Only for Personal) */}
@@ -297,21 +274,27 @@ export default function RegisterPage() {
                             </div>
 
                             <div className="grid grid-cols-3 gap-3">
-                                <button
+                                <Button
                                     onClick={() => handlerProvider('google')}
-                                    className="flex items-center justify-center py-2 border-2 border-gray-100 rounded-xl hover:bg-white hover:border-gray-200 transition-all active:scale-[0.98] bg-white shadow-sm" title="Google">
-                                    <Chrome className="w-4 h-4 text-[#4285F4]" />
-                                </button>
-                                <button
+                                    variant="outline"
+                                    icon={<Chrome className="w-4 h-4 text-[#4285F4]" />}
+                                    title="Google"
+                                    className="py-2"
+                                />
+                                <Button
                                     onClick={() => handlerProvider('google')}
-                                    className="flex items-center justify-center py-2 border-2 border-gray-100 rounded-xl hover:bg-white hover:border-gray-200 transition-all active:scale-[0.98] bg-white shadow-sm" title="Apple">
-                                    <Apple className="w-4 h-4 text-black" />
-                                </button>
-                                <button
+                                    variant="outline"
+                                    icon={<Apple className="w-4 h-4 text-black" />}
+                                    title="Apple"
+                                    className="py-2"
+                                />
+                                <Button
                                     onClick={() => handlerProvider('google')}
-                                    className="flex items-center justify-center py-2 border-2 border-gray-100 rounded-xl hover:bg-white hover:border-gray-200 transition-all active:scale-[0.98] bg-white shadow-sm" title="Facebook">
-                                    <Facebook className="w-4 h-4 text-[#1877F2]" />
-                                </button>
+                                    variant="outline"
+                                    icon={<Facebook className="w-4 h-4 text-[#1877F2]" />}
+                                    title="Facebook"
+                                    className="py-2"
+                                />
                             </div>
                         </>
                     )}
