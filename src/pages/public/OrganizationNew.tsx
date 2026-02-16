@@ -17,11 +17,11 @@ export default function CreateOrganization() {
         createOrganizationMutation.mutate({
             businessName
         }, {
-            onSuccess: (data) => {
+            onSuccess: (data: any) => {
                 alert(`Organização ${data.name} criada com sucesso!`);
                 navegate(`/dashboard/${data.id}`)
             },
-            onError: (error) => {
+            onError: (error: Error) => {
                 alert(error.message);
             },
         });

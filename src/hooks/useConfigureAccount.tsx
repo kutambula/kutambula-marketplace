@@ -17,7 +17,7 @@ export const useConfigureAccount = () => {
     return useMutation<ConfigureAccountReturn, Error, ConfigureAccountDTO>({
         mutationKey: ["create_organization"],
 
-        mutationFn: async (payload) => {
+        mutationFn: async (payload: ConfigureAccountDTO) => {
             const { data: user, error } = await authClient.token();
 
             if (error || !user?.token) {

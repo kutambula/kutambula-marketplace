@@ -20,14 +20,14 @@ export default function ConfigureAccount() {
                 accountType
             },
             {
-                onSuccess: (data) => {
+                onSuccess: (data: any) => {
                     if (accountType === "business") {
                         window.location.href = `/dashboard/${data.id}`;
                     } else {
                         window.location.href = "/dashboard";
                     }
                 },
-                onError: (error) => {
+                onError: (error: Error) => {
                     alert(error.message);
                 },
             }

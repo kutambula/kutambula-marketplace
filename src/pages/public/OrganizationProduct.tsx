@@ -46,7 +46,7 @@ export default function OrganizationProduct() {
                 stockQuantity: Number(formData.stockQuantity),
                 expiresAt: formData.expiresAt ? new Date(formData.expiresAt).toISOString() : undefined,
             }, {
-                onSuccess: (data) => alert(`Produto ${data.name} criado com sucesso!`),
+                onSuccess: (data: any) => alert(`Produto ${data.name} criado com sucesso!`),
                 onError: (error: any) => alert(error.message || "Erro ao criar produto"),
             });
         } catch (err: any) {

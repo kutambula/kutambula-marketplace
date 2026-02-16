@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, redirect, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Chrome, Facebook, Apple, Eye, EyeOff, User, Building2, ChevronDown, CheckCircle2 } from 'lucide-react';
 import icon5 from '../../assets/images/icon.png';
 import sidebarImage from '../../assets/images/registration_sidebar.png';
@@ -45,7 +45,7 @@ export default function RegisterPage() {
             onSuccess: () => {
                 navigate("/login")
             },
-            onError: (error) => {
+            onError: (error: Error) => {
                 setError(error.message)
                 console.error(error)
             }

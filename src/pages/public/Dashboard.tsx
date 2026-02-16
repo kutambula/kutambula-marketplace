@@ -42,7 +42,7 @@ export default function DashboardPage() {
                     <button onClick={handlerSignOut}>Terminar sessão</button>
                 </div>
                 <div>
-                    {organizations && organizations.map((org, index) => (
+                    {organizations && organizations.map((org: any, index: number) => (
                         <Link to={`/dashboard/${org.id}`} key={index}>
                             <p>{org.name}</p>
                         </Link>

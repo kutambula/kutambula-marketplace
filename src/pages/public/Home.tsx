@@ -28,7 +28,7 @@ export interface organizationResponse {
 }
 
 export default function HomePage() {
-	const [page, setPage] = useState(1);
+	const [page] = useState(1);
 	const [limit] = useState(5);
 
 	const { data: featuredStores, isLoading, error } = useQuery<organizationResponse[] | null>({
@@ -161,7 +161,7 @@ export default function HomePage() {
 
 										{/* Especialidades - Novo elemento */}
 										<div className="flex flex-wrap gap-2 mb-4 min-h-8">
-											{store.specialties.map((specialty, idx) => (
+											{store.specialties.map((specialty: string, idx: number) => (
 												<span key={idx} className="text-xs bg-linear-to-r from-amber-50 to-orange-50 text-amber-700 font-semibold px-2.5 py-1 rounded-lg border border-amber-200/50">
 													{specialty}
 												</span>
@@ -231,7 +231,7 @@ export default function HomePage() {
 							}}
 							className="stores-swiper pb-12!"
 						>
-							{featuredStores && featuredStores.map((store) => (
+						{featuredStores && featuredStores.map((store: organizationResponse) => (
 								<SwiperSlide key={store.id}>
 									<Link
 										to={`/loja/${store.id}`}
@@ -296,7 +296,7 @@ export default function HomePage() {
 
 												{/* Especialidades - Melhoradas */}
 												<div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4">
-													{store.specialties.slice(0, 3).map((specialty, idx) => (
+													{store.specialties.slice(0, 3).map((specialty: string, idx: number) => (
 														<span key={idx} className="text-[10px] sm:text-xs bg-linear-to-r from-amber-50 to-orange-50 text-amber-700 font-bold px-2 sm:px-2.5 py-1 rounded-lg border border-amber-200/50 shadow-sm">
 															{specialty}
 														</span>

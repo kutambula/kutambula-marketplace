@@ -29,7 +29,7 @@ export default function StorePage() {
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
     const [activeTab, setActiveTab] = useState<'products' | 'about' | 'reviews'>('products');
     const { storeId } = useParams();
-    const [page, setPage] = useState(1);
+    const [page] = useState(1);
     const [limit] = useState(5);
 
     const { data: store } = useQuery<organizationResponse | null>({
@@ -41,7 +41,7 @@ export default function StorePage() {
         },
     });
 
-    const { data: products, isLoading, error } = useQuery<ProductReturn | null>({
+    const { data: products } = useQuery<ProductReturn | null>({
         queryKey: ['products', storeId, page, limit],
         queryFn: async () => {
             const res = await fetch(`${import.meta.env.VITE_API_URL}/product/find/${storeId}?limit=${limit}&page=${page}`);
@@ -50,7 +50,7 @@ export default function StorePage() {
         },
     });
 
-    const totalPages = products?.total || 1;
+
 
     // Estatísticas da loja
     const stats = [
@@ -167,7 +167,7 @@ export default function StorePage() {
 
                                     {/* Tags */}
                                     <div className="flex flex-wrap gap-2">
-                                        {store?.specialties.map((tag, index) => (
+                                        {store?.specialties.map((tag: string, index: number) => (
                                             <span key={index} className="bg-gray-100 text-gray-700 text-xs font-semibold px-3 py-1 rounded-full">
                                                 {tag}
                                             </span>

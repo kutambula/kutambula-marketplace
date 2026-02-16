@@ -16,7 +16,7 @@ export const useCreateOrganization = () => {
     return useMutation<CreateOrganizationReturn, Error, CreateOrganizationDTO>({
         mutationKey: ["create_organization"],
 
-        mutationFn: async (payload) => {
+        mutationFn: async (payload: CreateOrganizationDTO) => {
             const { data: user, error } = await authClient.token();
 
             if (error || !user?.token) {
