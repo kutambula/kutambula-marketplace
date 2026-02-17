@@ -55,7 +55,7 @@ export const useProduct = () => {
         mutationKey: ["update_product"],
         mutationFn: ({ id, payload }: { id: string; payload: Partial<CreateProductDTO> }) =>
             productService.updateProduct(id, payload),
-        onSuccess: (_, variables) => {
+        onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["products"] });
             // Se soubermos a orgId através do retorno ou contexto, poderíamos invalidar especificamente.
             // Para simplificar, invalidamos o cache geral de produtos.
