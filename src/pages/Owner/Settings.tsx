@@ -15,16 +15,15 @@ import {
 import Input from "../../components/common/Form/Input";
 import Button from "../../components/common/Form/Button";
 import { useOrganization } from "../../hooks/useOrganization";
-import { authClient } from "../../lib/auth-client";
 import { uploadImageToCloudinary, validateImageFile } from "../../utils/cloudinary.utils";
 
 export default function SettingsOwner() {
-    const { useGetOrganization, useUpdateOrganization } = useOrganization();
-    const { data: session, isPending: isSessionPending } = authClient.useSession();
-    const { data: organizations, isPending: isOrgListPending } = authClient.useListOrganizations();
-
-    // Get active organization from session or fallback to the first organization
-    const activeOrgId = (session?.user as any)?.activeOrganizationId || organizations?.[0]?.id || "";
+    const {
+        useGetOrganization,
+        useUpdateOrganization,
+        activeOrgId,
+        isPending
+    } = useOrganization();
 
     const { data: orgData, isLoading: isLoadingOrg, refetch } = useGetOrganization(activeOrgId);
     const updateOrgMutation = useUpdateOrganization(activeOrgId || "");
@@ -122,7 +121,7 @@ export default function SettingsOwner() {
         }
     };
 
-    if (isSessionPending || isOrgListPending || isLoadingOrg) {
+    if (isPending || isLoadingOrg) {
         return (
             <ContainerOwner>
                 <div className="flex items-center justify-center min-h-[60vh]">

@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { organizationService } from "../services/organization.service";
+import { authClient } from "../lib/auth-client";
 import type {
     CreateOrganizationDTO,
     ConfigureAccountDTO,
@@ -81,13 +82,42 @@ export const useListOrganizations = (limit: number = 5, page: number = 1) => {
 
 /**
  * Hook "God" para quem prefere agrupar funcionalidades
- * Mantido para retrocompatibilidade
+ * Agora inclui lógica centralizada de organização ativa usando hooks oficiais
  */
 export const useOrganization = () => {
+    const queryClient = useQueryClient();
+    const { data: activeOrgRes, isPending: isActiveOrgPending } = authClient.useActiveOrganization();
+    const { data: organizations, isPending: isOrgListPending } = authClient.useListOrganizations();
+    const { data: sessionData, isPending: isSessionPending } = authClient.useSession();
+
+    // Prioritize official active organization, then session field, then fallback to first
+    const activeOrg = activeOrgRes ||
+        organizations?.find(org => org.id === (sessionData?.user as any)?.activeOrganizationId) ||
+        organizations?.[0];
+
+    const activeOrgId = activeOrg?.id || "";
+
     const createMutation = useCreateOrganization();
     const configureMutation = useConfigureAccount();
 
+    const switchOrganization = async (organizationId: string) => {
+        try {
+            await authClient.organization.setActive({ organizationId });
+            // Invalidate queries to trigger refreshes
+            await queryClient.invalidateQueries({ queryKey: ["activeOrganization"] });
+            await queryClient.invalidateQueries({ queryKey: ["organizations"] });
+        } catch (error) {
+            console.error("Failed to switch organization:", error);
+            throw error;
+        }
+    };
+
     return {
+        activeOrgId,
+        activeOrg,
+        isPending: isSessionPending || isOrgListPending || isActiveOrgPending,
+        organizations,
+        switchOrganization,
         createMutation,
         configureMutation,
         useUpdateOrganization,

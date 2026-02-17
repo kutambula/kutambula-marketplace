@@ -5,10 +5,15 @@ import {
     Star,
     ArrowUpRight,
     ArrowDownRight,
-    Package
+    Package,
+    Store,
+    Loader2
 } from "lucide-react";
+import { useOrganization } from "../../hooks/useOrganization";
 
 export default function DashboardOwner() {
+    const { activeOrgId, isPending } = useOrganization();
+
     const stats = [
         {
             label: "Vendas Totais",
@@ -47,6 +52,30 @@ export default function DashboardOwner() {
             bg: "bg-purple-50"
         },
     ];
+
+    if (isPending) {
+        return (
+            <ContainerOwner>
+                <div className="flex items-center justify-center min-h-[60vh]">
+                    <Loader2 className="w-10 h-10 text-primary animate-spin" />
+                </div>
+            </ContainerOwner>
+        );
+    }
+
+    if (!activeOrgId) {
+        return (
+            <ContainerOwner>
+                <div className="flex flex-col items-center justify-center min-h-[60vh] text-center gap-3">
+                    <Store className="w-12 h-12 text-primary" />
+                    <h2 className="text-xl font-black text-gray-900 tracking-tight uppercase">Nenhuma organização ativa</h2>
+                    <p className="text-sm text-gray-500 max-w-sm font-medium">
+                        Crie ou selecione uma organização no menu superior para começar a gerenciar sua loja.
+                    </p>
+                </div>
+            </ContainerOwner>
+        );
+    }
 
     return (
         <ContainerOwner>

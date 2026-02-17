@@ -7,11 +7,15 @@ import {
     Edit2,
     Trash2,
     Eye,
-    AlertCircle
+    AlertCircle,
+    Store,
+    Loader2
 } from "lucide-react";
 import Button from "../../components/common/Form/Button";
+import { useOrganization } from "../../hooks/useOrganization";
 
 export default function ProductsOwner() {
+    const { activeOrgId, isPending } = useOrganization();
     const [searchTerm, setSearchTerm] = useState("");
 
     const products = [
@@ -43,6 +47,30 @@ export default function ProductsOwner() {
             image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?q=80&w=200&auto=format&fit=crop"
         },
     ];
+
+    if (isPending) {
+        return (
+            <ContainerOwner>
+                <div className="flex items-center justify-center min-h-[60vh]">
+                    <Loader2 className="w-10 h-10 text-primary animate-spin" />
+                </div>
+            </ContainerOwner>
+        );
+    }
+
+    if (!activeOrgId) {
+        return (
+            <ContainerOwner>
+                <div className="flex flex-col items-center justify-center min-h-[60vh] text-center gap-3">
+                    <Store className="w-12 h-12 text-primary" />
+                    <h2 className="text-xl font-black text-gray-900 tracking-tight uppercase">Nenhuma organização ativa</h2>
+                    <p className="text-sm text-gray-500 max-w-sm font-medium">
+                        Crie ou selecione uma organização para gerenciar o catálogo de produtos da sua loja.
+                    </p>
+                </div>
+            </ContainerOwner>
+        );
+    }
 
     return (
         <ContainerOwner>

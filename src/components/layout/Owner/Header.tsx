@@ -1,7 +1,9 @@
-import { Search, Bell, Menu, X } from "lucide-react";
+import { Search, Bell, Menu, ChevronDown, Building2, Plus } from "lucide-react";
 import { authClient } from "../../../lib/auth-client";
+import { useOrganization } from "../../../hooks/useOrganization";
 import icon4 from "../../../assets/images/icon4.png";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 interface HeaderOwnerProps {
     onToggleSidebar: () => void;
@@ -9,6 +11,18 @@ interface HeaderOwnerProps {
 
 export default function HeaderOwner({ onToggleSidebar }: HeaderOwnerProps) {
     const { data: session } = authClient.useSession();
+    const { organizations, activeOrg, switchOrganization } = useOrganization();
+    const [isOrgSwitcherOpen, setIsOrgSwitcherOpen] = useState(false);
+
+    const handleSwitchOrg = async (orgId: string) => {
+        setIsOrgSwitcherOpen(false);
+        try {
+            await switchOrganization(orgId);
+            window.location.reload();
+        } catch (error) {
+            console.error("Error switching organization:", error);
+        }
+    };
 
     return (
         <header className="bg-primary sticky top-0 z-40 h-20 flex items-center shadow-lg px-4 md:px-8 border-b border-white/10">
@@ -21,13 +35,84 @@ export default function HeaderOwner({ onToggleSidebar }: HeaderOwnerProps) {
                     >
                         <Menu className="w-6 h-6" />
                     </button>
-                    <Link to="/" className="hover:scale-105 transition-transform duration-200">
+                    <Link to="/" className="hover:scale-105 transition-transform duration-200 hidden sm:block">
                         <img
                             src={icon4}
                             alt="Kutambula"
-                            className="h-8 md:h-12 w-28 md:w-46 object-contain"
+                            className="h-8 md:h-10 w-28 md:w-36 object-contain"
                         />
                     </Link>
+
+                    {/* Organization Swapper */}
+                    <div className="relative">
+                        <button
+                            onClick={() => setIsOrgSwitcherOpen(!isOrgSwitcherOpen)}
+                            className="flex items-center gap-2 px-3 py-2 bg-white/10 hover:bg-white/15 rounded-xl border border-white/10 transition-all active:scale-95 group max-w-[180px] md:max-w-[240px]"
+                        >
+                            <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
+                                {activeOrg?.logo ? (
+                                    <img src={activeOrg.logo} alt="" className="w-full h-full object-cover rounded-lg" />
+                                ) : (
+                                    <Building2 className="w-4 h-4 text-white/70" />
+                                )}
+                            </div>
+                            <div className="text-left hidden md:block flex-1 min-w-0">
+                                <p className="text-[10px] font-bold text-white/50 uppercase tracking-widest leading-none mb-1">Loja Ativa</p>
+                                <p className="text-sm font-black text-white truncate">{activeOrg?.name || "Selecionar Loja"}</p>
+                            </div>
+                            <ChevronDown className={`w-4 h-4 text-white/50 group-hover:text-white transition-transform ${isOrgSwitcherOpen ? "rotate-180" : ""}`} />
+                        </button>
+
+                        {/* Dropdown Menu */}
+                        {isOrgSwitcherOpen && (
+                            <>
+                                <div className="fixed inset-0 z-40" onClick={() => setIsOrgSwitcherOpen(false)} />
+                                <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-gray-100 py-3 z-50 animate-in fade-in zoom-in-95 duration-200">
+                                    <div className="px-4 pb-2 mb-2 border-b border-gray-50">
+                                        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Minhas Lojas</p>
+                                    </div>
+                                    <div className="max-h-[300px] overflow-y-auto custom-scrollbar px-2 space-y-1">
+                                        {organizations?.map((org) => (
+                                            <button
+                                                key={org.id}
+                                                onClick={() => handleSwitchOrg(org.id)}
+                                                className={`w-full flex items-center gap-3 p-2 rounded-xl transition-all ${org.id === activeOrg?.id
+                                                    ? "bg-primary/10 border border-primary/20"
+                                                    : "hover:bg-gray-50 border border-transparent"
+                                                    }`}
+                                            >
+                                                <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center shrink-0 overflow-hidden">
+                                                    {org.logo ? (
+                                                        <img src={org.logo} alt="" className="w-full h-full object-cover" />
+                                                    ) : (
+                                                        <Building2 className="w-5 h-5 text-gray-400" />
+                                                    )}
+                                                </div>
+                                                <div className="text-left flex-1 min-w-0">
+                                                    <p className={`text-sm font-bold truncate ${org.id === activeOrg?.id ? "text-primary" : "text-gray-900"}`}>{org.name}</p>
+                                                    <p className="text-[10px] text-gray-400 uppercase font-bold tracking-tighter">Owner Admin</p>
+                                                </div>
+                                                {org.id === activeOrg?.id && (
+                                                    <div className="w-2 h-2 rounded-full bg-primary" />
+                                                )}
+                                            </button>
+                                        ))}
+                                    </div>
+                                    <div className="mt-2 pt-2 px-2 border-t border-gray-50">
+                                        <Link
+                                            to="/owner/onboarding"
+                                            className="flex items-center gap-3 p-3 rounded-xl hover:bg-orange-50 text-primary transition-all group"
+                                        >
+                                            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
+                                                <Plus className="w-5 h-5" />
+                                            </div>
+                                            <span className="text-sm font-black uppercase tracking-tight">Criar Nova Loja</span>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </>
+                        )}
+                    </div>
                 </div>
 
                 {/* Search Bar - Hidden on Mobile, shown on Tablet/Desktop */}
