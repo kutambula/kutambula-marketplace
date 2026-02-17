@@ -16,6 +16,8 @@ import OrganizationSetting from '../pages/public/OrganizationSetting';
 import CreateOrganization from '../pages/public/OrganizationNew';
 import ConfigureAccount from '../pages/public/ConfigureAccount';
 
+import { DashboardOwner, ProductsOwner, SettingsOwner } from '../pages/Owner';
+
 export default function LayoutRoot() {
 	return (
 		<Routes>
@@ -35,6 +37,14 @@ export default function LayoutRoot() {
 			<Route path='/blog' element={<BlogPage />} />
 			<Route path='/login' element={<LoginPage />} />
 			<Route path='/register' element={<RegisterPage />} />
+
+
+			{/* Public Dashboard/Landing */}
+			<Route path='/owner/dashboard' element={<DashboardOwner />} />
+
+			{/* Owner/Business Routes */}
+			<Route path='/owner/dashboard/products' element={<ProductsOwner />} />
+			<Route path='/owner/dashboard/setting' element={<SettingsOwner />} />
 		</Routes>
 	);
 }
