@@ -13,6 +13,15 @@ export const productService = {
         return response.data;
     },
 
+    async updateProduct(id: string, product: Partial<CreateProductDTO>): Promise<ProductResponse> {
+        const response = await api.patch(`/product/${id}`, product);
+        return response.data;
+    },
+
+    async deleteProduct(id: string): Promise<void> {
+        await api.delete(`/product/${id}`);
+    },
+
     async getProductById(id: string): Promise<ProductResponse> {
         const response = await api.get(`/product/${id}`);
         return response.data;

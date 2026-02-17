@@ -43,11 +43,31 @@ export const useProduct = () => {
         mutationKey: ["create_product"],
         mutationFn: (payload: CreateProductDTO) => productService.createProduct(payload),
         onSuccess: (_, variables) => {
-            // Invalida listas relevantes
-            queryClient.invalidateQueries({ queryKey: ["products", "list"] });
+            queryClient.invalidateQueries({ queryKey: ["products"] });
             queryClient.invalidateQueries({
                 queryKey: ["products", "organization", variables.organizationId]
             });
+        },
+    });
+
+    // Mutação para atualizar produto
+    const updateMutation = useMutation({
+        mutationKey: ["update_product"],
+        mutationFn: ({ id, payload }: { id: string; payload: Partial<CreateProductDTO> }) =>
+            productService.updateProduct(id, payload),
+        onSuccess: (_, variables) => {
+            queryClient.invalidateQueries({ queryKey: ["products"] });
+            // Se soubermos a orgId através do retorno ou contexto, poderíamos invalidar especificamente.
+            // Para simplificar, invalidamos o cache geral de produtos.
+        },
+    });
+
+    // Mutação para deletar produto
+    const deleteMutation = useMutation({
+        mutationKey: ["delete_product"],
+        mutationFn: (id: string) => productService.deleteProduct(id),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["products"] });
         },
     });
 
@@ -56,6 +76,8 @@ export const useProduct = () => {
         useGetProduct,
         useProductsByOrg,
         createMutation,
+        updateMutation,
+        deleteMutation,
         service: productService,
     };
 };
