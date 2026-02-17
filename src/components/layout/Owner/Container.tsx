@@ -1,5 +1,4 @@
-import type { ReactNode } from "react";
-import { useState } from "react";
+import { type ReactNode, useState } from "react";
 import HeaderOwner from "./Header";
 import SidebarOwner from "./Sidebar";
 
@@ -8,26 +7,26 @@ interface ContainerOwnerProps {
 }
 
 export default function ContainerOwner({ children }: ContainerOwnerProps) {
-    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-
-    const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+    const [isSidebarOpen ] = useState(true);
 
     return (
-        <div className="min-h-screen bg-gray-50 flex overflow-x-hidden">
-            {/* Sidebar Component */}
-            <SidebarOwner isOpen={isSidebarOpen} onToggle={toggleSidebar} />
+        <div className="h-screen flex flex-col bg-gray-50/50 overflow-hidden font-sans">
+            {/* Fixed Top Header - Now 100% width */}
+            <HeaderOwner />
 
-            {/* Main Content Area */}
-            <div className="flex-1 flex flex-col h-screen overflow-hidden">
-                {/* Header Component */}
-                <HeaderOwner />
+            {/* Main Portal View - Scrollable at this level for window-edge scrollbar */}
+            <div className="flex-1 overflow-y-auto custom-scrollbar bg-gray-50/50">
+                <div className="container mx-auto flex relative min-h-full">
+                    {/* Sidebar Section - Beside the content */}
+                    <SidebarOwner isOpen={isSidebarOpen} />
 
-                {/* Page Content */}
-                <main className="flex-1 overflow-y-auto p-4 md:p-8 custom-scrollbar bg-gray-50/50">
-                    <div className="max-w-[1600px] mx-auto">
-                        {children}
-                    </div>
-                </main>
+                    {/* Main Workspace - Now part of the scrollable parent */}
+                    <main className="flex-1 overflow-visible">
+                        <div className="p-4 md:p-8 w-full max-w-[1600px] mx-auto animate-in fade-in duration-700">
+                            {children}
+                        </div>
+                    </main>
+                </div>
             </div>
         </div>
     );

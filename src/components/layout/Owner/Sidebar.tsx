@@ -1,22 +1,18 @@
 import {
-    ChevronRight,
-    Store,
     LayoutDashboard,
     Package,
     Settings,
     LogOut,
     Home,
-    ChevronLeft
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { authClient } from "../../../lib/auth-client";
 
 interface SidebarOwnerProps {
     isOpen: boolean;
-    onToggle: () => void;
 }
 
-export default function SidebarOwner({ isOpen, onToggle }: SidebarOwnerProps) {
+export default function SidebarOwner({ isOpen }: SidebarOwnerProps) {
     const location = useLocation();
 
     const menuItems = [
@@ -32,23 +28,18 @@ export default function SidebarOwner({ isOpen, onToggle }: SidebarOwnerProps) {
 
     return (
         <aside
-            className={`bg-white border-r border-gray-200 transition-all duration-300 flex flex-col z-50 sticky top-0 h-screen ${isOpen ? "w-64" : "w-20"
+            className={`bg-white transition-all duration-300 flex flex-col z-50 my-6 ml-4 rounded-3xl border border-gray-100 shadow-sm sticky top-6 h-fit max-h-[calc(100vh-3rem)] ${isOpen ? "w-72" : "w-20"
                 }`}
         >
-            <div className="p-6 flex items-center gap-3 border-b border-gray-100">
-                <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shrink-0 shadow-sm shadow-primary/20">
-                    <Store className="text-white w-6 h-6" />
-                </div>
-                {isOpen && (
-                    <div className="overflow-hidden whitespace-nowrap animate-in fade-in slide-in-from-left-2 duration-300">
-                        <h2 className="font-bold text-gray-900 truncate">Kutambula</h2>
-                        <p className="text-xs text-primary font-semibold">Painel Business</p>
-                    </div>
-                )}
+            {/* Branding - Hidden when closed since Header has it */}
+            <div className={`p-6 border-b border-gray-50 ${!isOpen && "hidden"}`}>
+                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">
+                    Menu de Gestão
+                </p>
             </div>
 
-            {/* Navigation */}
-            <nav className="flex-1 p-4 space-y-2 overflow-y-auto custom-scrollbar">
+            {/* Navigation Section */}
+            <div className="flex-1 px-4 space-y-2 pt-4">
                 {menuItems.map((item) => {
                     const Icon = item.icon;
                     const isActive = location.pathname === item.path;
@@ -56,48 +47,39 @@ export default function SidebarOwner({ isOpen, onToggle }: SidebarOwnerProps) {
                         <Link
                             key={item.path}
                             to={item.path}
-                            className={`flex items-center gap-3 p-3 rounded-xl transition-all group ${isActive
-                                    ? "bg-primary/10 text-primary shadow-sm"
-                                    : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+                            className={`flex items-center gap-4 p-4 rounded-2xl transition-all group ${isActive
+                                ? "bg-primary text-white shadow-lg shadow-primary/20"
+                                : "text-gray-500 hover:bg-gray-50 hover:text-primary"
                                 }`}
                         >
                             <Icon className={`w-5 h-5 shrink-0 transition-transform ${isActive ? "" : "group-hover:scale-110"}`} />
                             {isOpen && (
-                                <span className="font-semibold text-sm animate-in fade-in slide-in-from-left-2 duration-300">
+                                <span className="font-bold text-sm tracking-tight transition-opacity duration-300">
                                     {item.label}
                                 </span>
                             )}
                         </Link>
                     );
                 })}
-            </nav>
+            </div>
 
-            {/* Sidebar Footer */}
-            <div className="p-4 border-t border-gray-100 space-y-2">
+            {/* Sidebar Footer Actions */}
+            <div className="p-4 border-t border-gray-50 space-y-2">
                 <Link
                     to="/"
-                    className="flex items-center gap-3 p-3 rounded-xl text-gray-500 hover:bg-gray-50 hover:text-gray-900 transition-all group"
+                    className="flex items-center gap-4 p-4 rounded-2xl text-gray-500 hover:bg-gray-50 hover:text-secondary transition-all group"
                 >
                     <Home className="w-5 h-5 shrink-0 group-hover:scale-110 transition-transform" />
-                    {isOpen && <span className="font-semibold text-sm">Voltar à Loja</span>}
+                    {isOpen && <span className="font-bold text-sm tracking-tight">Vê o Site</span>}
                 </Link>
                 <button
                     onClick={handleLogout}
-                    className="w-full flex items-center gap-3 p-3 rounded-xl text-red-500 hover:bg-red-50 transition-all group"
+                    className="w-full flex items-center gap-4 p-4 rounded-2xl text-red-500 hover:bg-red-50 transition-all group"
                 >
                     <LogOut className="w-5 h-5 shrink-0 group-hover:scale-110 transition-transform" />
-                    {isOpen && <span className="font-semibold text-sm font-bold">Sair</span>}
+                    {isOpen && <span className="font-bold text-sm tracking-tight whitespace-nowrap">Sair da Conta</span>}
                 </button>
             </div>
-
-            {/* Collapse Toggle */}
-            <button
-                onClick={onToggle}
-                className="absolute -right-3 top-20 bg-white border border-gray-200 rounded-full p-1 shadow-md hover:bg-gray-50 z-[60] text-gray-400 hover:text-primary transition-colors"
-                aria-label={isOpen ? "Fechar sidebar" : "Abrir sidebar"}
-            >
-                {isOpen ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
-            </button>
         </aside>
     );
 }

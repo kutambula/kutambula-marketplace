@@ -25,12 +25,12 @@ export default function SettingsOwner() {
 
     return (
         <ContainerOwner>
-            <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="max-w-[1600px] mx-auto space-y-10 animate-in fade-in slide-in-from-bottom-6 duration-700">
                 {/* Header */}
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-b border-gray-100 pb-8">
                     <div>
-                        <h1 className="text-2xl font-bold text-gray-900">Configurações da Loja</h1>
-                        <p className="text-gray-500 text-sm mt-1">Personalize sua marca e informações de contato.</p>
+                        <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">Configurações da Loja</h1>
+                        <p className="text-gray-500 text-sm mt-2 font-medium">Personalize a identidade da sua marca e canais de atendimento.</p>
                     </div>
                 </div>
 
