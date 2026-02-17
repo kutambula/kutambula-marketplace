@@ -15,7 +15,7 @@ export default function HeaderOwner() {
                         <img
                             src={icon4}
                             alt="Kutambula"
-                            className="h-10 md:h-12 w-20 md:w-46 object-contain"
+                            className="h-10 md:h-12 w-32 md:w-46 object-contain"
                         />
                     </Link>
                 </div>

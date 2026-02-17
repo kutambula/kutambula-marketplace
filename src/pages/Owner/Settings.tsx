@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import ContainerOwner from "../../components/layout/Owner/Container";
 import {
     Store,
@@ -63,6 +63,22 @@ export default function SettingsOwner() {
             });
         }
     }, [orgData]);
+
+    const isDirty = useMemo(() => {
+        const org = (orgData as any)?.data ?? orgData;
+        if (!org) return false;
+
+        return (
+            formData.name !== (org.name || "") ||
+            formData.description !== (org.description || "") ||
+            formData.email !== (org.email || "") ||
+            formData.phone !== (org.phone || "") ||
+            formData.address !== (org.address || "") ||
+            formData.website !== (org.website || "") ||
+            formData.logo !== (org.logo || "") ||
+            formData.banner !== (org.banner || "")
+        );
+    }, [formData, orgData]);
 
     const handleSave = async () => {
         if (!activeOrgId) return;
@@ -310,9 +326,9 @@ export default function SettingsOwner() {
                                     variant="ghost"
                                     fullWidth
                                     onClick={handleSave}
-                                    disabled={isSaving}
+                                    disabled={isSaving || !isDirty}
                                     icon={saveSuccess ? <CheckCircle2 className="w-5 h-5" /> : isSaving ? <Loader2 className="w-5 h-5 animate-spin" /> : <Save className="w-5 h-5" />}
-                                    className={`${saveSuccess ? 'bg-green-500 hover:bg-green-600 text-white' : 'bg-white text-primary hover:bg-orange-50'} rounded-2xl py-4 font-black shadow-xl transition-all active:scale-95`}
+                                    className={`${saveSuccess ? 'bg-green-500 hover:bg-green-600 text-white' : isDirty ? 'bg-white text-primary hover:bg-orange-50' : 'bg-white/90 text-primary cursor-not-allowed'} rounded-2xl py-4 font-black shadow-xl transition-all active:scale-95`}
                                 >
                                     {saveSuccess ? "Salvo com Sucesso!" : isSaving ? "A guardar..." : "Salvar Alterações"}
                                 </Button>
