@@ -4,6 +4,7 @@ import { useOrganization } from "../../../hooks/useOrganization";
 import icon4 from "../../../assets/images/icon4.png";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import CreateStoreModal from "./modals/CreateStoreModal";
 
 interface HeaderOwnerProps {
     onToggleSidebar: () => void;
@@ -13,6 +14,7 @@ export default function HeaderOwner({ onToggleSidebar }: HeaderOwnerProps) {
     const { data: session } = authClient.useSession();
     const { organizations, activeOrg, switchOrganization } = useOrganization();
     const [isOrgSwitcherOpen, setIsOrgSwitcherOpen] = useState(false);
+    const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
     const handleSwitchOrg = async (orgId: string) => {
         setIsOrgSwitcherOpen(false);
@@ -25,7 +27,7 @@ export default function HeaderOwner({ onToggleSidebar }: HeaderOwnerProps) {
     };
 
     return (
-        <header className="bg-primary sticky top-0 z-40 h-20 flex items-center shadow-lg px-4 md:px-8 border-b border-white/10">
+        <header className="bg-primary sticky top-0 z-20 h-20 flex items-center shadow-lg px-4 md:px-8 border-b border-white/10">
             <div className="container mx-auto flex items-center justify-between w-full gap-4 md:gap-8">
                 {/* Logo & Toggle Section */}
                 <div className="flex items-center gap-2 md:gap-4 shrink-0">
@@ -98,16 +100,19 @@ export default function HeaderOwner({ onToggleSidebar }: HeaderOwnerProps) {
                                             </button>
                                         ))}
                                     </div>
-                                    <div className="mt-2 pt-2 px-2 border-t border-gray-50">
-                                        <Link
-                                            to="/owner/onboarding"
-                                            className="flex items-center gap-3 p-3 rounded-xl hover:bg-orange-50 text-primary transition-all group"
+                                    <div className="p-2 border-t border-gray-100 bg-gray-50/50">
+                                        <button
+                                            onClick={() => {
+                                                setIsOrgSwitcherOpen(false);
+                                                setIsCreateModalOpen(true);
+                                            }}
+                                            className="w-full flex items-center gap-2 p-2 hover:bg-white rounded-xl text-primary font-bold text-xs transition-all border border-transparent hover:border-primary/20 hover:shadow-sm"
                                         >
-                                            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
-                                                <Plus className="w-5 h-5" />
+                                            <div className="w-7 h-7 bg-primary/10 rounded-lg flex items-center justify-center">
+                                                <Plus className="w-4 h-4" />
                                             </div>
-                                            <span className="text-sm font-black uppercase tracking-tight">Criar Nova Loja</span>
-                                        </Link>
+                                            Criar Nova Loja
+                                        </button>
                                     </div>
                                 </div>
                             </>
@@ -158,6 +163,11 @@ export default function HeaderOwner({ onToggleSidebar }: HeaderOwnerProps) {
                     </div>
                 </div>
             </div>
+
+            <CreateStoreModal
+                isOpen={isCreateModalOpen}
+                onClose={() => setIsCreateModalOpen(false)}
+            />
         </header>
     );
 }

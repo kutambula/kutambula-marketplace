@@ -30,7 +30,7 @@ export default function SidebarOwner({ isOpen, onClose }: SidebarOwnerProps) {
 
     return (
         <aside
-            className={`bg-white transition-all duration-300 flex flex-col z-50 rounded-3xl border border-gray-100 shadow-sm 
+            className={`bg-white transition-all duration-300 flex flex-col z-40 rounded-3xl border border-gray-100 shadow-sm 
                 fixed inset-y-6 left-4 lg:sticky lg:top-6 h-[calc(100vh-3rem)] lg:h-fit lg:max-h-[calc(100vh-3rem)] 
                 ${isOpen ? "translate-x-0 w-64" : "-translate-x-[calc(100%+2rem)] lg:translate-x-0 lg:w-20"}
                 lg:my-6 lg:ml-4 overflow-hidden

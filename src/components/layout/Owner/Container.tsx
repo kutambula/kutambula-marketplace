@@ -20,7 +20,7 @@ export default function ContainerOwner({ children }: ContainerOwnerProps) {
                     {/* Backdrop for Mobile Sidebar */}
                     {isSidebarOpen && (
                         <div
-                            className="fixed inset-0 bg-black/50 z-40 lg:hidden backdrop-blur-sm transition-opacity"
+                            className="fixed inset-0 bg-black/50 z-30 lg:hidden backdrop-blur-sm transition-opacity"
                             onClick={() => setIsSidebarOpen(false)}
                         />
                     )}
