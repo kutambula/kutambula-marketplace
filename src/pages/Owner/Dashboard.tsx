@@ -52,17 +52,17 @@ export default function DashboardOwner() {
         <ContainerOwner>
             <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
                 {/* Welcome Header */}
-                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-2">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2">
                     <div>
-                        <h1 className="text-3xl font-black text-gray-900 tracking-tight">Dashboard</h1>
-                        <p className="text-gray-500 text-sm mt-1 font-medium italic">Bem-vindo de volta! Aqui está o resumo operacional da sua loja.</p>
+                        <h1 className="text-2xl md:text-3xl font-black text-gray-900 tracking-tight">Dashboard</h1>
+                        <p className="text-gray-500 text-xs md:text-sm mt-1 font-medium italic">Bem-vindo de volta! Aqui está o resumo da sua loja.</p>
                     </div>
-                    <div className="flex items-center gap-3">
-                        <button className="px-5 py-2.5 bg-white border border-gray-200 rounded-2xl text-xs font-bold text-gray-600 hover:bg-gray-50 transition-all shadow-sm active:scale-95 uppercase tracking-wider">
-                            Exportar Relatório
+                    <div className="flex items-center gap-2 md:gap-3">
+                        <button className="flex-1 sm:flex-none px-4 md:px-5 py-2 md:py-2.5 bg-white border border-gray-200 rounded-xl md:rounded-2xl text-[10px] md:text-xs font-bold text-gray-600 hover:bg-gray-50 transition-all shadow-sm active:scale-95 uppercase tracking-wider">
+                            Relatórios
                         </button>
-                        <button className="px-5 py-2.5 bg-primary text-white rounded-2xl text-xs font-bold hover:bg-tertiary transition-all shadow-lg active:scale-95 shadow-primary/20 uppercase tracking-wider">
-                            Ver Vendas
+                        <button className="flex-1 sm:flex-none px-4 md:px-5 py-2 md:py-2.5 bg-primary text-white rounded-xl md:rounded-2xl text-[10px] md:text-xs font-bold hover:bg-tertiary transition-all shadow-lg active:scale-95 shadow-primary/20 uppercase tracking-wider">
+                            Vendas
                         </button>
                     </div>
                 </div>
@@ -102,7 +102,7 @@ export default function DashboardOwner() {
                                 Ver todos
                             </button>
                         </div>
-                        <div className="overflow-x-auto">
+                        <div className="overflow-x-auto custom-scrollbar">
                             <table className="w-full text-left whitespace-nowrap">
                                 <thead className="bg-gray-50/50 text-gray-400 text-[10px] uppercase tracking-[0.15em] font-black">
                                     <tr>

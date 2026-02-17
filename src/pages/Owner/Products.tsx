@@ -50,46 +50,45 @@ export default function ProductsOwner() {
                 {/* Header */}
                 <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-b border-gray-100 pb-8">
                     <div>
-                        <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">Meus Produtos</h1>
-                        <p className="text-gray-500 text-sm mt-2 font-medium">Gestão de catálogo e inventário em tempo real.</p>
+                        <h1 className="text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight">Meus Produtos</h1>
+                        <p className="text-gray-500 text-xs md:text-sm mt-2 font-medium">Gestão de catálogo e inventário em tempo real.</p>
                     </div>
                     <Button
                         icon={<Plus className="w-5 h-5" />}
-                        className="shadow-lg shadow-primary/20 px-8 py-4 rounded-2xl font-black text-sm transition-all hover:scale-105 active:scale-95"
+                        className="shadow-lg shadow-primary/20 px-6 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl font-black text-xs md:text-sm transition-all hover:scale-105 active:scale-95"
                     >
-                        Publicar Produto
+                        Novo Produto
                     </Button>
                 </div>
 
                 {/* Filters & Search */}
-                <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm flex flex-col md:flex-row gap-4 items-center">
+                <div className="bg-white p-4 md:p-6 rounded-3xl border border-gray-100 shadow-sm flex flex-col lg:flex-row gap-4 items-center">
                     <div className="relative flex-1 w-full">
                         <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 group-focus-within:text-primary transition-colors" />
                         <input
                             type="text"
-                            placeholder="Buscar por nome, SKU ou categoria..."
+                            placeholder="Buscar produtos..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full pl-12 pr-6 py-3.5 bg-gray-50 border border-transparent rounded-2xl text-sm font-medium focus:outline-none focus:bg-white focus:border-primary/20 focus:ring-4 focus:ring-primary/5 transition-all"
+                            className="w-full pl-12 pr-6 py-3 bg-gray-50 border border-transparent rounded-2xl text-xs md:text-sm font-medium focus:outline-none focus:bg-white focus:border-primary/20 focus:ring-4 focus:ring-primary/5 transition-all"
                         />
                     </div>
-                    <div className="flex items-center gap-3 w-full md:w-auto">
-                        <button className="flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-3.5 bg-white border border-gray-200 rounded-2xl text-sm font-bold text-gray-700 hover:border-gray-300 hover:bg-gray-50 transition-all active:scale-95">
+                    <div className="flex flex-wrap items-center gap-2 md:gap-3 w-full lg:w-auto">
+                        <button className="flex-1 lg:flex-none flex items-center justify-center gap-2 px-4 md:px-6 py-3 bg-white border border-gray-200 rounded-2xl text-xs md:text-sm font-bold text-gray-700 hover:border-gray-300 hover:bg-gray-50 transition-all active:scale-95">
                             <Filter className="w-4 h-4 text-gray-400" />
                             Filtros
                         </button>
-                        <select className="flex-1 md:flex-none px-6 py-3.5 bg-white border border-gray-200 rounded-2xl text-sm font-bold text-gray-700 outline-none focus:border-primary transition-all cursor-pointer hover:border-gray-300 active:scale-95">
-                            <option>Todos os Estados</option>
+                        <select className="flex-1 lg:flex-none px-4 md:px-6 py-3 bg-white border border-gray-200 rounded-2xl text-xs md:text-sm font-bold text-gray-700 outline-none focus:border-primary transition-all cursor-pointer hover:border-gray-300 active:scale-95">
+                            <option>Estados</option>
                             <option>Disponíveis</option>
                             <option>Esgotados</option>
-                            <option>Inativos</option>
                         </select>
                     </div>
                 </div>
 
                 {/* Products Table */}
-                <div className="bg-white rounded-4xl border border-gray-100 shadow-sm overflow-hidden flex flex-col">
-                    <div className="overflow-x-auto">
+                <div className="bg-white rounded-3xl md:rounded-4xl border border-gray-100 shadow-sm overflow-hidden flex flex-col">
+                    <div className="overflow-x-auto custom-scrollbar">
                         <table className="w-full text-left whitespace-nowrap">
                             <thead className="bg-gray-50/50 text-gray-400 text-[10px] uppercase tracking-[0.15em] font-black">
                                 <tr>
