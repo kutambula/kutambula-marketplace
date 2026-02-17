@@ -302,18 +302,26 @@ export default function SettingsOwner() {
                         </div>
 
                         {/* Quick Save Card */}
-                        <div className="bg-linear-to-br from-primary to-secondary p-8 rounded-4xl text-white shadow-2xl relative overflow-hidden group">
-                            <p className="text-sm font-bold text-white/90 mb-6 leading-relaxed relative z-10">Certifique-se de que todas as informações corporativas estão corretas.</p>
-                            <Button
-                                fullWidth
-                                onClick={handleSave}
-                                disabled={isSaving}
-                                icon={saveSuccess ? <CheckCircle2 className="w-5 h-5" /> : isSaving ? <Loader2 className="w-5 h-5 animate-spin" /> : <Save className="w-5 h-5" />}
-                                className={`${saveSuccess ? 'bg-green-500 hover:bg-green-600' : 'bg-white text-primary hover:bg-orange-50'} rounded-2xl py-4 font-black shadow-xl transition-all active:scale-95 relative z-10`}
-                            >
-                                {saveSuccess ? "Salvo com Sucesso!" : isSaving ? "A guardar..." : "Salvar Alterações"}
-                            </Button>
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-3xl opacity-50" />
+                        <div className="bg-linear-to-br from-primary via-primary to-secondary p-10 rounded-4xl text-white shadow-2xl relative overflow-hidden group border border-white/10">
+                            <div className="relative z-10">
+                                <h4 className="text-xl font-black mb-2 uppercase tracking-tight">Guardar Configurações</h4>
+                                <p className="text-sm font-bold text-white/80 mb-8 leading-relaxed">Certifique-se de que todas as informações corporativas estão corretas antes de finalizar.</p>
+                                <Button
+                                    variant="ghost"
+                                    fullWidth
+                                    onClick={handleSave}
+                                    disabled={isSaving}
+                                    icon={saveSuccess ? <CheckCircle2 className="w-5 h-5" /> : isSaving ? <Loader2 className="w-5 h-5 animate-spin" /> : <Save className="w-5 h-5" />}
+                                    className={`${saveSuccess ? 'bg-green-500 hover:bg-green-600 text-white' : 'bg-white text-primary hover:bg-orange-50'} rounded-2xl py-4 font-black shadow-xl transition-all active:scale-95`}
+                                >
+                                    {saveSuccess ? "Salvo com Sucesso!" : isSaving ? "A guardar..." : "Salvar Alterações"}
+                                </Button>
+                            </div>
+
+                            {/* Decorative Elements */}
+                            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 blur-3xl opacity-30" />
+                            <div className="absolute bottom-0 left-0 w-40 h-40 bg-secondary/30 rounded-full -ml-20 -mb-20 blur-2xl opacity-50" />
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[url('data:image/svg+xml,%3Csvg%20width=%2220%22%20height=%2220%22%20viewBox=%220%200%2020%2020%22%20xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg%20fill=%22%23ffffff%22%20fill-opacity=%220.05%22%20fill-rule=%22evenodd%22%3E%3Ccircle%20cx=%223%22%20cy=%223%22%20r=%223%22/%3E%3Ccircle%20cx=%2213%22%20cy=%2213%22%20r=%223%22/%3E%3C/g%3E%3C/svg%3E')] opacity-30 pointer-events-none" />
                         </div>
                     </div>
                 </div>
