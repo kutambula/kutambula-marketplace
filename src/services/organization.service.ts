@@ -1,4 +1,4 @@
-import { apiClient } from "../utils/api.utils";
+import api from "../utils/api.utils";
 import type {
     CreateOrganizationDTO,
     ConfigureAccountDTO,
@@ -17,7 +17,7 @@ class OrganizationService {
         payload: CreateOrganizationDTO
     ): Promise<OrganizationResponse> {
         try {
-            const response = await apiClient.post<OrganizationResponse>(
+            const response = await api.post<OrganizationResponse>(
                 "/organization/register",
                 payload
             );
@@ -34,7 +34,7 @@ class OrganizationService {
         payload: ConfigureAccountDTO
     ): Promise<ConfigureAccountResponse> {
         try {
-            const response = await apiClient.post<ConfigureAccountResponse>(
+            const response = await api.post<ConfigureAccountResponse>(
                 "/account/register-step",
                 payload
             );
@@ -52,7 +52,7 @@ class OrganizationService {
         payload: UpdateOrganizationDTO
     ): Promise<UpdateOrganizationResponse> {
         try {
-            const response = await apiClient.patch<UpdateOrganizationResponse>(
+            const response = await api.patch<UpdateOrganizationResponse>(
                 `/organization/update/${organizationId}`,
                 payload
             );
@@ -67,7 +67,7 @@ class OrganizationService {
      */
     async getOrganization(organizationId: string): Promise<any> {
         try {
-            const response = await apiClient.get(
+            const response = await api.get(
                 `/organization/${organizationId}`
             );
             return response.data;
@@ -84,7 +84,7 @@ class OrganizationService {
         page: number = 1
     ): Promise<ListOrganizationResponse> {
         try {
-            const response = await apiClient.get<ListOrganizationResponse>(
+            const response = await api.get<ListOrganizationResponse>(
                 `/organization/list?limit=${limit}&page=${page}`
             );
             return response.data;

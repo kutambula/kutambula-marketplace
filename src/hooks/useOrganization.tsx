@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { organizationService } from "../services/organization.service";
 import type {
     CreateOrganizationDTO,
@@ -10,101 +10,89 @@ import type {
 } from "../types/organization.types";
 
 /**
- * Custom hook para gerenciar operações relacionadas a organizações
- * Consolida create, update, configure e fetch operations
+ * Hook para criar uma nova organização
  */
-export const useOrganization = () => {
-    /**
-     * Mutation para criar uma nova organização
-     */
-    const createMutation = useMutation<
+export const useCreateOrganization = () => {
+    return useMutation<
         OrganizationResponse,
         Error,
         CreateOrganizationDTO
     >({
         mutationKey: ["create_organization"],
-        mutationFn: organizationService.createOrganization.bind(organizationService),
+        mutationFn: (payload) => organizationService.createOrganization(payload),
     });
+};
 
-    /**
-     * Mutation para configurar a conta após registro
-     */
-    const configureMutation = useMutation<
+/**
+ * Hook para configurar a conta após registro
+ */
+export const useConfigureAccount = () => {
+    return useMutation<
         ConfigureAccountResponse,
         Error,
         ConfigureAccountDTO
     >({
         mutationKey: ["configure_account"],
-        mutationFn: organizationService.configureAccount.bind(organizationService),
+        mutationFn: (payload) => organizationService.configureAccount(payload),
     });
+};
 
-    /**
-     * Factory para criar mutation de update de organização
-     * Retorna um hook específico para cada organização
-     */
-    const useUpdateOrganization = (organizationId: string) =>
-        useMutation<
-            UpdateOrganizationResponse,
-            Error,
-            UpdateOrganizationDTO
-        >({
-            mutationKey: ["update_organization", organizationId],
-            mutationFn: (payload) =>
-                organizationService.updateOrganization(organizationId, payload),
-        });
+/**
+ * Hook para atualizar uma organização
+ */
+export const useUpdateOrganization = (organizationId: string) => {
+    const queryClient = useQueryClient();
 
-    /**
-     * Query para buscar uma organização específica
-     */
-    const useGetOrganization = (organizationId: string) =>
-        useQuery({
-            queryKey: ["organization", organizationId],
-            queryFn: () => organizationService.getOrganization(organizationId),
-            enabled: !!organizationId,
-        });
+    return useMutation<
+        UpdateOrganizationResponse,
+        Error,
+        UpdateOrganizationDTO
+    >({
+        mutationKey: ["update_organization", organizationId],
+        mutationFn: (payload) =>
+            organizationService.updateOrganization(organizationId, payload),
+        onSuccess: () => {
+            // Invalida a query da organização específica após update
+            queryClient.invalidateQueries({ queryKey: ["stores", organizationId] });
+        }
+    });
+};
 
-    /**
-     * Query para listar organizações
-     */
-    const useListOrganizations = (limit: number = 5, page: number = 1) =>
-        useQuery({
-            queryKey: ["organizations", limit, page],
-            queryFn: () =>
-                organizationService.listOrganizations(limit, page),
-        });
+/**
+ * Hook para buscar uma organização específica
+ */
+export const useGetOrganization = (organizationId: string) => {
+    return useQuery({
+        queryKey: ["stores", organizationId],
+        queryFn: () => organizationService.getOrganization(organizationId),
+        enabled: !!organizationId,
+    });
+};
+
+/**
+ * Hook para listar organizações
+ */
+export const useListOrganizations = (limit: number = 5, page: number = 1) => {
+    return useQuery({
+        queryKey: ["organizations", limit, page],
+        queryFn: () => organizationService.listOrganizations(limit, page),
+    });
+};
+
+/**
+ * Hook "God" para quem prefere agrupar funcionalidades
+ * Mantido para retrocompatibilidade
+ */
+export const useOrganization = () => {
+    const createMutation = useCreateOrganization();
+    const configureMutation = useConfigureAccount();
 
     return {
-        // Mutations
         createMutation,
         configureMutation,
         useUpdateOrganization,
-
-        // Queries
         useGetOrganization,
         useListOrganizations,
-
-        // Utility functions
         service: organizationService,
     };
-};
-
-// Export individual hooks para uso específico em componentes
-export const useCreateOrganization = () => {
-    return useOrganization().createMutation;
-};
-
-export const useConfigureAccount = () => {
-    return useOrganization().configureMutation;
-};
-
-export const useUpdateOrganization = (organizationId: string) => {
-    return useOrganization().useUpdateOrganization(organizationId);
-};
-
-export const useGetOrganization = (organizationId: string) => {
-    return useOrganization().useGetOrganization(organizationId);
-};
-
-export const useListOrganizations = (limit: number = 5, page: number = 1) => {
-    return useOrganization().useListOrganizations(limit, page);
 };

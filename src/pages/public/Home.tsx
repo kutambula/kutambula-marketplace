@@ -40,7 +40,7 @@ export default function HomePage() {
 		},
 	});
 
-	if(featuredStores)
+	if (featuredStores)
 		console.log(featuredStores)
 
 	const [isAtTop, setIsAtTop] = useState(true);
@@ -146,15 +146,15 @@ export default function HomePage() {
 													className="w-full h-full object-cover"
 												/>
 											</div>
-											<div className="flex-1 mt-8">
-												<h3 className="text-lg font-black text-gray-900 mb-2 group-hover:text-primary transition-colors leading-tight">
+											<div className="flex-1 mt-8 min-w-0">
+												<h3 className="text-lg font-black text-gray-900 mb-2 group-hover:text-primary transition-colors leading-tight truncate min-h-7">
 													{store.name}
 												</h3>
 											</div>
 										</div>
 
 										{/* Descrição */}
-										<p className="text-sm text-gray-600 mb-4 leading-relaxed h-10 line-clamp-2">
+										<p className="text-sm text-gray-600 mb-4 leading-relaxed min-h-10 line-clamp-2">
 											{store.description}
 										</p>
 
@@ -230,7 +230,7 @@ export default function HomePage() {
 							}}
 							className="stores-swiper pb-12!"
 						>
-						{featuredStores && featuredStores.map((store: organizationResponse) => (
+							{featuredStores && featuredStores.map((store: organizationResponse) => (
 								<SwiperSlide key={store.id}>
 									<Link
 										to={`/loja/${store.id}`}
@@ -275,7 +275,7 @@ export default function HomePage() {
 														/>
 													</div>
 													<div className="flex-1 min-w-0 mt-7 sm:mt-8">
-														<h3 className="text-base sm:text-lg font-black text-gray-900 mb-1 group-hover:text-primary transition-colors line-clamp-1 leading-tight">
+														<h3 className="text-base sm:text-lg font-black text-gray-900 mb-1 group-hover:text-primary transition-colors truncate min-h-7 sm:min-h-8 leading-tight">
 															{store.name}
 														</h3>
 														{/* Rating mobile - movido para aqui */}
@@ -289,7 +289,7 @@ export default function HomePage() {
 												</div>
 
 												{/* Descrição - Visível no mobile */}
-												<p className="text-xs sm:text-sm text-gray-600 mb-3 line-clamp-2 leading-relaxed">
+												<p className="text-xs sm:text-sm text-gray-600 mb-3 line-clamp-2 leading-relaxed min-h-8 sm:min-h-10">
 													{store.description}
 												</p>
 

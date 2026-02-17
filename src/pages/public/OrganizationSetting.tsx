@@ -1,10 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
 import Header from '../../components/layout/Header';
 import Footer from '../../components/layout/Footer';
-import { useUpdateOrganization } from '../../hooks/useOrganization';
-import { queryClient } from '../../main';
+import { useUpdateOrganization, useGetOrganization } from '../../hooks/useOrganization';
 
 export interface organizationResponse {
     banner: string
@@ -28,18 +26,7 @@ export interface organizationResponse {
 export default function OrganizationSetting() {
     const { organization: storeId } = useParams();
 
-
-    const { data: store } = useQuery<organizationResponse | null>({
-        queryKey: ['stores', storeId],
-        enabled: !!storeId,
-        queryFn: async () => {
-            const res = await fetch(
-                `${import.meta.env.VITE_API_URL}/organization/${storeId}`
-            );
-            if (!res.ok) throw new Error('Network response was not ok');
-            return res.json();
-        },
-    });
+    const { data: store } = useGetOrganization(storeId!) as { data: organizationResponse };
 
     const updateOrganizationMutation = useUpdateOrganization(storeId!)
 
@@ -101,12 +88,10 @@ export default function OrganizationSetting() {
 
         updateOrganizationMutation.mutate(
             {
-                id: storeId,
                 ...formData,
             },
             {
                 onSuccess: () => {
-                    queryClient.invalidateQueries({ queryKey: ['stores', storeId] })
                     alert('Organização atualizada com sucesso!');
                 },
                 onError: (error: any) => {
