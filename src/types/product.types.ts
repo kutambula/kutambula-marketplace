@@ -10,6 +10,10 @@ export interface CreateProductDTO {
   sku: string;
   expiresAt?: string;
   organizationId: string;
+  // Campos opcionais adicionais do backend
+  frete?: boolean;
+  isPinned?: boolean;
+  discount_percent?: number;
 }
 
 export interface ProductResponse {
@@ -30,6 +34,11 @@ export interface ProductResponse {
   createdAt: string;
   updatedAt: string;
   organizationId: string;
+  // Campos adicionais do backend
+  frete: boolean;
+  isPinned: boolean;
+  discount_percent: number;
+  deletedAt: string | null;
 }
 
 export interface PaginatedProductResponse {
@@ -42,6 +51,7 @@ export interface PaginatedProductResponse {
 export interface ListProductsParams {
   limit?: number;
   page?: number;
+  verified?: boolean;
 }
 
 export interface FindProductsByOrgParams extends ListProductsParams {
