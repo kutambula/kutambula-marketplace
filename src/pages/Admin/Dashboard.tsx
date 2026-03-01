@@ -3,13 +3,11 @@ import {
     TrendingUp,
     Building2,
     Users,
-    ArrowUpRight,
     Package,
     AlertCircle,
     CheckCircle2,
     MoreVertical,
     Calendar,
-    Filter,
 } from "lucide-react";
 import {
     AreaChart,
@@ -96,11 +94,8 @@ export default function DashboardAdmin() {
                     <div className="relative z-10 space-y-3">
                         <div className="flex items-center gap-3">
                             <h1 className="text-4xl lg:text-5xl font-black text-gray-900 tracking-tighter">
-                                Dashboard
+                                Bem-vindo, Emanuel Malungo!
                             </h1>
-                            <div className="px-4 py-1.5 bg-linear-to-r from-primary to-tertiary rounded-2xl shadow-lg shadow-primary/20">
-                                <span className="text-[10px] font-black text-white uppercase tracking-[0.2em]">Painel Admin</span>
-                            </div>
                         </div>
                         <p className="text-gray-500 text-sm font-medium max-w-md leading-relaxed">
                             Monitorização centralizada e inteligente da plataforma <span className="text-primary font-bold">Kutambula</span>. Crescimento em tempo real.
