@@ -62,14 +62,14 @@ export const useProduct = () => {
         },
     });
 
-    // Mutação para deletar produto
-    const deleteMutation = useMutation({
-        mutationKey: ["delete_product"],
-        mutationFn: (id: string) => productService.deleteProduct(id),
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["products"] });
-        },
-    });
+    // Removido: backend não possui rota de delete
+    // const deleteMutation = useMutation({
+    //     mutationKey: ["delete_product"],
+    //     mutationFn: (id: string) => productService.deleteProduct(id),
+    //     onSuccess: () => {
+    //         queryClient.invalidateQueries({ queryKey: ["products"] });
+    //     },
+    // });
 
     return {
         useListProducts,
@@ -77,7 +77,7 @@ export const useProduct = () => {
         useProductsByOrg,
         createMutation,
         updateMutation,
-        deleteMutation,
+        // deleteMutation, // Removido: backend não possui rota de delete
         service: productService,
     };
 };

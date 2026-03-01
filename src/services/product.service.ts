@@ -14,13 +14,14 @@ export const productService = {
     },
 
     async updateProduct(id: string, product: Partial<CreateProductDTO>): Promise<ProductResponse> {
-        const response = await api.patch(`/product/${id}`, product);
+        const response = await api.patch(`/product/update/${id}`, product);
         return response.data;
     },
 
-    async deleteProduct(id: string): Promise<void> {
-        await api.delete(`/product/${id}`);
-    },
+    // Removido: backend não possui rota de delete
+    // async deleteProduct(id: string): Promise<void> {
+    //     await api.delete(`/product/${id}`);
+    // },
 
     async getProductById(id: string): Promise<ProductResponse> {
         const response = await api.get(`/product/${id}`);

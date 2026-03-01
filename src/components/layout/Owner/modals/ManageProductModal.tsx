@@ -137,7 +137,10 @@ export default function ManageProductModal({ isOpen, onClose, product }: ManageP
             if (isEditing && product) {
                 await updateMutation.mutateAsync({
                     id: product.id,
-                    payload: formData,
+                    payload: {
+                        ...formData,
+                        organizationId: activeOrgId,
+                    },
                 });
             } else {
                 await createMutation.mutateAsync({

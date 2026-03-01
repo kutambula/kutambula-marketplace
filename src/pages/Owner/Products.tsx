@@ -5,7 +5,7 @@ import {
     Search,
     Filter,
     Edit2,
-    Trash2,
+    // Trash2, // Removido: backend não possui rota de delete
     Package,
     AlertCircle,
     Store,
@@ -15,17 +15,17 @@ import Button from "../../components/common/Form/Button";
 import { useOrganization } from "../../hooks/useOrganization";
 import { useProduct } from "../../hooks/useProduct";
 import ManageProductModal from "../../components/layout/Owner/modals/ManageProductModal";
-import DeleteProductConfirmModal from "../../components/layout/Owner/modals/DeleteProductConfirmModal";
+// import DeleteProductConfirmModal from "../../components/layout/Owner/modals/DeleteProductConfirmModal"; // Removido: backend não possui rota de delete
 import type { ProductResponse } from "../../types/product.types";
 
 export default function ProductsOwner() {
     const { activeOrgId, isPending: isOrgPending } = useOrganization();
-    const { useProductsByOrg, deleteMutation } = useProduct();
+    const { useProductsByOrg } = useProduct(); // removido deleteMutation
     const [searchTerm, setSearchTerm] = useState("");
 
     // Modal states
     const [isManageModalOpen, setIsManageModalOpen] = useState(false);
-    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    // const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false); // Removido: backend não possui rota de delete
     const [selectedProduct, setSelectedProduct] = useState<ProductResponse | null>(null);
 
     const { data: productRes, isPending: isProductsPending } = useProductsByOrg({
@@ -51,21 +51,22 @@ export default function ProductsOwner() {
         setIsManageModalOpen(true);
     };
 
-    const handleOpenDeleteModal = (product: ProductResponse) => {
-        setSelectedProduct(product);
-        setIsDeleteModalOpen(true);
-    };
+    // Removido: backend não possui rota de delete
+    // const handleOpenDeleteModal = (product: ProductResponse) => {
+    //     setSelectedProduct(product);
+    //     setIsDeleteModalOpen(true);
+    // };
 
-    const handleDeleteConfirm = async () => {
-        if (selectedProduct) {
-            try {
-                await deleteMutation.mutateAsync(selectedProduct.id);
-                setIsDeleteModalOpen(false);
-            } catch (error) {
-                console.error("Failed to delete product:", error);
-            }
-        }
-    };
+    // const handleDeleteConfirm = async () => {
+    //     if (selectedProduct) {
+    //         try {
+    //             await deleteMutation.mutateAsync(selectedProduct.id);
+    //             setIsDeleteModalOpen(false);
+    //         } catch (error) {
+    //             console.error("Failed to delete product:", error);
+    //         }
+    //     }
+    // };
 
     if (isOrgPending || (isProductsPending && activeOrgId)) {
         return (
@@ -192,13 +193,7 @@ export default function ProductsOwner() {
                                                 >
                                                     <Edit2 className="w-4 h-4" />
                                                 </button>
-                                                <button
-                                                    onClick={() => handleOpenDeleteModal(product)}
-                                                    className="p-3 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all active:scale-95"
-                                                    title="Excluir"
-                                                >
-                                                    <Trash2 className="w-4 h-4" />
-                                                </button>
+                                                {/* Botão de delete removido: backend não possui rota de delete */}
                                             </div>
                                         </td>
                                     </tr>
@@ -230,13 +225,14 @@ export default function ProductsOwner() {
                 product={selectedProduct}
             />
 
-            <DeleteProductConfirmModal
+            {/* Modal de delete removido: backend não possui rota de delete */}
+            {/* <DeleteProductConfirmModal
                 isOpen={isDeleteModalOpen}
                 onClose={() => setIsDeleteModalOpen(false)}
                 onConfirm={handleDeleteConfirm}
                 productName={selectedProduct?.name || ""}
                 isPending={deleteMutation.isPending}
-            />
+            /> */}
         </ContainerOwner>
     );
 }
