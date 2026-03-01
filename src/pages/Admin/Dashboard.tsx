@@ -88,26 +88,30 @@ export default function DashboardAdmin() {
         <ContainerAdmin>
             <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
                 {/* Header Section */}
-                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-2">
-                    <div>
-                        <h1 className="text-3xl lg:text-4xl font-black text-gray-900 tracking-tight flex items-center gap-3">
-                            Dashboard <span className="bg-primary/10 text-primary px-3 py-1 rounded-2xl text-xs font-black uppercase tracking-widest">Admin</span>
-                        </h1>
-                        <p className="text-gray-500 text-sm mt-2 font-medium">
-                            Seja bem-vindo, monitorize o crescimento da plataforma em tempo real.
+                <div className="relative overflow-hidden bg-white/40 backdrop-blur-xl p-8 rounded-[3rem] border border-white/60 shadow-2xl shadow-gray-200/50 flex flex-col lg:flex-row lg:items-center justify-between gap-8 transition-all duration-700 hover:shadow-primary/5 group">
+                    {/* Decorative Background Elements */}
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -mr-20 -mt-20 group-hover:bg-primary/10 transition-colors duration-700" />
+                    <div className="absolute bottom-0 left-0 w-48 h-48 bg-tertiary/5 rounded-full blur-3xl -ml-20 -mb-20 group-hover:bg-tertiary/10 transition-colors duration-700" />
+
+                    <div className="relative z-10 space-y-3">
+                        <div className="flex items-center gap-3">
+                            <h1 className="text-4xl lg:text-5xl font-black text-gray-900 tracking-tighter">
+                                Dashboard
+                            </h1>
+                            <div className="px-4 py-1.5 bg-linear-to-r from-primary to-tertiary rounded-2xl shadow-lg shadow-primary/20">
+                                <span className="text-[10px] font-black text-white uppercase tracking-[0.2em]">Painel Admin</span>
+                            </div>
+                        </div>
+                        <p className="text-gray-500 text-sm font-medium max-w-md leading-relaxed">
+                            Monitorização centralizada e inteligente da plataforma <span className="text-primary font-bold">Kutambula</span>. Crescimento em tempo real.
                         </p>
                     </div>
-                    <div className="flex flex-wrap items-center gap-3">
-                        <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-2xl border border-gray-100 shadow-sm text-xs font-bold text-gray-500">
-                            <Calendar className="w-4 h-4 text-primary" />
-                            <span>Hoje, {new Date().toLocaleDateString('pt-PT')}</span>
+
+                    <div className="relative z-10 flex flex-wrap items-center gap-4">
+                        <div className="flex items-center gap-2.5 px-5 py-3 bg-white/80 rounded-2xl border border-gray-100 shadow-xs hover:shadow-md transition-all group/date">
+                            <Calendar className="w-4 h-4 text-primary group-hover/date:scale-110 transition-transform" />
+                            <span className="text-[11px] font-black text-gray-700 uppercase tracking-widest">{new Date().toLocaleDateString('pt-PT', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
                         </div>
-                        <button className="p-2.5 bg-white border border-gray-100 rounded-2xl text-gray-400 hover:text-primary transition-all shadow-sm active:scale-95">
-                            <Filter className="w-5 h-5" />
-                        </button>
-                        <button className="px-6 py-2.5 bg-primary text-white rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-tertiary transition-all shadow-lg shadow-primary/25 active:scale-95">
-                            Exportar Relatório
-                        </button>
                     </div>
                 </div>
 
