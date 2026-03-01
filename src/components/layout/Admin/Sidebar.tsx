@@ -56,7 +56,7 @@ export default function SidebarAdmin({ isOpen, onClose }: SidebarAdminProps) {
                     <img
                         src={icon4}
                         alt="Kutambula Admin"
-                        className="h-8 w-auto object-contain"
+                        className="h-6 w-auto object-contain"
                     />
                 </Link>
             </div>
