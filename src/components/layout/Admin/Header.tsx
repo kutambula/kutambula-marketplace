@@ -11,7 +11,7 @@ export default function HeaderAdmin({ onToggleSidebar }: HeaderAdminProps) {
     const { data: session } = authClient.useSession();
 
     return (
-        <header className="bg-white sticky top-0 z-20 h-20 flex items-center shadow-lg px-4 md:px-8 border-b border-tertiary/20">
+        <header className="bg-white sticky top-0 z-20 h-20 flex items-center  px-4 md:px-8 border-b border-tertiary/20">
             <div className="flex items-center justify-between w-full gap-4 md:gap-8">
                 {/* Logo & Toggle Section */}
                 <div className="flex items-center gap-2 md:gap-4 shrink-0">
