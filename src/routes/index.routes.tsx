@@ -17,7 +17,7 @@ import CreateOrganization from '../pages/public/OrganizationNew';
 import ConfigureAccount from '../pages/public/ConfigureAccount';
 
 import { DashboardOwner, ProductsOwner, SettingsOwner } from '../pages/Owner';
-import { DashboardAdmin } from '../pages/Admin';
+import { DashboardAdmin, VerificationsAdmin } from '../pages/Admin';
 
 export default function LayoutRoot() {
 	return (
@@ -52,7 +52,7 @@ export default function LayoutRoot() {
 			<Route path='/admin/dashboard/products' element={<DashboardAdmin />} />
 			<Route path='/admin/dashboard/organizations' element={<DashboardAdmin />} />
 			<Route path='/admin/dashboard/users' element={<DashboardAdmin />} />
-			<Route path='/admin/dashboard/verifications' element={<DashboardAdmin />} />
+			<Route path='/admin/dashboard/verifications' element={<VerificationsAdmin />} />
 			<Route path='/admin/dashboard/settings' element={<DashboardAdmin />} />
 		</Routes>
 	);
