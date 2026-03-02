@@ -1,7 +1,7 @@
-import Header from '../../components/layout/Header';
-import MainContent from '../../components/layout/MainContent';
-import Footer from '../../components/layout/Footer';
 import { Link } from 'react-router-dom';
+import Header from '../../components/layout/Header';
+import Footer from '../../components/layout/Footer';
+import MainContent from '../../components/layout/MainContent';
 import { Star, ChevronLeft, ChevronRight, ArrowRight, ChevronDown, ChevronUp, Bot } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import HowItWorks from '../../components/layout/HowItWorks';

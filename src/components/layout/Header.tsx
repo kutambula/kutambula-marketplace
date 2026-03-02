@@ -35,7 +35,7 @@ export default function Header() {
                     <div className="flex items-center justify-between gap-6">
                         {/* Menu Button & Logo */}
                         <div className="flex items-center gap-4">
-                            <Link to={`${session ? '/': "/"}`} className="shrink-0 group">
+                            <Link to={`${session ? '/' : "/"}`} className="shrink-0 group">
                                 <img
                                     src={icon4}
                                     alt="Kutambula Marketplace"
