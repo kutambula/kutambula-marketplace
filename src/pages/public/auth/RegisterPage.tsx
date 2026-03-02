@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, User, Building2, CheckCircle2 } from 'lucide-react';
-import icon5 from '../../assets/images/icon.png';
-import sidebarImage from '../../assets/images/registration_sidebar.png';
-import { useRegister } from '../../hooks/useRegister';
-import { handlerProvider } from '../../hooks/useAuth';
-import Input from '../../components/common/Form/Input';
-import Button from '../../components/common/Form/Button';
-import Select from '../../components/common/Form/Select';
+import icon5 from '../../../assets/images/icon.png';
+import sidebarImage from '../../../assets/images/registration_sidebar.png';
+import { useRegister } from '../../../hooks/useRegister';
+import { handlerProvider } from '../../../hooks/useAuth';
+import Input from '../../../components/common/Form/Input';
+import Button from '../../../components/common/Form/Button';
+import Select from '../../../components/common/Form/Select';
 
 export default function RegisterPage() {
     const [accountType, setAccountType] = useState<"personal" | "business">('personal');

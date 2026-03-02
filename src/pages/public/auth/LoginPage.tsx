@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react';
-import icon4 from '../../assets/images/icon.png';
-import { handlerProvider } from '../../hooks/useAuth';
-import { authClient } from '../../lib/auth-client';
-import Input from '../../components/common/Form/Input';
-import Button from '../../components/common/Form/Button';
+import icon4 from '../../../assets/images/icon.png';
+import { handlerProvider } from '../../../hooks/useAuth';
+import { authClient } from '../../../lib/auth-client';
+import Input from '../../../components/common/Form/Input';
+import Button from '../../../components/common/Form/Button';
 
 export default function LoginPage() {
     const [identifier, setIdentifier] = useState('');
