@@ -9,7 +9,7 @@ import {
     X,
     ShieldCheck,
 } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { authClient } from "../../../lib/auth-client";
 import icon4 from "../../../assets/images/icon4.png";
 
@@ -20,6 +20,8 @@ interface SidebarAdminProps {
 
 export default function SidebarAdmin({ isOpen, onClose }: SidebarAdminProps) {
     const location = useLocation();
+    const navigate = useNavigate();
+    const { data: session } = authClient.useSession();
 
     const menuItems = [
         { icon: LayoutDashboard, label: "Dashboard", path: "/admin/dashboard" },
@@ -31,8 +33,13 @@ export default function SidebarAdmin({ isOpen, onClose }: SidebarAdminProps) {
     ];
 
     const handleLogout = async () => {
-        await authClient.signOut();
-        window.location.href = "/login";
+        await authClient.signOut({
+            fetchOptions: {
+                onSuccess: () => {
+                    navigate("/login");
+                },
+            },
+        });
     };
 
     return (
@@ -69,7 +76,7 @@ export default function SidebarAdmin({ isOpen, onClose }: SidebarAdminProps) {
             </div>
 
             {/* Navigation Section */}
-            <div className="flex-1 bg-quaternary px-4 space-y-2 pt-2 pb-4 overflow-y-auto custom-scrollbar">
+            <div className="flex-1 bg-quaternary px-4 space-y-1 pt-2 pb-4 overflow-y-auto custom-scrollbar">
                 {menuItems.map((item) => {
                     const Icon = item.icon;
                     const isActive = location.pathname === item.path;
@@ -78,7 +85,7 @@ export default function SidebarAdmin({ isOpen, onClose }: SidebarAdminProps) {
                             key={item.path}
                             to={item.path}
                             onClick={() => window.innerWidth < 1024 && onClose()}
-                            className={`flex items-center p-4 rounded-2xl transition-all group ${isOpen ? "gap-4 justify-start" : "justify-center"} ${isActive
+                            className={`flex items-center p-3 rounded-xl transition-all group ${isOpen ? "gap-3 justify-start" : "justify-center"} ${isActive
                                 ? "bg-primary text-white shadow-lg shadow-primary/20"
                                 : "text-white/70 hover:bg-white/10 hover:text-white"
                                 }`}
@@ -94,16 +101,33 @@ export default function SidebarAdmin({ isOpen, onClose }: SidebarAdminProps) {
 
             {/* Sidebar Footer */}
             <div className="p-4 bg-quaternary border-t border-white/10 space-y-1">
+                {/* User Profile Summary (Desktop Sidebar collapsed or expanded) */}
+                <div className={`mb-4 overflow-hidden transition-all duration-300 ${isOpen ? "px-2" : "flex justify-center"}`}>
+                    <div className={`flex items-center gap-3 ${!isOpen && "justify-center"}`}>
+                        <img
+                            src={session?.user?.image || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFCzxivJXCZk0Kk8HsHujTO3Olx0ngytPrWw&s"}
+                            alt={session?.user?.name}
+                            className="w-8 h-8 rounded-lg object-cover ring-2 ring-white/10"
+                        />
+                        {isOpen && (
+                            <div className="min-w-0">
+                                <p className="text-xs font-bold text-white truncate">{session?.user?.name || "Admin"}</p>
+                                <p className="text-[10px] text-white/50 truncate font-medium">Administrador</p>
+                            </div>
+                        )}
+                    </div>
+                </div>
+
                 <Link
                     to="/"
-                    className={`flex items-center p-4 rounded-2xl text-white/70 hover:bg-white/10 hover:text-white transition-all group ${isOpen ? "gap-4 justify-start" : "justify-center"}`}
+                    className={`flex items-center p-3 rounded-xl text-white/70 hover:bg-white/10 hover:text-white transition-all group ${isOpen ? "gap-3 justify-start" : "justify-center"}`}
                 >
                     <Home className="w-5 h-5 shrink-0 group-hover:scale-110 transition-transform" />
                     <span className={`font-bold text-sm tracking-tight transition-all duration-300 ${isOpen ? "opacity-100 w-auto" : "opacity-0 w-0 overflow-hidden lg:hidden"}`}>Vê o Site</span>
                 </Link>
                 <button
                     onClick={handleLogout}
-                    className={`w-full flex items-center p-4 rounded-2xl text-primary hover:bg-white/10 transition-all group ${isOpen ? "gap-4 justify-start" : "justify-center"}`}
+                    className={`w-full flex items-center p-3 rounded-xl text-primary hover:bg-white/10 transition-all group ${isOpen ? "gap-3 justify-start" : "justify-center"}`}
                 >
                     <LogOut className="w-5 h-5 shrink-0 group-hover:scale-110 transition-transform" />
                     <span className={`font-bold text-sm tracking-tight whitespace-nowrap transition-all duration-300 ${isOpen ? "opacity-100 w-auto" : "opacity-0 w-0 overflow-hidden lg:hidden"}`}>Sair</span>

@@ -11,12 +11,20 @@ export default function DashboardPage() {
 
     useEffect(() => {
         if (!isPending) {
-            if (!session?.session)
-                navigate("/login")
-            else if (session.user.role == 'user')
-                navigate("/auth/account_configure")
+            if (!session?.session) {
+                navigate("/login");
+            } else {
+                const role = (session.user as any).role;
+                if (role === 'admin') {
+                    navigate("/admin/dashboard");
+                } else if (role === 'business') {
+                    navigate("/owner/dashboard");
+                } else if (role === 'user') {
+                    navigate("/auth/account_configure");
+                }
+            }
         }
-    }, [session])
+    }, [session, isPending, navigate]);
 
     if (isPending) return <div>Garregando</div>
 

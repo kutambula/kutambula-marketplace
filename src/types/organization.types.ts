@@ -52,9 +52,9 @@ export interface OrganizationData {
 }
 
 // List Organization Response
-export interface ListOrganizationResponse {
+export type ListOrganizationResponse = {
     data: OrganizationData[];
     total: number;
     page: number;
     lastPage: number;
-}
+} | OrganizationData[];

@@ -41,12 +41,12 @@ export interface ProductResponse {
   deletedAt: string | null;
 }
 
-export interface PaginatedProductResponse {
+export type PaginatedProductResponse = {
   data: ProductResponse[];
   total: number;
   page: number;
   lastPage: number;
-}
+} | ProductResponse[];
 
 export interface ListProductsParams {
   limit?: number;
